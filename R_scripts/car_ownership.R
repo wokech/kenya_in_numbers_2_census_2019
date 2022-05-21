@@ -58,6 +58,6 @@ ggplot(cty_df, aes(x = reorder(County, -Car), y = Car)) +
   coord_flip()
 
 # Save the plot
-ggsave("car_census_viz.png", width = 7.5, height = 10)
+ggsave("images/car_census_viz.png", width = 7.5, height = 10)
 
 
