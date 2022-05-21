@@ -337,15 +337,15 @@ p6 <- k_pop_total_gen %>%
 # Male
 p4 / p1
 
-ggsave("images/knbs_pop_generation_2019_1.png", width = 10, height = 7.5)
+ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_1.png", width = 10, height = 7.5)
 
 # Female
 p5 / p2
 
-ggsave("images/knbs_pop_generation_2019_2.png", width = 10, height = 7.5)
+ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_2.png", width = 10, height = 7.5)
 
 # Total
 p6 / p3
 
-ggsave("images/knbs_pop_generation_2019_3.png", width = 10, height = 7.5)
+ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_3.png", width = 10, height = 7.5)
 

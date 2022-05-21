@@ -15,7 +15,11 @@ Website reference: https://www.jtimm.net/2020/06/10/american-generations/
 1) 2019 Kenya Population and Housing Census
 2) Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
 
-### Visualization 2 - Car Ownership in Kenya (2019)
+### Visualization 2 - Gender ratio in Kenya (2019)
+
+
+
+### Visualization 3 - Car Ownership in Kenya (2019)
 
 ![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/car_census_viz.png)
 
