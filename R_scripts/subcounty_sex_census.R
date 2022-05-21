@@ -1,9 +1,11 @@
 # Continuation of county_sex_census.R
+library(patchwork)
 
 # 1) Load the subcounty sex census data and clean
 
 df_2 <- V1_T2.5
 df_2
+
 
 # Calculate the male:female ratio per 100
 df_2_ratio <- df_2 %>%
@@ -25,13 +27,13 @@ View(top_subcounty)
 
 top_subcounty_plot <- top_subcounty %>%
   ggplot(aes(x = reorder(county_sub, m_f_ratio_100), y = m_f_ratio_100)) + 
-  geom_bar(stat = "identity", width = 0.5, fill = "darksalmon") + 
+  geom_bar(stat = "identity", width = 0.5, fill = "chocolate3") + 
   coord_flip() + 
   scale_y_break(c(7.5, 80)) + 
   theme_classic()+
   labs(x = "SubCounty", 
        y = "Number of males per 100 females", 
-       title = "",
+       title = "Highest gender ratios at the subcounty level",
        caption = "") +
   theme(axis.title.x =element_text(size = 15),
         axis.title.y =element_text(size = 15),
@@ -55,13 +57,13 @@ View(bottom_subcounty)
 
 bottom_subcounty_plot <- bottom_subcounty %>%
   ggplot(aes(x = reorder(county_sub, m_f_ratio_100), y = m_f_ratio_100)) + 
-  geom_bar(stat = "identity", width = 0.5, fill = "darksalmon") + 
+  geom_bar(stat = "identity", width = 0.5, fill = "chartreuse") + 
   coord_flip() + 
   scale_y_break(c(7.5, 80)) + 
   theme_classic()+
   labs(x = "SubCounty", 
        y = "Number of males per 100 females", 
-       title = "",
+       title = "Lowest gender ratios at the subcounty level",
        caption = "") +
   theme(axis.title.x =element_text(size = 15),
         axis.title.y =element_text(size = 15),
@@ -74,3 +76,7 @@ bottom_subcounty_plot <- bottom_subcounty %>%
 bottom_subcounty_plot
 
 ggsave("images/subcounty_sex_census/bottom_subcounty_plot.png", width = 6, height = 4)
+
+top_subcounty_plot / bottom_subcounty_plot
+
+ggsave("images/subcounty_sex_census/top_bottom_plot.png", width = 6, height = 12)
