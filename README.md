@@ -12,8 +12,8 @@ Here, Kenyans are classified into 5 generations (Pre-Independence, Kenyatta I, M
 Website reference: https://www.jtimm.net/2020/06/10/american-generations/
 
 ### Citation
-2019 Kenya Population and Housing Census
-Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
+1) 2019 Kenya Population and Housing Census
+2) Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
 
 ### Visualization 2 - Car Ownership in Kenya (2019)
 
@@ -24,7 +24,8 @@ Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census 
 2) The ownership percentages are compared to the urban, rural, and national averages.
 
 ### Citation 
-Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
+1) 2019 Kenya Population and Housing Census\n
+2) Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
 
 
 
