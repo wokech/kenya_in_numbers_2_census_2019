@@ -33,7 +33,9 @@ Website reference: https://shelkariuki.netlify.app/post/firstmap/
 ### Visualization 3 - Kenyan subcounties with the highest and lowest gender ratios
 ### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/subcounty_sex_census.R)
 
-![alt_text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/subcounty_sex_census/top_bottom_plot.png)
+![alt_text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/subcounty_sex_census/top_subcounty_plot.png)
+
+![alt_text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/subcounty_sex_census/bottom_subcounty_plot.png)
 
 ### Notes
 1) This visualization demonstrates the subcounties with the highest and lowest gender ratios
