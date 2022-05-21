@@ -2,6 +2,7 @@
 ## The goal of this project is to generate insightful visualizations from the Kenya Population and Housing Census (2019)
 
 ### Visualization 1 - Kenyan Generations (2019)
+### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/knbs_pop_generation_2019.R)
 In this visualization, I look at the Total Kenyan Population by Generation. 
 Here, Kenyans are classified into 5 generations (Pre-Independence, Kenyatta I, Moi, Kibaki, and Kenyatta II)
 
@@ -16,6 +17,7 @@ Website reference: https://www.jtimm.net/2020/06/10/american-generations/
 2) Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
 
 ### Visualization 2 - Car Ownership in Kenya (2019)
+### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/car_ownership.R)
 
 ![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/car_census_viz.png)
 
