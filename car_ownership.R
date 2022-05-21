@@ -1,9 +1,9 @@
 #Tidy Tuesday
 
 # Install the required packages
-install.packages("remotes")
-install.packages("devtools")
-remotes::install_github("Shelmith-Kariuki/rKenyaCensus")
+#install.packages("remotes")
+#install.packages("devtools")
+#remotes::install_github("Shelmith-Kariuki/rKenyaCensus")
 
 # Load the required libraries
 library(rKenyaCensus)
@@ -48,11 +48,9 @@ ggplot(cty_df, aes(x = reorder(County, -Car), y = Car)) +
   geom_text(aes(x = 38 , y = 10.8, label = "Average Car Ownership (Urban)"), 
             size = 3,
             angle=90, vjust = 1.5) +
-  labs(title="Car Ownership in Kenya (2019 Census)", 
-       subtitle="Percentage of Households that own 
-       a car in each of the 47 counties", 
-       caption="Visualization: William Okech | 
-       Data: rKenyaCensus by Shelmith Kariuki") + 
+  labs(title="Car Ownership in Kenya", 
+       subtitle="Percentage of Households that own a car in each of the 47 counties", 
+       caption="By @ willyokech | Data: rKenyaCensus") + 
   xlab("County") + 
   ylab("Household Car Ownership (%)") + 
   theme(axis.text.x = element_text(size=10,color="black")) + 
