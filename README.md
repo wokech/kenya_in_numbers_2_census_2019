@@ -41,7 +41,7 @@ Website reference: https://shelkariuki.netlify.app/post/firstmap/
 1) This visualization demonstrates the subcounties with the highest and lowest gender ratios
 
 ### Citation 
-1) 2019 Kenya Population and Housing Census\n
+1) 2019 Kenya Population and Housing Census
 2) Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
 
 ### Visualization 4 - Car Ownership in Kenya (2019)
@@ -55,9 +55,23 @@ Website reference: https://shelkariuki.netlify.app/post/firstmap/
 2) The ownership percentages are compared to the urban, rural, and national averages.
 
 ### Citation 
-1) 2019 Kenya Population and Housing Census\n
+1) 2019 Kenya Population and Housing Census
 2) Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
 
 
+### Visualization 5 - Kenyan counties with big (> 1 million) and small (< 1 million) populations
+
+### [Code]()
+
+![alt text]()
+
+![alt text]()
+
+### Notes
+
+
+### Citation
+1) 2019 Kenya Population and Housing Census
+2) Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
 
 
