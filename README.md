@@ -61,11 +61,13 @@ Website reference: https://shelkariuki.netlify.app/post/firstmap/
 
 ### Visualization 5 - Kenyan counties with big (> 1 million) and small (< 1 million) populations
 
-### [Code]()
+### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/county_sex_census.R)
 
-![alt text]()
+Big (> 1 million) poulation counties
+![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/county_sex_census/big_map.png)
 
-![alt text]()
+Small (<1 million) population counties
+![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/county_sex_census/small_map.png)
 
 ### Notes
 
