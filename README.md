@@ -10,7 +10,7 @@ Here, Kenyans are classified into 5 generations (Pre-Independence, Kenyatta I, M
 
 ### Notes
 1) This project is inspired by Jason Timm's work on American generations and is modified to the Kenyan context.
-Website reference: https://www.jtimm.net/2020/06/10/american-generations/
+Website reference: https://jtimm.net/posts/seven-generations/
 
 ### Citation
 1) 2019 Kenya Population and Housing Census
