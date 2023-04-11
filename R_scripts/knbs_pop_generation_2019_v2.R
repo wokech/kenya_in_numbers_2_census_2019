@@ -1,7 +1,9 @@
 # Kenyan Generations by Universal Classification 
 # Author: William Okech
 
-# Load libraries
+################################################
+# A. Load libraries
+###############################################
 
 # install.packages("readr")
 # install.packages("patchwork")
@@ -14,7 +16,9 @@ library(ggthemes)
 library(scales)
 library(rKenyaCensus)
 
-# Load the required data from 2019 Census
+#############################################################
+# B. Load the required data from 2019 Census
+############################################################
 
 # Age-sex dataset
 df_age <- V3_T2.2
@@ -50,7 +54,9 @@ kenyan_pop_2019$Age <- as.numeric(kenyan_pop_2019$Age)
 
 # Select the 3 different data types and add necessary columns
 
-# Male
+#############################################################
+# i) Male
+##############################################################
 
 kenyan_pop_2019_male <- kenyan_pop_2019 %>% select(Age, Male)
 kenyan_pop_2019_male$type <- 'male'
@@ -88,7 +94,9 @@ k_pop_male_gen <- k_pop_male %>%
 
 k_pop_male_gen$rank <- as.integer(k_pop_male_gen$rank)
 
-# Female
+###############################################################
+# ii) Female
+###############################################################
 
 kenyan_pop_2019_female <- kenyan_pop_2019 %>% select(Age, Female)
 kenyan_pop_2019_female$type <- 'female'
@@ -125,7 +133,9 @@ k_pop_female_gen <- k_pop_female %>%
 
 k_pop_female_gen$rank <- as.integer(k_pop_female_gen$rank)
 
-# Total 
+#####################################################################
+# iii) Total 
+#####################################################################
 
 kenyan_pop_2019_total <- kenyan_pop_2019 %>% select(Age, Total)
 kenyan_pop_2019_total$type <- 'total'
@@ -163,9 +173,11 @@ k_pop_total_gen <- k_pop_total %>%
 
 k_pop_total_gen$rank <- as.integer(k_pop_total_gen$rank)
 
-# Plot the graphs
+#####################################################################
+# C. Plot the graphs
+#####################################################################
 
-# Population by generation
+# i) Population by generation
 # Male
 
 p1 <- k_pop_male_gen %>%
@@ -178,16 +190,21 @@ p1 <- k_pop_male_gen %>%
              fill = gen)) +
   geom_col(show.legend = FALSE, 
            alpha = 0.75)  +
+  theme_minimal() + # Order matters put theme_minimal() before theme()
+  labs(title = 'Male population grouped by generation', caption = '') +
   geom_text(aes(label = paste(lab, "M")), 
-            size = 3.5)+
-  theme(axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())+
-  xlab('') + ylab('Population') +
+            size = 5)+
+  theme(#axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.text.x = element_text(size = 14),
+        axis.text.y = element_text(size = 14))+
+  xlab('') + 
+  ylab('') +
   coord_flip()+
-  ggthemes::scale_fill_stata() +
-  theme_minimal() +
-  labs(title = 'Kenyan male population (2019) grouped by generation',
-       caption = 'By @willyokech')
+  ggthemes::scale_fill_stata()+
+  scale_y_continuous(labels = comma)
+  
+p1
 
 # Female
 
@@ -201,16 +218,21 @@ p2 <- k_pop_female_gen %>%
              fill = gen)) +
   geom_col(show.legend = FALSE, 
            alpha = 0.75)  +
+  theme_minimal() + # Order matters put theme_minimal() before theme()
+  labs(title = 'Female population grouped by generation', caption = '') +
   geom_text(aes(label = paste(lab, "M")), 
-            size = 3.5)+
-  theme(axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())+
-  xlab('') + ylab('Population') +
+            size = 5)+
+  theme(#axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.text.x = element_text(size = 14),
+        axis.text.y = element_text(size = 14))+
+  xlab('') + 
+  ylab('') +
   coord_flip()+
   ggthemes::scale_fill_stata() +
-  theme_minimal() +
-  labs(title = 'Kenyan female population (2019) grouped by generation',
-       caption = 'By @willyokech')
+  scale_y_continuous(labels = comma)
+ 
+p2
 
 # Total
 
@@ -224,19 +246,24 @@ p3 <- k_pop_total_gen %>%
              fill = gen)) +
   geom_col(show.legend = FALSE, 
            alpha = 0.75)  +
+  theme_minimal() +
+  labs(title = 'Population grouped by generation', caption = '') +
   geom_text(aes(label = paste(lab, "M")), 
-            size = 3.5)+
-  theme(axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())+
-  xlab('') + ylab('Population') +
+            size = 5, hjust = 0.25)+
+  theme(#axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.text.x = element_text(size = 14),
+        axis.text.y = element_text(size = 14))+
+  xlab('') + ylab('') +
   coord_flip()+
   ggthemes::scale_fill_stata() +
-  scale_y_continuous(labels = comma) +
-  theme_minimal() +
-  labs(title = 'Total Kenyan population (2019) grouped by generation',
-       caption = 'By @willyokech')
+  scale_y_continuous(labels = comma)
+  
+p3
 
-# Population by single year of age & generation
+#######################################################################
+# ii) Population by single year of age & generation
+########################################################################
 
 # Male
 gg1 <- k_pop_male_gen %>% 
@@ -282,7 +309,7 @@ p4 <- k_pop_male_gen %>%
            x = gg1$age - 4.5, 
            y = gg1$tot + 70000, 
            label = gg1$gen,
-           size = 4) +
+           size = 5) +
   xlab('Age')+ 
   ylab('Population') +
   theme_minimal() +
@@ -290,12 +317,16 @@ p4 <- k_pop_male_gen %>%
         legend.title = element_blank(),
         panel.grid.major.x=element_blank(),
         panel.grid.minor.x=element_blank(),
-        panel.grid.minor.y=element_blank()) +
+        panel.grid.minor.y=element_blank(),
+        axis.text.x = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        axis.title.x = element_text(size=16, face = "bold"),
+        axis.title.y = element_text(size=16, face = "bold")) +
   ggthemes::scale_fill_stata()+
   scale_x_reverse(breaks = rev(gg1$age)) +
   scale_y_continuous(labels = comma) +
-  labs(title = 'Kenyan male population (2019) by single-year age & generation')
-
+  labs(title = 'Male population grouped by single-year age & generation')
+p4
 
 # Female
 
@@ -314,7 +345,7 @@ p5 <- k_pop_female_gen %>%
            x = gg2$age - 4.5, 
            y = gg2$tot + 70000, 
            label = gg2$gen,
-           size = 4) +
+           size = 5) +
   xlab('Age')+ 
   ylab('Population') +
   theme_minimal() +
@@ -322,12 +353,16 @@ p5 <- k_pop_female_gen %>%
         legend.title = element_blank(),
         panel.grid.major.x=element_blank(),
         panel.grid.minor.x=element_blank(),
-        panel.grid.minor.y=element_blank()) +
-  ggthemes::scale_fill_stata()+
+        panel.grid.minor.y=element_blank(),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title.x = element_text(size = 16, face = "bold"),
+        axis.title.y = element_text(size = 16, face = "bold")) +
+  ggthemes::scale_fill_stata() +
   scale_x_reverse(breaks = rev(gg2$age)) +
   scale_y_continuous(labels = comma) +
-  labs(title = 'Kenyan female population (2019) by single-year age & generation')
-
+  labs(title = 'Female population grouped by single-year age & generation')
+p5
 
 # Total
 
@@ -346,7 +381,7 @@ p6 <- k_pop_total_gen %>%
            x = gg3$age - 4.5, 
            y = gg3$tot + 70000, 
            label = gg3$gen,
-           size = 4) +
+           size = 5) +
   xlab('Age')+ 
   ylab('Population') +
   theme_minimal() +
@@ -354,48 +389,58 @@ p6 <- k_pop_total_gen %>%
         legend.title = element_blank(),
         panel.grid.major.x=element_blank(),
         panel.grid.minor.x=element_blank(),
-        panel.grid.minor.y=element_blank()) +
+        panel.grid.minor.y=element_blank(),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title.x = element_text(size=16, face = "bold"),
+        axis.title.y = element_text(size=16, face = "bold")) +
   ggthemes::scale_fill_stata()+
   scale_x_reverse(breaks = rev(gg3$age)) +
   scale_y_continuous(labels = comma) +
-  labs(title = 'Total Kenyan population (2019) by single-year age & generation')
+  labs(title = 'Population grouped by single-year age & generation')
+p6
 
-# Male
+#########################################################################
+# D. Production Images
+########################################################################
+
+
+# i) Male
 p4 / p1 +
   plot_annotation(title = "",
                   subtitle = "",
-                  caption = "Source: rKenyaCensus | By: @willyokech\nInspired by jtimm.net",
+                  caption = "Source: rKenyaCensus | By: @willyokech\nInspired by Jason Timm (https://jtimm.net/posts/seven-generations/)",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
-                                plot.caption = element_text(family = "Helvetica",size = 15, face = "bold"),
+                                plot.caption = element_text(family = "Helvetica",size = 12),
                                 plot.background = element_rect(fill = "beige"))) &
   theme(text = element_text('Helvetica'))
 
-#ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_1_v2.png", width = 10, height = 7.5)
+ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_1_v2.png", width = 10, height = 7.5)
 
-# Female
+# ii) Female
 p5 / p2 +
   plot_annotation(title = "",
                   subtitle = "",
-                  caption = "Source: rKenyaCensus | By: @willyokech\nInspired by jtimm.net",
+                  caption = "Source: rKenyaCensus | By: @willyokech\nInspired by Jason Timm (https://jtimm.net/posts/seven-generations/)",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
-                                plot.caption = element_text(family = "Helvetica",size = 15, face = "bold"),
+                                plot.caption = element_text(family = "Helvetica",size = 12),
                                 plot.background = element_rect(fill = "beige"))) &
   theme(text = element_text('Helvetica'))
 
-#ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_2_v2.png", width = 10, height = 7.5)
+ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_2_v2.png", width = 10, height = 7.5)
 
-# Total
+# iii) Total
 p6 / p3 +
-  plot_annotation(title = "",
+  plot_annotation(title = "In 2019, 40% of Kenya's population was Gen-Z(Zoomer)",
                   subtitle = "",
-                  caption = "Source: rKenyaCensus | By: @willyokech\nInspired by jtimm.net",
+                  caption = "Source: rKenyaCensus | By: @willyokech\nInspired by Jason Timm (https://jtimm.net/posts/seven-generations/)",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
-                                plot.caption = element_text(family = "Helvetica",size = 15, face = "bold"),
+                                plot.caption = element_text(family = "Helvetica",size = 12),
                                 plot.background = element_rect(fill = "beige"))) &
   theme(text = element_text('Helvetica'))
 
-#ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_3_v2.png", width = 10, height = 7.5)
+ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_3_v2.png", width = 10, height = 7.5)
 
