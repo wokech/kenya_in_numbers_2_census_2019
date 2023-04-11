@@ -3,8 +3,7 @@
 # Inspired by Rose Mintzer-Sweeney
 # https://blog.datawrapper.de/gender-ratio-american-history/
 # Data: rKenyaCensus
-# Map generation
-# https://shelkariuki.netlify.app/post/firstmap/
+# Map generation: https://shelkariuki.netlify.app/post/firstmap/
 
 # 1) Load all the required packages and libraries 
 # required for accessing the census data
@@ -173,7 +172,7 @@ barplot <- df_1_ratio_only_county %>%
   ggplot(aes(x = reorder(COUNTY, m_f_ratio_100), y = m_f_ratio_100, fill = m_f_ratio_100)) + 
   geom_bar(stat = "identity", width = 0.5) + 
   coord_flip() + 
-  scale_fill_gradient(low = "darkgreen", high = "yellow") + 
+  scale_fill_gradient(low = "blue", high = "yellow") + 
   scale_y_break(c(7.5, 80)) + 
   theme_classic()+
   labs(x = "County", 
@@ -184,9 +183,11 @@ barplot <- df_1_ratio_only_county %>%
        fill = "Number of males\nper 100 females")+
   theme(axis.title.x =element_text(size = 20),
         axis.title.y =element_text(size = 20),
+        axis.text.x =element_text(size = 10),
+        axis.text.y =element_text(size = 10),
         plot.title = element_text(family = "URW Palladio L, Italic",size = 16, hjust = 0.5),
         plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
-        legend.title = element_text("URW Palladio L, Italic",size = 8, vjust = 1),
+        legend.title = element_text("URW Palladio L, Italic",size = 10, vjust = 1),
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
         panel.background = element_rect(fill = "white", colour = "white")) + 
     geom_hline(yintercept = 100, linetype="dashed", color = "purple", size=0.5) +
@@ -195,7 +196,7 @@ barplot <- df_1_ratio_only_county %>%
 barplot 
 
 # Save the plot
-ggsave("images/county_sex_census/all_counties_barplot.png", width = 7.5, height = 10)
+ggsave("images/county_sex_census/all_counties_barplot.png", width = 10, height = 7.5)
 
 # Plot a base plot / map.
 
@@ -216,16 +217,16 @@ map <- ggplot(data = merged_df)+
         legend.title = element_blank(),
         legend.position = "none",
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12))+
-  scale_fill_gradient(low = "darkgreen", high = "yellow")
+  scale_fill_gradient(low = "blue", high = "yellow")
 
 map
 
 # Save the plot
-ggsave("images/county_sex_census/all_counties_map.png", width = 7.5, height = 10)
+ggsave("images/county_sex_census/all_counties_map.png", width = 5, height = 7.5)
 
 barplot + map
 
-ggsave("images/county_sex_census/barplot_map.png", width = 10, height = 10)
+ggsave("images/county_sex_census/barplot_map.png", width = 15, height = 10)
 
 # Visualizing the human sex ratio within the different economic blocs
 
