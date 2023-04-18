@@ -1,4 +1,4 @@
-# Kenya Census (2019) Insights (Part I)
+# Kenya Census (2019) Insights
 ## The goal of this project is to generate insightful visualizations from the Kenya Population and Housing Census (2019)
 
 ### All data are obtained from:
