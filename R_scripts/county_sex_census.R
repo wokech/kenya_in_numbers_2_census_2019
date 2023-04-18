@@ -170,33 +170,34 @@ library(patchwork)
 
 barplot <- df_1_ratio_only_county %>%
   ggplot(aes(x = reorder(COUNTY, m_f_ratio_100), y = m_f_ratio_100, fill = m_f_ratio_100)) + 
-  geom_bar(stat = "identity", width = 0.5) + 
+  geom_bar(stat = "identity", width = 0.75) + 
   coord_flip() + 
-  scale_fill_gradient(low = "blue", high = "yellow") + 
+  scale_fill_gradient(low = "azure3", high = "purple") +
   scale_y_break(c(7.5, 80)) + 
-  theme_classic()+
-  labs(x = "County", 
-       y = "Number of males per 100 females", 
-       title = "",
+  xlab("") +
+  ylab("") + 
+  labs(title = "",
        subtitle = "",
        caption = "",
-       fill = "Number of males\nper 100 females")+
-  theme(axis.title.x =element_text(size = 20),
-        axis.title.y =element_text(size = 20),
-        axis.text.x =element_text(size = 10),
-        axis.text.y =element_text(size = 10),
+       fill = "Number of males\nper 100 females") +
+  theme(axis.title.x =element_text(size = 18),
+        axis.title.y =element_text(size = 18),
+        axis.text.x =element_text(size = 14),
+        axis.text.y =element_text(size = 14),
         plot.title = element_text(family = "URW Palladio L, Italic",size = 16, hjust = 0.5),
         plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
         legend.title = element_text("URW Palladio L, Italic",size = 10, vjust = 1),
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
-        panel.background = element_rect(fill = "white", colour = "white")) + 
-    geom_hline(yintercept = 100, linetype="dashed", color = "purple", size=0.5) +
-    geom_text(aes(x = 15 , y = 100, label = "Male:Female ratio = 1:1"), size = 4, angle=90, vjust = 1.5)
+        plot.background = element_rect(fill = "bisque", color = "bisque"), 
+       # panel.background = element_rect(fill = "bisque", color = "bisque"),
+        legend.position = "none") + 
+    geom_hline(yintercept = 100, linetype="dashed", color = "purple", size=0.75) +
+    ggtext::geom_richtext(aes(x = 15 , y = 100, label = "Male:Female ratio = 1:1"), size = 5, angle=90, vjust = 1.5) 
 
 barplot 
 
 # Save the plot
-ggsave("images/county_sex_census/all_counties_barplot.png", width = 10, height = 7.5)
+ggsave("images/county_sex_census/all_counties_barplot.png", width = 6, height = 12)
 
 # Plot a base plot / map.
 
@@ -211,20 +212,29 @@ map <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100))+
   theme_void()+
   labs(title = "",
-       caption = "By @willyokech",
+       caption = "",
        fill = "Number of males\nper 100 females")+
   theme(plot.title = element_text(family = "URW Palladio L, Italic",size = 16, hjust = 0.5),
         legend.title = element_blank(),
         legend.position = "none",
-        plot.caption = element_text(family = "URW Palladio L, Italic",size = 12))+
-  scale_fill_gradient(low = "blue", high = "yellow")
-
+        plot.caption = element_text(family = "URW Palladio L, Italic",size = 12)) +
+  scale_fill_gradient(low = "azure3", high = "purple") 
+  
 map
 
 # Save the plot
-ggsave("images/county_sex_census/all_counties_map.png", width = 5, height = 7.5)
+ggsave("images/county_sex_census/all_counties_map.png", width = 6, height = 12)
 
-barplot + map
+barplot + map +
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "Source: rKenyaCensus | By: @willyokech",
+                  theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
+                                plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+                                plot.caption = element_text(family = "Helvetica",size = 12),
+                                plot.background = element_rect(fill = "bisque"),
+                                panel.background = element_rect(fill = "bisque"))) &
+  theme(text = element_text('Helvetica'))
 
 ggsave("images/county_sex_census/barplot_map.png", width = 15, height = 10)
 

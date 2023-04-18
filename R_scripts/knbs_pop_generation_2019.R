@@ -14,6 +14,7 @@ library(tidyverse)
 library(patchwork)
 library(ggthemes)
 library(scales)
+library(rKenyaCensus)
 
 #############################################################
 # B. Load the required data from 2019 Census
@@ -181,7 +182,8 @@ p1 <- k_pop_male_gen %>%
   theme(#axis.text.x=element_blank(),
     axis.ticks.x=element_blank(),
     axis.text.x = element_text(size = 14),
-    axis.text.y = element_text(size = 14))+
+    axis.text.y = element_text(size = 14),
+    plot.title = element_text(face = "bold"))+
   xlab('') + 
   ylab('') +
   coord_flip()+
@@ -209,7 +211,8 @@ p2 <- k_pop_female_gen %>%
   theme(#axis.text.x=element_blank(),
     axis.ticks.x=element_blank(),
     axis.text.x = element_text(size = 14),
-    axis.text.y = element_text(size = 14))+
+    axis.text.y = element_text(size = 14),
+    plot.title = element_text(face = "bold"))+
   xlab('') + 
   ylab('') +
   coord_flip()+
@@ -237,7 +240,8 @@ p3 <- k_pop_total_gen %>%
   theme(#axis.text.x=element_blank(),
     axis.ticks.x=element_blank(),
     axis.text.x = element_text(size = 14),
-    axis.text.y = element_text(size = 14))+
+    axis.text.y = element_text(size = 14),
+    plot.title = element_text(face = "bold"))+
   xlab('') + ylab('') +
   coord_flip()+
   ggthemes::scale_fill_stata() +
@@ -305,7 +309,8 @@ p4 <- k_pop_male_gen %>%
         axis.text.x = element_text(size=12),
         axis.text.y = element_text(size=12),
         axis.title.x = element_text(size=16, face = "bold"),
-        axis.title.y = element_text(size=16, face = "bold")) +
+        axis.title.y = element_text(size=16, face = "bold"),
+        plot.title = element_text(face = "bold")) +
   ggthemes::scale_fill_stata()+
   scale_x_reverse(breaks = rev(gg1$age)) +
   scale_y_continuous(labels = comma) +
@@ -342,7 +347,8 @@ p5 <- k_pop_female_gen %>%
         axis.text.x = element_text(size = 12),
         axis.text.y = element_text(size = 12),
         axis.title.x = element_text(size = 16, face = "bold"),
-        axis.title.y = element_text(size = 16, face = "bold")) +
+        axis.title.y = element_text(size = 16, face = "bold"),
+        plot.title = element_text(face = "bold")) +
   ggthemes::scale_fill_stata() +
   scale_x_reverse(breaks = rev(gg2$age)) +
   scale_y_continuous(labels = comma) +
@@ -379,7 +385,8 @@ p6 <- k_pop_total_gen %>%
         axis.text.x = element_text(size = 12),
         axis.text.y = element_text(size = 12),
         axis.title.x = element_text(size=16, face = "bold"),
-        axis.title.y = element_text(size=16, face = "bold")) +
+        axis.title.y = element_text(size=16, face = "bold"),
+        plot.title = element_text(face = "bold")) +
   ggthemes::scale_fill_stata()+
   scale_x_reverse(breaks = rev(gg3$age)) +
   scale_y_continuous(labels = comma) +
@@ -403,7 +410,7 @@ p4 / p1 +
   theme(text = element_text('Helvetica'))
   
 
-ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_1.png", width = 10, height = 7.5)
+ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_1.png", width = 12, height = 8)
 
 # Female
 p5 / p2 +
@@ -416,18 +423,18 @@ p5 / p2 +
                                 plot.background = element_rect(fill = "beige"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_2.png", width = 10, height = 7.5)
+ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_2.png", width = 12, height = 8)
 
 # Total
 p6 / p3 +
-  plot_annotation(title = "Majority of Kenyans living today were born during the Moi era",
+  plot_annotation(title = "Majority of Kenyans living today* were born during the Moi era",
                   subtitle = "",
-                  caption = "Source: rKenyaCensus | By: @willyokech\nInspired by Jason Timm (https://jtimm.net/posts/seven-generations/)",
+                  caption = "Source: rKenyaCensus | * = 2019 Census | By: @willyokech\nInspired by Jason Timm (https://jtimm.net/posts/seven-generations/)",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
                                 plot.background = element_rect(fill = "beige"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_3.png", width = 10, height = 7.5)
+ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_3.png", width = 12, height = 8)
 

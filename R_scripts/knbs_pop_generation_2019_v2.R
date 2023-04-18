@@ -193,11 +193,12 @@ p1 <- k_pop_male_gen %>%
   theme_minimal() + # Order matters put theme_minimal() before theme()
   labs(title = 'Male population grouped by generation', caption = '') +
   geom_text(aes(label = paste(lab, "M")), 
-            size = 5)+
+            size = 5, hjust = 0.35)+
   theme(#axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
         axis.text.x = element_text(size = 14),
-        axis.text.y = element_text(size = 14))+
+        axis.text.y = element_text(size = 14),
+        plot.title = element_text(face = "bold"))+
   xlab('') + 
   ylab('') +
   coord_flip()+
@@ -221,11 +222,12 @@ p2 <- k_pop_female_gen %>%
   theme_minimal() + # Order matters put theme_minimal() before theme()
   labs(title = 'Female population grouped by generation', caption = '') +
   geom_text(aes(label = paste(lab, "M")), 
-            size = 5)+
+            size = 5, hjust = 0.35)+
   theme(#axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
         axis.text.x = element_text(size = 14),
-        axis.text.y = element_text(size = 14))+
+        axis.text.y = element_text(size = 14),
+        plot.title = element_text(face = "bold"))+
   xlab('') + 
   ylab('') +
   coord_flip()+
@@ -249,11 +251,12 @@ p3 <- k_pop_total_gen %>%
   theme_minimal() +
   labs(title = 'Population grouped by generation', caption = '') +
   geom_text(aes(label = paste(lab, "M")), 
-            size = 5, hjust = 0.25)+
+            size = 5, hjust = 0.35)+
   theme(#axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
         axis.text.x = element_text(size = 14),
-        axis.text.y = element_text(size = 14))+
+        axis.text.y = element_text(size = 14),
+        plot.title = element_text(face = "bold"))+
   xlab('') + ylab('') +
   coord_flip()+
   ggthemes::scale_fill_stata() +
@@ -309,7 +312,7 @@ p4 <- k_pop_male_gen %>%
            x = gg1$age - 4.5, 
            y = gg1$tot + 70000, 
            label = gg1$gen,
-           size = 5) +
+           size = 4) +
   xlab('Age')+ 
   ylab('Population') +
   theme_minimal() +
@@ -321,7 +324,8 @@ p4 <- k_pop_male_gen %>%
         axis.text.x = element_text(size=12),
         axis.text.y = element_text(size=12),
         axis.title.x = element_text(size=16, face = "bold"),
-        axis.title.y = element_text(size=16, face = "bold")) +
+        axis.title.y = element_text(size=16, face = "bold"),
+        plot.title = element_text(face = "bold")) +
   ggthemes::scale_fill_stata()+
   scale_x_reverse(breaks = rev(gg1$age)) +
   scale_y_continuous(labels = comma) +
@@ -345,7 +349,7 @@ p5 <- k_pop_female_gen %>%
            x = gg2$age - 4.5, 
            y = gg2$tot + 70000, 
            label = gg2$gen,
-           size = 5) +
+           size = 4) +
   xlab('Age')+ 
   ylab('Population') +
   theme_minimal() +
@@ -357,7 +361,8 @@ p5 <- k_pop_female_gen %>%
         axis.text.x = element_text(size = 12),
         axis.text.y = element_text(size = 12),
         axis.title.x = element_text(size = 16, face = "bold"),
-        axis.title.y = element_text(size = 16, face = "bold")) +
+        axis.title.y = element_text(size = 16, face = "bold"),
+        plot.title = element_text(face = "bold")) +
   ggthemes::scale_fill_stata() +
   scale_x_reverse(breaks = rev(gg2$age)) +
   scale_y_continuous(labels = comma) +
@@ -381,7 +386,7 @@ p6 <- k_pop_total_gen %>%
            x = gg3$age - 4.5, 
            y = gg3$tot + 70000, 
            label = gg3$gen,
-           size = 5) +
+           size = 4) +
   xlab('Age')+ 
   ylab('Population') +
   theme_minimal() +
@@ -393,12 +398,13 @@ p6 <- k_pop_total_gen %>%
         axis.text.x = element_text(size = 12),
         axis.text.y = element_text(size = 12),
         axis.title.x = element_text(size=16, face = "bold"),
-        axis.title.y = element_text(size=16, face = "bold")) +
+        axis.title.y = element_text(size=16, face = "bold"),
+        plot.title = element_text(face = "bold")) +
   ggthemes::scale_fill_stata()+
   scale_x_reverse(breaks = rev(gg3$age)) +
   scale_y_continuous(labels = comma) +
   labs(title = 'Population grouped by single-year age & generation')
-p6
+  p6
 
 #########################################################################
 # D. Production Images
@@ -416,7 +422,7 @@ p4 / p1 +
                                 plot.background = element_rect(fill = "beige"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_1_v2.png", width = 10, height = 7.5)
+ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_1_v2.png", width = 12, height = 8)
 
 # ii) Female
 p5 / p2 +
@@ -429,18 +435,18 @@ p5 / p2 +
                                 plot.background = element_rect(fill = "beige"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_2_v2.png", width = 10, height = 7.5)
+ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_2_v2.png", width = 12, height = 8)
 
 # iii) Total
 p6 / p3 +
-  plot_annotation(title = "In 2019, 40% of Kenya's population was Gen-Z(Zoomer)",
+  plot_annotation(title = "In 2019, approximately 40% of Kenya's population was Gen-Z/Zoomer",
                   subtitle = "",
-                  caption = "Source: rKenyaCensus | By: @willyokech\nInspired by Jason Timm (https://jtimm.net/posts/seven-generations/)",
+                  caption = "Data Source: rKenyaCensus | By: @willyokech\nInspired by Jason Timm (https://jtimm.net/posts/seven-generations/)",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
                                 plot.background = element_rect(fill = "beige"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_3_v2.png", width = 10, height = 7.5)
+ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_3_v2.png", width = 12, height = 8)
 
