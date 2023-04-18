@@ -20,8 +20,7 @@ Here, Kenyans are classified into 5 generations (Pre-Independence, Kenyatta I, M
 ![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/knbs_pop_generation_2019/knbs_pop_generation_2019_3_v2.png)
 
 ### Notes
-1) This project is inspired by Jason Timm's work on American generations and is modified to the Kenyan context.
-Website reference: https://jtimm.net/posts/seven-generations/
+1) This project is inspired by [Jason Timm's](https://jtimm.net/posts/seven-generations/) work on American generations and is modified to the Kenyan context. 
 
 ### Visualization 3 - Human Sex ratio for every single-year of age in Kenya (2019)
 ### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/sex_census_scripts/national_sex_census.R)
