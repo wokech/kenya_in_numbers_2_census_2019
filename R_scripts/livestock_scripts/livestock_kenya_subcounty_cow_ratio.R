@@ -35,14 +35,13 @@ table_1_pasto <- table_1_pasto %>%
   clean_names()
 
 table_1_pasto_select <- table_1_pasto %>%
-  select(county, sub_county, admin_area, farming, sheep, goats, indigenous_cattle) %>%
+  select(county, sub_county, admin_area, farming, sheep, goats, indigenous_cattle, exotic_cattle_dairy, exotic_cattle_beef) %>%
   mutate(total_pasto_livestock = sheep + goats + indigenous_cattle) %>%
   mutate(ind_cattle_farm_household = round(indigenous_cattle/farming)) %>%
   mutate(goats_farm_household = round(goats/farming)) %>%
   mutate(sheep_farm_household = round(sheep/farming)) %>%
   mutate(total_pasto_farm_household = round(total_pasto_livestock/farming)) %>%
-  mutate(indi_exotic_ratio = round(indigenous_cattle/(exotic_cattle_dairy + exotic_cattle_beef),1)) %>%
-  mutate(indi_exotic_ratio = round(indigenous_cattle/(exotic_cattle_dairy + exotic_cattle_beef),1))
+  mutate(indi_exotic_ratio = round(indigenous_cattle/(exotic_cattle_dairy + exotic_cattle_beef)))
 
 
 View(table_1_pasto_select)
