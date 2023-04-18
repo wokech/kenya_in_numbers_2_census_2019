@@ -61,11 +61,14 @@ In this visualization we look at the gender ratios for Kenya's 47 counties.
 ### Notes
 1) Maps inspired by the book [Analyzing US Census Data](https://walker-data.com/census-r/working-with-census-data-outside-the-united-states.html)
 
-### Visualization  - Where are you most likely to find an asbestos roof in Kenya?
+### Visualization 7  - Where are you most likely to find an asbestos roof in Kenya?
 
 ### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/building_scripts/building_materials_kenya_roof_asbestos_county.R)
 
 ![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/building_materials_kenya_asbestos_county/all_counties_asbestos_barplot_map.png)
 
-### Notes
-1) Maps inspired by the book [Analyzing US Census Data](https://walker-data.com/census-r/working-with-census-data-outside-the-united-states.html)
+### Visualization 8  - Where do Kenyans own and where do they rent their own homes?
+
+### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/home_trends_scripts/home_trends_kenya_national.R)
+
+![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/homes_national/rur_urb_stacked.png)
