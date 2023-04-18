@@ -94,13 +94,14 @@ theme_minimal() +
        y = "Percentage (%)", 
        title = "Where do Kenyans own and where do they rent?",
        subtitle = "Percentage of Kenyans who own or rent their homes in both rural and urban regions",
-       caption = "Data Source: rkenyaCensus | By: @willyokech",
+       caption = "Data Source: rKenyaCensus | By: @willyokech",
        fill = "") +
   theme(axis.title.x =element_text(size = 18),
         axis.title.y =element_text(size = 18),
         axis.text.x =element_text(size = 14),
         axis.text.y =element_text(size = 24),
         axis.ticks = element_blank(),
+        legend.text=element_text(size=16),
         plot.title = element_text(family = "URW Palladio L, Italic",size = 24),
         plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 18),
         legend.title = element_text("Helvetica",size = 8, vjust = 1),
@@ -110,6 +111,6 @@ theme_minimal() +
   scale_y_continuous(labels = scales::percent) +
   scale_fill_brewer(palette="Reds")
 
-ggsave("images/homes_national/rur_urb_stacked.png", width = 5, height = 5)
+ggsave("images/homes_national/rur_urb_stacked.png", width = 12, height = 6, dpi =600)
 
   
