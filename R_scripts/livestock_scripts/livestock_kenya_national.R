@@ -67,20 +67,38 @@ ggplot(table_1_select_tidy,
        aes(area = number, fill = livestock_type, 
            label = livestock_type)) +
   geom_treemap() +
-  labs(fill = "",
-       caption = "By @willyokech") +
+  labs(title = "Livestock in Kenya",
+       subtitle = "The relative numbers of livestock owned by farming households in Kenya (2019)",
+       fill = "",
+       caption = "Data Source: rKenyaCensus | By @willyokech") +
   geom_treemap_text(colour = "black",
                     place = "centre",
                     size = 10,
                     grow = TRUE) + 
-  theme(legend.position = "bottom") +
+  theme(legend.position = "bottom",
+        plot.title = element_text(size=24),
+        plot.subtitle = element_text(size=18),
+        legend.text = element_text(size = 10),
+        plot.caption = element_text(size =12),
+        panel.background = element_rect(fill="azure2"),
+        plot.background = element_rect(fill="azure2"),
+        legend.background = element_rect(fill="azure2")) +
   scale_fill_brewer(palette = "Paired") 
 
 
 ggsave("images/livestock_kenya_national/treemap_livestock_national.png", width = 12, height = 8)
 
-table_1_select_tidy_print <- table_1_select_tidy %>%
-  select(livestock_type, number) %>%
-  arrange(desc(number))
+table_1_select_tidy_print <- data.frame(livestock_type = table_1_select_tidy$livestock_type, 
+                                        number = table_1_select_tidy$number)
 
+table_1_select_tidy_print %>%
+  arrange(desc(number)) %>%
+  rename("Livestock Type" = "livestock_type",
+         "Number" = "number") %>%
+  kbl(align = "c", format.args = list(big.mark = ",")) %>%
+  kable_classic() %>% 
+  row_spec(row = 0, font_size = 28, color = "white", background = "#000000") %>%
+  row_spec(row = c(1:12), font_size = 20) %>%
+  save_kable(file = "images/livestock_kenya_national/table_livestock_national.png",
+             zoom = 5)
 
