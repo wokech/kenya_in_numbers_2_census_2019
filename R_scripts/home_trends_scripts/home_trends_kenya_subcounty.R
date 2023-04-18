@@ -54,7 +54,7 @@ top_subcounty_plot <- top_subcounty %>%
 
 top_subcounty_plot
 
-ggsave("images/subcounty/top_subcounty_home_plot.png", width = 6, height = 4)
+ggsave("images/homes_subcounty/top_subcounty_home_plot.png", width = 6, height = 4)
 
 # Find the bottom 10 subcounties
 bottom_subcounty <- table_2_sc_new %>%
@@ -82,8 +82,8 @@ bottom_subcounty_plot <- bottom_subcounty %>%
 
 bottom_subcounty_plot
 
-ggsave("images/subcounty/bottom_subcounty_home_plot.png", width = 6, height = 4)
+ggsave("images/homes_subcounty/bottom_subcounty_home_plot.png", width = 6, height = 4)
 
 top_subcounty_plot / bottom_subcounty_plot
 
-ggsave("images/subcounty/top_bottom_home_plot.png", width = 6, height = 12)
+ggsave("images/homes_subcounty/top_bottom_home_plot.png", width = 6, height = 12)

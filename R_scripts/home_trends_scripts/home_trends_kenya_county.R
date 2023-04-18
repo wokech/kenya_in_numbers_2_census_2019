@@ -201,7 +201,7 @@ barplot <- table_2_c %>%
 barplot 
 
 # Save the plot
-ggsave("images/county/all_counties_home_barplot.png", width = 7.5, height = 10)
+ggsave("images/homes_county/all_counties_home_barplot.png", width = 7.5, height = 10)
 
 # Plot a base plot / map.
 
@@ -227,11 +227,11 @@ map <- ggplot(data = merged_df)+
 map
 
 # Save the plot
-ggsave("images/county/all_counties_home_map.png", width = 7.5, height = 10)
+ggsave("images/homes_county/all_counties_home_map.png", width = 7.5, height = 10)
 
 barplot + map
 
-ggsave("images/county/all_counties_home_barplot_map.png", width = 10, height = 10)
+ggsave("images/homes_county/all_counties_home_barplot_map.png", width = 10, height = 10)
 
 
 # Visualizing home ownership within the different economic blocs
@@ -298,7 +298,7 @@ fcdc_home_plot <- fcdc_home %>%
 
 fcdc_home_plot
 
-ggsave("images/county/fcdc_home_plot.png", width = 6, height = 4)
+ggsave("images/homes_county/fcdc_home_plot.png", width = 6, height = 4)
 
 
 noreb_home_plot <- noreb_home %>%
@@ -331,7 +331,7 @@ noreb_home_plot <- noreb_home %>%
 
 noreb_home_plot
 
-ggsave("images/county/noreb_home_plot.png", width = 6, height = 4)
+ggsave("images/homes_county/noreb_home_plot.png", width = 6, height = 4)
 
 
 lreb_home_plot <- lreb_home %>%
@@ -364,7 +364,7 @@ lreb_home_plot <- lreb_home %>%
 
 lreb_home_plot
 
-ggsave("images/county/lreb_home_plot.png", width = 6, height = 4)
+ggsave("images/homes_county/lreb_home_plot.png", width = 6, height = 4)
 
 
 pwani_home_plot <- pwani_home %>%
@@ -398,7 +398,7 @@ pwani_home_plot <- pwani_home %>%
 
 pwani_home_plot
 
-ggsave("images/county/pwani_home_plot.png", width = 6, height = 4)
+ggsave("images/homes_county/pwani_home_plot.png", width = 6, height = 4)
 
 
 sekeb_home_plot <- sekeb_home %>%
@@ -431,7 +431,7 @@ sekeb_home_plot <- sekeb_home %>%
 
 sekeb_home_plot
 
-ggsave("images/county/sekeb_home_plot.png", width = 6, height = 4)
+ggsave("images/homes_county/sekeb_home_plot.png", width = 6, height = 4)
 
 
 mkareb_home_plot <- mkareb_home %>%
@@ -465,7 +465,7 @@ mkareb_home_plot <- mkareb_home %>%
 
 mkareb_home_plot
 
-ggsave("images/county/mkareb_home_plot.png", width = 6, height = 4)
+ggsave("images/homes_county/mkareb_home_plot.png", width = 6, height = 4)
 
 
 nakeb_home_plot <- nakeb_home %>%
@@ -499,7 +499,7 @@ nakeb_home_plot <- nakeb_home %>%
 
 nakeb_home_plot
 
-ggsave("images/county/nakeb_home_plot.png", width = 6, height = 4)
+ggsave("images/homes_county/nakeb_home_plot.png", width = 6, height = 4)
 
 
 namet_home_plot <- namet_home %>%
@@ -533,7 +533,7 @@ namet_home_plot <- namet_home %>%
 
 namet_home_plot
 
-ggsave("images/county/namet_home_plot.png", width = 6, height = 4)
+ggsave("images/homes_county/namet_home_plot.png", width = 6, height = 4)
 
 
 major_home_plot <- major_home %>%
@@ -567,4 +567,4 @@ major_home_plot <- major_home %>%
   
 major_home_plot
 
-ggsave("images/county/major_home_plot.png", width = 6, height = 4)
+ggsave("images/homes_county/major_home_plot.png", width = 6, height = 4)

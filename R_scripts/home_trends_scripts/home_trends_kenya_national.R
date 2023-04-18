@@ -65,7 +65,7 @@ ggplot(table_1_pie, aes(x="", y=prop, fill=group)) +
     geom_text(aes(y = ypos, label = group), color = "white", size=6) +
   scale_fill_brewer(palette="Set1")
 
-ggsave("images/national/national_pie.png", width = 5, height = 5)
+ggsave("images/homes_national/national_pie.png", width = 5, height = 5)
 
 
 # Stacked bar chart 
@@ -110,6 +110,6 @@ theme_minimal() +
   scale_y_continuous(labels = scales::percent) +
   scale_fill_brewer(palette="Reds")
 
-ggsave("images/national/rur_urb_stacked.png", width = 5, height = 5)
+ggsave("images/homes_national/rur_urb_stacked.png", width = 5, height = 5)
 
   
