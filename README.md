@@ -1,12 +1,19 @@
-# Kenya Census (2019) Insights
+# Kenya Census (2019) Insights (Part I)
 ## The goal of this project is to generate insightful visualizations from the Kenya Population and Housing Census (2019)
 
-### Visualization 1 - Kenyan Generations (2019)
+### Visualization 1 - Kenyan Generations by Presidential Era (2019)
 ### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/knbs_pop_generation_2019.R)
 In this visualization, I look at the Total Kenyan Population by Generation. 
 Here, Kenyans are classified into 5 generations (Pre-Independence, Kenyatta I, Moi, Kibaki, and Kenyatta II)
 
 ![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/knbs_pop_generation_2019/knbs_pop_generation_2019_3.png)
+
+### Visualization 2 - Kenyan Generations by universal definition (2019)
+### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/knbs_pop_generation_2019_v2.R)
+In this visualization, I look at the Total Kenyan Population by Generation. 
+Here, Kenyans are classified into 5 generations (Pre-Independence, Kenyatta I, Moi, Kibaki, and Kenyatta II)
+
+![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/knbs_pop_generation_2019/knbs_pop_generation_2019_3_v2.png)
 
 ### Notes
 1) This project is inspired by Jason Timm's work on American generations and is modified to the Kenyan context.
@@ -16,7 +23,13 @@ Website reference: https://jtimm.net/posts/seven-generations/
 1) 2019 Kenya Population and Housing Census
 2) Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
 
-### Visualization 2 - Gender ratio in Kenya (2019)
+### Visualization 3 - Human Sex ratio for every single-year of age in Kenya (2019)
+### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/national_sex_census.R)
+In this visualization we look at the gender ratios for every single-year of age.
+
+![alt_text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/national_sex_census/age_sex_ratio_2.png)
+
+### Visualization 4 - Human Sex ratio in the 47 Kenyan Counties (2019)
 ### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/county_sex_census.R)
 In this visualization we look at the gender ratios for Kenya's 47 counties.
 
@@ -30,21 +43,7 @@ Website reference: https://shelkariuki.netlify.app/post/firstmap/
 1) 2019 Kenya Population and Housing Census
 2) Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
 
-### Visualization 3 - Kenyan subcounties with the highest and lowest gender ratios
-### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/subcounty_sex_census.R)
-
-![alt_text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/subcounty_sex_census/top_subcounty_plot.png)
-
-![alt_text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/subcounty_sex_census/bottom_subcounty_plot.png)
-
-### Notes
-1) This visualization demonstrates the subcounties with the highest and lowest gender ratios
-
-### Citation 
-1) 2019 Kenya Population and Housing Census
-2) Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
-
-### Visualization 4 - Car Ownership in Kenya (2019)
+### Visualization 5 - Car Ownership in Kenya (2019)
 
 ### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/car_ownership.R)
 
@@ -57,23 +56,3 @@ Website reference: https://shelkariuki.netlify.app/post/firstmap/
 ### Citation 
 1) 2019 Kenya Population and Housing Census
 2) Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
-
-
-### Visualization 5 - Kenyan counties with big (> 1 million) and small (< 1 million) populations
-
-### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/county_sex_census.R)
-
-Big (> 1 million) poulation counties
-![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/county_sex_census/big_map.png)
-
-Small (<1 million) population counties
-![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/county_sex_census/small_map.png)
-
-### Notes
-
-
-### Citation
-1) 2019 Kenya Population and Housing Census
-2) Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
-
-
