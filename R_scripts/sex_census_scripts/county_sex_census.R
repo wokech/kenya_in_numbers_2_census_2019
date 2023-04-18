@@ -166,6 +166,10 @@ glimpse(merged_df)
 #install.packages("ggbreak")
 library(ggbreak)
 
+################
+# HAD TO REMOVE THE SCALE BREAK TO ALLOW FOR PLOT/PANEL BACKGROUND TO CHANGE!
+###############
+
 library(patchwork)
 
 barplot <- df_1_ratio_only_county %>%
@@ -173,31 +177,33 @@ barplot <- df_1_ratio_only_county %>%
   geom_bar(stat = "identity", width = 0.75) + 
   coord_flip() + 
   scale_fill_gradient(low = "azure3", high = "purple") +
-  scale_y_break(c(7.5, 80)) + 
-  xlab("") +
-  ylab("") + 
-  labs(title = "",
-       subtitle = "",
-       caption = "",
-       fill = "Number of males\nper 100 females") +
+  theme_classic() +
   theme(axis.title.x =element_text(size = 18),
-        axis.title.y =element_text(size = 18),
+        axis.title.y =element_text(size = 18, angle = 90),
         axis.text.x =element_text(size = 14),
-        axis.text.y =element_text(size = 14),
+        axis.text.y =element_text(size = 10),
         plot.title = element_text(family = "URW Palladio L, Italic",size = 16, hjust = 0.5),
         plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
         legend.title = element_text("URW Palladio L, Italic",size = 10, vjust = 1),
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
         plot.background = element_rect(fill = "bisque", color = "bisque"), 
-       # panel.background = element_rect(fill = "bisque", color = "bisque"),
+        panel.background = element_rect(fill = "bisque", color = "bisque"),
         legend.position = "none") + 
-    geom_hline(yintercept = 100, linetype="dashed", color = "purple", size=0.75) +
-    ggtext::geom_richtext(aes(x = 15 , y = 100, label = "Male:Female ratio = 1:1"), size = 5, angle=90, vjust = 1.5) 
+    geom_hline(yintercept = 100, linetype="dashed", color = "blue", size=0.75) +
+    ggtext::geom_richtext(aes(x = 15 , y = 100, 
+                              label = "Male:Female ratio = 1:1"), size = 5, angle=90, vjust = 1.5) +
+  labs(title = "",
+       subtitle = "",
+       caption = "",
+       fill = "Number of males\nper 100 females",
+       x = "County",
+       y = "Number of males per 100 females") 
+  
 
 barplot 
 
 # Save the plot
-ggsave("images/county_sex_census/all_counties_barplot.png", width = 6, height = 12)
+ggsave("images/county_sex_census/all_counties_barplot.png", width = 6, height = 10)
 
 # Plot a base plot / map.
 
@@ -223,20 +229,20 @@ map <- ggplot(data = merged_df)+
 map
 
 # Save the plot
-ggsave("images/county_sex_census/all_counties_map.png", width = 6, height = 12)
+ggsave("images/county_sex_census/all_counties_map.png", width = 4, height = 10)
 
 barplot + map +
   plot_annotation(title = "",
                   subtitle = "",
-                  caption = "Source: rKenyaCensus | By: @willyokech",
+                  caption = "Data Source: rKenyaCensus | By: @willyokech",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
-                                plot.background = element_rect(fill = "bisque"),
-                                panel.background = element_rect(fill = "bisque"))) &
+                                plot.background = element_rect(fill = "bisque", color = "bisque"),
+                                panel.background = element_rect(fill = "bisque", color = "bisque"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("images/county_sex_census/barplot_map.png", width = 15, height = 10)
+ggsave("images/county_sex_census/barplot_map.png", width = 10, height = 10, dpi = 600)
 
 # Visualizing the human sex ratio within the different economic blocs
 
