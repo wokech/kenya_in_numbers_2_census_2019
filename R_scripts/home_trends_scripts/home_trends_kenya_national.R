@@ -91,21 +91,24 @@ ggplot(table_1_no_stacked, aes(fill=sub_county, y=number, x=tenure)) +
   coord_flip() + 
 theme_minimal() +
   labs(x = "", 
-       y = "", 
-       title = "",
-       subtitle = "",
-       caption = "",
+       y = "Percentage (%)", 
+       title = "Where do Kenyans own and where do they rent?",
+       subtitle = "Percentage of Kenyans who own or rent their homes in both rural and urban regions",
+       caption = "Data Source: rkenyaCensus | By: @willyokech",
        fill = "") +
-  theme(axis.title.x =element_text(size = 20),
-        axis.title.y =element_text(size = 40),
+  theme(axis.title.x =element_text(size = 18),
+        axis.title.y =element_text(size = 18),
+        axis.text.x =element_text(size = 14),
+        axis.text.y =element_text(size = 24),
         axis.ticks = element_blank(),
-        plot.title = element_text(family = "URW Palladio L, Italic",size = 16, hjust = 0.5),
-        plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
+        plot.title = element_text(family = "URW Palladio L, Italic",size = 24),
+        plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 18),
         legend.title = element_text("Helvetica",size = 8, vjust = 1),
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
-        panel.background = element_rect(fill = "white", colour = "white")) +
+        plot.background = element_rect(fill = "azure2", colour = "azure2"),
+        panel.background = element_rect(fill = "azure2", colour = "azure2")) +
   scale_y_continuous(labels = scales::percent) +
-  scale_fill_brewer(palette="Set1")
+  scale_fill_brewer(palette="Reds")
 
 ggsave("images/national/rur_urb_stacked.png", width = 5, height = 5)
 
