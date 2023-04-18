@@ -236,7 +236,7 @@ p3 <- k_pop_total_gen %>%
   theme_minimal() +
   labs(title = 'Population grouped by generation', caption = '') +
   geom_text(aes(label = paste(lab, "M")), 
-            size = 5, hjust = 0.25)+
+            size = 5, hjust = 0.35)+
   theme(#axis.text.x=element_blank(),
     axis.ticks.x=element_blank(),
     axis.text.x = element_text(size = 14),
