@@ -1,5 +1,8 @@
-# Kenya Census (2019) Insights
-## The goal of this project is to generate insightful visualizations from the Kenya Population and Housing Census (2019)
+# Kenya Census (2019) Data Visualization
+
+Welcome to the Kenyan Census Data Visualization repository! 
+This repository contains code and data related to the Kenyan Census (2019).
+The goal of this project is to generate insightful visualizations and make them more accessible to researchers, policymakers, and the general public..
 
 ### All data are obtained from:
 1) 2019 Kenya Population and Housing Census
