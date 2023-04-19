@@ -72,7 +72,7 @@ In this visualization we look at the gender ratios for Kenya's 47 counties.
 
 ![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/homes_national/rur_urb_stacked.png)
 
-### Visualization 8  - Livestock numbers in Kenya (2019)
+### Visualization 9  - Livestock numbers in Kenya (2019)
 
 ### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/livestock_scripts/livestock_kenya_national.R)
 
