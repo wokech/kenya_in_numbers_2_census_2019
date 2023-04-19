@@ -232,8 +232,8 @@ map
 ggsave("images/county_sex_census/all_counties_map.png", width = 4, height = 10)
 
 barplot + map +
-  plot_annotation(title = "",
-                  subtitle = "",
+  plot_annotation(title = "Human Sex Ratio in Kenya",
+                  subtitle = "The number of males per 100 females in Kenya's 47 counties",
                   caption = "Data Source: rKenyaCensus | By: @willyokech",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
