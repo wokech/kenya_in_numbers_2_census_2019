@@ -11,6 +11,10 @@ library(tidyverse)
 library(janitor)
 #install.packages("ggpmisc")
 library(ggpmisc)
+#webshot::install_phantomjs()
+library(knitr)
+library(kableExtra)
+
 
 # 2) View the data available in the data catalogue
 
@@ -86,7 +90,7 @@ ggplot(table_1_select_tidy,
   scale_fill_brewer(palette = "Paired") 
 
 
-ggsave("images/livestock_kenya_national/treemap_livestock_national.png", width = 12, height = 8)
+ggsave("images/livestock_kenya_national/treemap_livestock_national.png", width = 12, height = 8, dpi = 600)
 
 table_1_select_tidy_print <- data.frame(livestock_type = table_1_select_tidy$livestock_type, 
                                         number = table_1_select_tidy$number)
