@@ -46,9 +46,10 @@ ggplot(df_pop_national_tidy, aes(County, Number, fill = Gender)) +
         legend.title = element_text("Helvetica",size = 8, vjust = 1),
         legend.position = "right",
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
-        panel.background = element_rect(fill = "white", colour = "white"))  
+        panel.background = element_rect(fill = "bisque", colour = "bisque"),
+        plot.background = element_rect(fill = "bisque", colour = "bisque"))  
 
-ggsave("images/national_sex_census/sex_ratio.png", width = 8, height = 2)
+ggsave("images/national_sex_census/sex_ratio.png", width = 8, height = 4)
 
 df_age_sex_ratio <- V3_T2.2
 

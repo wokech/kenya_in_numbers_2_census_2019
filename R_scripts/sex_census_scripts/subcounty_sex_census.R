@@ -31,18 +31,22 @@ top_subcounty_plot <- top_subcounty %>%
   ggplot(aes(x = reorder(county_sub, m_f_ratio_100), y = m_f_ratio_100)) + 
   geom_bar(stat = "identity", width = 0.5, fill = "lightblue") + 
   coord_flip() + 
-  scale_y_break(c(40, 80)) + 
+  #scale_y_break(c(40, 80)) + 
   theme_classic()+
   labs(x = "Subcounty", 
-       y = "Number of males per 100 females", 
+       y = "Number of males\nper 100 females", 
        title = "Top 20 Subcounties",
        caption = "") +
   theme(axis.title.x =element_text(size = 15),
         axis.title.y =element_text(size = 15),
+        axis.text.x =element_text(size = 14),
+        axis.text.y =element_text(size = 14),
         plot.title = element_text(family = "URW Palladio L, Italic",size = 16, hjust = 0.5),
         plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
         legend.title = element_text("URW Palladio L, Italic",size = 8, vjust = 1),
-        plot.caption = element_text(family = "URW Palladio L, Italic",size = 12)) + 
+        plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
+        plot.background = element_rect(fill = "bisque", color = "bisque"),
+        panel.background = element_rect(fill = "bisque", color = "bisque")) + 
   geom_hline(yintercept = 100, linetype="dashed", color = "purple", size=0.5)
 
 top_subcounty_plot
@@ -61,25 +65,38 @@ bottom_subcounty_plot <- bottom_subcounty %>%
   ggplot(aes(x = reorder(county_sub, m_f_ratio_100), y = m_f_ratio_100)) + 
   geom_bar(stat = "identity", width = 0.5, fill = "blue") + 
   coord_flip() + 
-  scale_y_break(c(40, 80)) + 
+  #scale_y_break(c(40, 80)) + 
   theme_classic()+
   labs(x = "Subcounty", 
-       y = "Number of males per 100 females", 
+       y = "Number of males\nper 100 females", 
        title = "Bottom 20 Subcounties",
        caption = "") +
   theme(axis.title.x =element_text(size = 15),
         axis.title.y =element_text(size = 15),
+        axis.text.x =element_text(size = 14),
+        axis.text.y =element_text(size = 14),
         plot.title = element_text(family = "URW Palladio L, Italic",size = 16, hjust = 0.5),
         plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
         legend.title = element_text("URW Palladio L, Italic",size = 8, vjust = 1),
-        plot.caption = element_text(family = "URW Palladio L, Italic",size = 12)) + 
+        plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
+        plot.background = element_rect(fill = "bisque", color = "bisque"),
+        panel.background = element_rect(fill = "bisque", color = "bisque")) + 
   geom_hline(yintercept = 100, linetype="dashed", color = "purple", size=0.5)
 
 bottom_subcounty_plot
 
 ggsave("images/subcounty_sex_census/bottom_subcounty_plot.png", width = 6, height = 4)
 
-top_subcounty_plot + bottom_subcounty_plot
+top_subcounty_plot + bottom_subcounty_plot + 
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "Data Source: rKenyaCensus | By: @willyokech",
+                  theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
+                                plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+                                plot.caption = element_text(family = "Helvetica",size = 12),
+                                plot.background = element_rect(fill = "bisque", color = "bisque"),
+                                panel.background = element_rect(fill = "bisque", color = "bisque"))) &
+  theme(text = element_text('Helvetica'))
 
-ggsave("images/subcounty_sex_census/top_bottom_plot.png", width = 12, height = 4)
+ggsave("images/subcounty_sex_census/top_bottom_plot.png", width = 12, height = 8)
 
