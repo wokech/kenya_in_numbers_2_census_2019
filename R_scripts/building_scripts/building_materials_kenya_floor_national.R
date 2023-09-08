@@ -77,7 +77,7 @@ ggplot(table_1_select_tidy_national,
                     place = "centre",
                     size = 10) 
 
-ggsave("images/building_materials_kenya_floor_national/national_treemap.png", width = 12, height = 8)
+#ggsave("images/building_materials_kenya_floor_national/national_treemap.png", width = 12, height = 8)
 
 # Urban
 
@@ -95,7 +95,7 @@ ggplot(table_1_select_tidy_urban,
                     place = "centre",
                     size = 10) 
 
-ggsave("images/building_materials_kenya_floor_national/urban_treemap.png", width = 12, height = 8)
+#ggsave("images/building_materials_kenya_floor_national/urban_treemap.png", width = 12, height = 8)
 
 
 # Rural
@@ -114,5 +114,5 @@ ggplot(table_1_select_tidy_rural,
                     place = "centre",
                     size = 10) 
 
-ggsave("images/building_materials_kenya_floor_national/rural_treemap.png", width = 12, height = 8)
+#ggsave("images/building_materials_kenya_floor_national/rural_treemap.png", width = 12, height = 8)
 

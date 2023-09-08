@@ -84,7 +84,7 @@ ggplot(table_1_select_tidy_national,
                     grow = TRUE) + 
   scale_fill_brewer(palette = "Spectral")
 
-ggsave("images/building_materials_kenya_roof_national/national_treemap.png", width = 12, height = 8)
+#ggsave("images/building_materials_kenya_roof_national/national_treemap.png", width = 12, height = 8)
 
 # Urban
 
@@ -102,7 +102,7 @@ ggplot(table_1_select_tidy_urban,
                     place = "centre",
                     size = 10) 
 
-ggsave("images/building_materials_kenya_roof_national/urban_treemap.png", width = 12, height = 8)
+#ggsave("images/building_materials_kenya_roof_national/urban_treemap.png", width = 12, height = 8)
 
 
 # Rural
@@ -121,4 +121,4 @@ ggplot(table_1_select_tidy_rural,
                     place = "centre",
                     size = 10) 
 
-ggsave("images/building_materials_kenya_roof_national/rural_treemap.png", width = 12, height = 8)
+#ggsave("images/building_materials_kenya_roof_national/rural_treemap.png", width = 12, height = 8)
