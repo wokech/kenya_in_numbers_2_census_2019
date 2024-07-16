@@ -14,6 +14,8 @@ library(tidyverse)
 library(patchwork)
 library(ggthemes)
 library(scales)
+# install.packages("devtools")
+# devtools::install_github("Shelmith-Kariuki/rKenyaCensus")
 library(rKenyaCensus)
 
 #############################################################
@@ -162,6 +164,10 @@ k_pop_total_gen$rank <- as.integer(k_pop_total_gen$rank)
 # C. Plot the graphs
 #####################################################################
 
+# plot.margin in the theme function adjusts the margins around the entire plot.
+# margin within axis.title.x and axis.title.y increases the space around axis titles.
+# scale_y_continuous(expand = expansion(mult = c(0, 0.1))) adds extra space above the tallest bar, ensuring that the labels don't get cut off.
+
 # i) Population by generation
 # Male
 
@@ -175,20 +181,23 @@ p1 <- k_pop_male_gen %>%
              fill = gen)) +
   geom_col(show.legend = FALSE, 
            alpha = 0.75)  +
-  theme_minimal() + # Order matters put theme_minimal() before theme()
+  theme_void() + # Order matters put theme_void() before theme()
   labs(title = 'Male population grouped by generation', caption = '') +
   geom_text(aes(label = paste(lab, "M")), 
-            size = 5)+
-  theme(#axis.text.x=element_blank(),
-    axis.ticks.x=element_blank(),
-    axis.text.x = element_text(size = 14),
-    axis.text.y = element_text(size = 14),
-    plot.title = element_text(face = "bold"))+
+            size = 6,
+            hjust = -0.1)+
+  theme(axis.text.x = element_text(size = 16),
+        axis.text.y = element_text(size = 16),
+        plot.title = element_text(face = "bold"),
+        plot.margin = margin(t = 10, r = 10, b = 10, l = 10, unit = "pt"),
+        axis.line.x = element_line(color = "black", linewidth = 1),
+        axis.ticks.x = element_line(color = "black", linewidth = 1),
+        axis.ticks.length.x = unit(3, "pt")) +
   xlab('') + 
   ylab('') +
   coord_flip()+
   ggthemes::scale_fill_stata()+
-  scale_y_continuous(labels = comma)
+  scale_y_continuous(labels = comma, , expand = expansion(mult = c(0, 0.25)))
 
 p1
 
@@ -204,20 +213,23 @@ p2 <- k_pop_female_gen %>%
              fill = gen)) +
   geom_col(show.legend = FALSE, 
            alpha = 0.75)  +
-  theme_minimal() + # Order matters put theme_minimal() before theme()
+  theme_void() + # Order matters put theme_void() before theme()
   labs(title = 'Female population grouped by generation', caption = '') +
   geom_text(aes(label = paste(lab, "M")), 
-            size = 5)+
-  theme(#axis.text.x=element_blank(),
-    axis.ticks.x=element_blank(),
-    axis.text.x = element_text(size = 14),
-    axis.text.y = element_text(size = 14),
-    plot.title = element_text(face = "bold"))+
+            size = 6,
+            hjust = -0.1)+
+  theme(axis.text.x = element_text(size = 16),
+        axis.text.y = element_text(size = 16),
+        plot.title = element_text(face = "bold"),
+        plot.margin = margin(t = 10, r = 10, b = 10, l = 10, unit = "pt"),
+        axis.line.x = element_line(color = "black", linewidth = 1),
+        axis.ticks.x = element_line(color = "black", linewidth = 1),
+        axis.ticks.length.x = unit(3, "pt")) +
   xlab('') + 
   ylab('') +
   coord_flip()+
-  ggthemes::scale_fill_stata() +
-  scale_y_continuous(labels = comma)
+  ggthemes::scale_fill_stata()+
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.25)))
 
 p2
 
@@ -233,19 +245,23 @@ p3 <- k_pop_total_gen %>%
              fill = gen)) +
   geom_col(show.legend = FALSE, 
            alpha = 0.75)  +
-  theme_minimal() +
+  theme_void() + # Order matters put theme_void() before theme()
   labs(title = 'Population grouped by generation', caption = '') +
   geom_text(aes(label = paste(lab, "M")), 
-            size = 5, hjust = 0.35)+
-  theme(#axis.text.x=element_blank(),
-    axis.ticks.x=element_blank(),
-    axis.text.x = element_text(size = 14),
-    axis.text.y = element_text(size = 14),
-    plot.title = element_text(face = "bold"))+
-  xlab('') + ylab('') +
+            size = 6, 
+            hjust = -0.1)+
+  theme(axis.text.x = element_text(size = 16),
+        axis.text.y = element_text(size = 16),
+        plot.title = element_text(face = "bold"),
+        plot.margin = margin(t = 10, r = 10, b = 10, l = 10, unit = "pt"),
+        axis.line.x = element_line(color = "black", linewidth = 1),
+        axis.ticks.x = element_line(color = "black", linewidth = 1),
+        axis.ticks.length.x = unit(3, "pt")) +
+  xlab('') + 
+  ylab('') +
   coord_flip()+
-  ggthemes::scale_fill_stata() +
-  scale_y_continuous(labels = comma)
+  ggthemes::scale_fill_stata()+
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.25)))
 
 p3
 
@@ -288,28 +304,28 @@ p4 <- k_pop_male_gen %>%
              fill = gen)) +
   geom_vline(xintercept = gg1$age,
              linetype =2, 
-             color = 'gray', 
-             size = .25) +
+             color = 'black', 
+             linewidth = .5) +
   geom_col(show.legend = FALSE, 
            alpha = 0.85,
            width = .7)   +
   annotate(geom="text", 
-           x = gg1$age - 4.5, 
+           x = gg1$age - 5.5, 
            y = gg1$tot + 70000, 
            label = gg1$gen,
            size = 5) +
   xlab('Age')+ 
   ylab('Population') +
-  theme_minimal() +
+  theme_void() +
   theme(legend.position="bottom",
         legend.title = element_blank(),
         panel.grid.major.x=element_blank(),
         panel.grid.minor.x=element_blank(),
         panel.grid.minor.y=element_blank(),
-        axis.text.x = element_text(size=12),
-        axis.text.y = element_text(size=12),
+        axis.text.x = element_text(size=16),
+        axis.text.y = element_text(size=16),
         axis.title.x = element_text(size=16, face = "bold"),
-        axis.title.y = element_text(size=16, face = "bold"),
+        axis.title.y = element_text(size=16, face = "bold", angle = 90),
         plot.title = element_text(face = "bold")) +
   ggthemes::scale_fill_stata()+
   scale_x_reverse(breaks = rev(gg1$age)) +
@@ -326,28 +342,28 @@ p5 <- k_pop_female_gen %>%
              fill = gen)) +
   geom_vline(xintercept = gg2$age,
              linetype =2, 
-             color = 'gray', 
-             size = .25) +
+             color = 'black', 
+             linewidth = .5) +
   geom_col(show.legend = FALSE, 
            alpha = 0.85,
            width = .7)   +
   annotate(geom="text", 
-           x = gg2$age - 4.5, 
+           x = gg2$age - 5.5, 
            y = gg2$tot + 70000, 
            label = gg2$gen,
            size = 5) +
   xlab('Age')+ 
   ylab('Population') +
-  theme_minimal() +
+  theme_void() +
   theme(legend.position="bottom",
         legend.title = element_blank(),
         panel.grid.major.x=element_blank(),
         panel.grid.minor.x=element_blank(),
         panel.grid.minor.y=element_blank(),
-        axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12),
+        axis.text.x = element_text(size = 16),
+        axis.text.y = element_text(size = 16),
         axis.title.x = element_text(size = 16, face = "bold"),
-        axis.title.y = element_text(size = 16, face = "bold"),
+        axis.title.y = element_text(size = 16, face = "bold", angle = 90),
         plot.title = element_text(face = "bold")) +
   ggthemes::scale_fill_stata() +
   scale_x_reverse(breaks = rev(gg2$age)) +
@@ -364,28 +380,28 @@ p6 <- k_pop_total_gen %>%
              fill = gen)) +
   geom_vline(xintercept = gg3$age,
              linetype =2, 
-             color = 'gray', 
-             size = .25) +
+             color = 'black', 
+             linewidth = .5) +
   geom_col(show.legend = FALSE, 
            alpha = 0.85,
            width = .7)   +
   annotate(geom="text", 
-           x = gg3$age - 4.5, 
+           x = gg3$age - 5.5, 
            y = gg3$tot + 70000, 
            label = gg3$gen,
            size = 5) +
   xlab('Age')+ 
   ylab('Population') +
-  theme_minimal() +
+  theme_void() +
   theme(legend.position="bottom",
         legend.title = element_blank(),
         panel.grid.major.x=element_blank(),
         panel.grid.minor.x=element_blank(),
         panel.grid.minor.y=element_blank(),
-        axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12),
+        axis.text.x = element_text(size = 16),
+        axis.text.y = element_text(size = 16),
         axis.title.x = element_text(size=16, face = "bold"),
-        axis.title.y = element_text(size=16, face = "bold"),
+        axis.title.y = element_text(size=16, face = "bold", angle = 90),
         plot.title = element_text(face = "bold")) +
   ggthemes::scale_fill_stata()+
   scale_x_reverse(breaks = rev(gg3$age)) +
@@ -402,39 +418,39 @@ p6
 p4 / p1 +
   plot_annotation(title = "",
                   subtitle = "",
-                  caption = "Source: rKenyaCensus | By: @willyokech\nInspired by Jason Timm (https://jtimm.net/posts/seven-generations/)",
+                  caption = "Source: rKenyaCensus | By: @afro_dataviz | Inspired by Jason Timm (Seven Generations)",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
-                                plot.background = element_rect(fill = "beige"))) &
+                                plot.background = element_rect(fill = "bisque1"))) &
   theme(text = element_text('Helvetica'))
   
 
-ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_1.png", width = 12, height = 8)
+# ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_1.png", width = 12, height = 12, dpi = 72)
 
 # Female
 p5 / p2 +
   plot_annotation(title = "",
                   subtitle = "",
-                  caption = "Source: rKenyaCensus | By: @willyokech\nInspired by Jason Timm (https://jtimm.net/posts/seven-generations/)",
+                  caption = "Source: rKenyaCensus | By: @afro_dataviz | Inspired by Jason Timm (Seven Generations)",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
-                                plot.background = element_rect(fill = "beige"))) &
+                                plot.background = element_rect(fill = "bisque1"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_2.png", width = 12, height = 8)
+# ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_2.png", width = 12, height = 12, dpi = 72)
 
 # Total
 p6 / p3 +
-  plot_annotation(title = "Majority of Kenyans living today* were born during the Moi era",
+  plot_annotation(title = "Majority of Kenyans surveyed during the 2019 census\nwere born during the Moi era",
                   subtitle = "",
-                  caption = "Source: rKenyaCensus | * = 2019 Census | By: @willyokech\nInspired by Jason Timm (https://jtimm.net/posts/seven-generations/)",
-                  theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
+                  caption = "Source: rKenyaCensus | By: @afro_dataviz | Inspired by Jason Timm (Seven Generations)",
+                  theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25, hjust = 0.5),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
-                                plot.background = element_rect(fill = "beige"))) &
+                                plot.background = element_rect(fill = "bisque1"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_3.png", width = 12, height = 8)
+# ggsave("images/knbs_pop_generation_2019/knbs_pop_generation_2019_3.png", width = 12, height = 12, dpi = 72)
 
