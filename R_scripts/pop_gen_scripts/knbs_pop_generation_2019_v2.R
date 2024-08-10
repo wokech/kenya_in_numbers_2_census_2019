@@ -207,7 +207,8 @@ p1 <- k_pop_male_gen %>%
         plot.margin = margin(t = 10, r = 10, b = 10, l = 10, unit = "pt"),
         axis.line.x = element_line(color = "black", linewidth = 1),
         axis.ticks.x = element_line(color = "black", linewidth = 1),
-        axis.ticks.length.x = unit(3, "pt")) +
+        axis.ticks.length.x = unit(3, "pt"),
+        plot.background = element_rect(fill = "bisque1")) +
   xlab('') + 
   ylab('') +
   coord_flip()+
@@ -239,7 +240,8 @@ p2 <- k_pop_female_gen %>%
         plot.margin = margin(t = 10, r = 10, b = 10, l = 10, unit = "pt"),
         axis.line.x = element_line(color = "black", linewidth = 1),
         axis.ticks.x = element_line(color = "black", linewidth = 1),
-        axis.ticks.length.x = unit(3, "pt")) +
+        axis.ticks.length.x = unit(3, "pt"),
+        plot.background = element_rect(fill = "bisque1")) +
   xlab('') + 
   ylab('') +
   coord_flip()+
@@ -262,24 +264,39 @@ p3 <- k_pop_total_gen %>%
   geom_col(show.legend = FALSE, 
            alpha = 0.75)  +
   theme_void() +
-  labs(title = 'Population grouped by generation', caption = '') +
+  labs(x = "",
+       y = "Population",
+       title = "Gen Z's formed approximately 40% of Kenya's\npopulation surveyed during the 2019 Census",
+       subtitle = 'Total population grouped by generation', 
+       caption = "") +
   geom_text(aes(label = paste(lab, "M")), 
-            size = 6,
-            hjust = -0.1)+
-  theme(axis.text.x = element_text(size = 16),
-        axis.text.y = element_text(size = 16),
-        plot.title = element_text(face = "bold"),
+            size = 12,
+            hjust = -0.1) +
+  theme(plot.title = element_text(family="Helvetica", face="bold", size = 32, hjust = 0.5),
+        plot.subtitle = element_text(family="Helvetica", size = 24, hjust = 0.5),
         plot.margin = margin(t = 10, r = 10, b = 10, l = 10, unit = "pt"),
+        axis.text.x = element_text(size = 24, face = "bold", color = "black"),
+        axis.text.y = element_text(size = 24, face = "bold", color = "black"),
+        axis.title.x = element_text(size = 24, face = "bold"),
+        axis.title.y = element_text(size = 24, face = "bold", angle = 90),
         axis.line.x = element_line(color = "black", linewidth = 1),
         axis.ticks.x = element_line(color = "black", linewidth = 1),
-        axis.ticks.length.x = unit(3, "pt")) +
-  xlab('') + 
-  ylab('') +
-  coord_flip()+
-  ggthemes::scale_fill_stata()+
+        axis.ticks.length.x = unit(3, "pt"),
+        plot.title.position = 'plot',
+        plot.caption = element_text(family = "Helvetica",size = 24, hjust = 0, vjust = 1),
+        plot.caption.position = 'plot',
+        plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
+        panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+        legend.title = element_blank(),
+        legend.position = "none") +
+  coord_flip() +
+  ggthemes::scale_fill_stata() +
   scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.25)))
 
 p3
+
+ggsave("images/knbs_pop_generation_2019/soc_med_2024/total_pop_gen_1.png", width = 12, height = 12, dpi = 300)
+
 
 #######################################################################
 # ii) Population by single year of age & generation
@@ -342,7 +359,8 @@ p4 <- k_pop_male_gen %>%
         axis.text.y = element_text(size=16),
         axis.title.x = element_text(size=16, face = "bold"),
         axis.title.y = element_text(size=16, face = "bold", angle = 90),
-        plot.title = element_text(face = "bold")) +
+        plot.title = element_text(face = "bold"),
+        plot.background = element_rect(fill = "bisque1")) +
   ggthemes::scale_fill_stata()+
   scale_x_reverse(breaks = rev(gg1$age)) +
   scale_y_continuous(labels = comma) +
@@ -380,7 +398,8 @@ p5 <- k_pop_female_gen %>%
         axis.text.y = element_text(size = 16),
         axis.title.x = element_text(size = 16, face = "bold"),
         axis.title.y = element_text(size = 16, face = "bold", angle = 90),
-        plot.title = element_text(face = "bold")) +
+        plot.title = element_text(face = "bold"),
+        plot.background = element_rect(fill = "bisque1")) +
   ggthemes::scale_fill_stata() +
   scale_x_reverse(breaks = rev(gg2$age)) +
   scale_y_continuous(labels = comma) +
@@ -402,29 +421,41 @@ p6 <- k_pop_total_gen %>%
            alpha = 0.85,
            width = .7)   +
   annotate(geom="text", 
-           x = gg3$age - 5.5, 
+           x = gg3$age - 3.5, 
            y = gg3$tot + 70000, 
            label = gg3$gen,
-           size = 5) +
-  xlab('Age')+ 
-  ylab('Population') +
+           size = 8) +
   theme_void() +
-  theme(legend.position="bottom",
+  theme(plot.title = element_text(family="Helvetica", face="bold", size = 32, hjust = 0.5),
+        plot.subtitle = element_text(family="Helvetica", size = 24, hjust = 0.5),
+        plot.margin = margin(t = 10, r = 10, b = 10, l = 10, unit = "pt"),
+        axis.text.x = element_text(size = 24, face = "bold", color = "black"),
+        axis.text.y = element_text(size = 24, face = "bold", color = "black"),
+        axis.title.x = element_text(size = 24, face = "bold"),
+        axis.title.y = element_text(size = 24, face = "bold", angle = 90),
+        axis.line.x = element_line(color = "black", linewidth = 1),
+        axis.ticks.x = element_line(color = "black", linewidth = 1),
+        axis.ticks.length.x = unit(3, "pt"),
+        plot.title.position = 'plot',
+        plot.caption = element_text(family = "Helvetica",size = 24, hjust = 0, vjust = 1),
+        plot.caption.position = 'plot',
+        plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
+        panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
         legend.title = element_blank(),
-        panel.grid.major.x=element_blank(),
-        panel.grid.minor.x=element_blank(),
-        panel.grid.minor.y=element_blank(),
-        axis.text.x = element_text(size = 16),
-        axis.text.y = element_text(size = 16),
-        axis.title.x = element_text(size=16, face = "bold"),
-        axis.title.y = element_text(size=16, face = "bold", angle = 90),
-        plot.title = element_text(face = "bold")) +
+        legend.position = "none") +
   ggthemes::scale_fill_stata()+
   scale_x_reverse(breaks = rev(gg3$age)) +
   scale_y_continuous(labels = comma) +
-  labs(title = 'Population grouped by single-year age & generation')
+  labs(x = "Age",
+       y = "Population",
+       title = "In 2019, the largest single-year age population\nwas found amongst the Gen Z group",
+       subtitle = 'Total population grouped by single-year age & generation',
+       caption = '')
 
 p6
+
+ggsave("images/knbs_pop_generation_2019/soc_med_2024/total_pop_gen_2.png", width = 12, height = 12, dpi = 300)
+
 
 #########################################################################
 # D. Production Images
