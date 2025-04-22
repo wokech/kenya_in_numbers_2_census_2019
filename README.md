@@ -58,7 +58,7 @@ In this visualization we look at the gender ratios for Kenya's 47 counties.
 
 ### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/open_defecation.R)
 
-![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/human_waste/open_def_1.png)
+![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/human_waste/open_def_map.png)
 
 ### Notes
 1) Maps inspired by the book [Analyzing US Census Data](https://walker-data.com/census-r/working-with-census-data-outside-the-united-states.html)

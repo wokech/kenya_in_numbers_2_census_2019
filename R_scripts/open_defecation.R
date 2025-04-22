@@ -16,9 +16,9 @@ library(ggrepel)
 library(devtools)
 #devtools::install_github('bbc/bbplot')
 #library(bbplot)
-devtools::install_github("yutannihilation/ggsflabel")
+#devtools::install_github("yutannihilation/ggsflabel")
 library(ggsflabel)
-devtools::install_github("Shelmith-Kariuki/rKenyaCensus")
+#devtools::install_github("Shelmith-Kariuki/rKenyaCensus")
 library(rKenyaCensus)
 library(patchwork)
 library(janitor)
@@ -134,6 +134,7 @@ p2 <- kenya_open_def_map %>%
        y = "",
        title = "Open defecation is most prevalent in\nthe Northern Counties",
        subtitle = "",
+       fill = "Percentage (%)",
        caption = "Data Source: Kenya Census (2019) | By @afro_dataviz") +
   theme(axis.title.x = element_text(size = 28, vjust = 1, face = "bold"),
         axis.title.y = element_text(size = 28, vjust = 1, face = "bold"),
@@ -146,8 +147,10 @@ p2 <- kenya_open_def_map %>%
         plot.caption.position = 'plot',
         plot.background = element_rect(fill = "azure2", colour = "azure2"),
         panel.background = element_rect(fill = "azure2", colour = "azure2"),
-        legend.title = element_blank(),
-        legend.position = "none") 
+        legend.title = element_text(size = 24),
+        legend.text = element_text(size = 24),
+        legend.position = "right",
+        legend.key.size = unit(1.5, 'cm')) 
 
 p2
 
