@@ -8,6 +8,8 @@ The goal of this project is to generate insightful visualizations and make them 
 1) 2019 Kenya Population and Housing Census
 2) Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
 
+***NOTE: Direct links to the code used to produce the image(s) below will be provided ASAP (if not provided already).***
+
 ### Visualization 1 - Kenyan Generations by Presidential Era (2019)
 ### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/pop_gen_scripts/knbs_pop_generation_2019.R)
 In this visualization, I look at the Total Kenyan Population by Generation. 
