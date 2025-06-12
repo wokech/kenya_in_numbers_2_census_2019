@@ -47,7 +47,7 @@ kenya_counties_sf$County <- gsub("/",
 highlight_counties <- c("TURKANA", "WEST POKOT", "ELGEYO MARAKWET", "BARINGO", "LAIKIPIA", "SAMBURU")
 
 # filter the states dataset to only include the highlight states
-highlighted <- kenya_counties_sf %>% filter(County %in% highlight_counties)
+highlighted <- kenya_counties_sf |> filter(County %in% highlight_counties)
 
 # Highlight the required area
 
@@ -96,35 +96,35 @@ dan_dist <- c("TURKANA", "WEST POKOT", "ELGEYO MARAKWET", "BARINGO", "LAIKIPIA",
 # Livestock data
 df_livestock <- V4_T2.24
 livestock <- df_livestock[2:393,]
-livestock <- livestock %>%
+livestock <- livestock |>
   clean_names()
 
 # Remove the "/"
 livestock$county <- gsub("/", " ", livestock$county)
 
 # pastoralist livestock dataframe with new variables
-livestock_select <- livestock %>%
-  select(county, sub_county, admin_area, farming, sheep, goats, indigenous_cattle) %>%
-  mutate(pasto_livestock = sheep + goats + indigenous_cattle) %>%
-  mutate(ind_cattle_household = round(indigenous_cattle/farming)) %>%
-  mutate(goats_household = round(goats/farming)) %>%
-  mutate(sheep_household = round(sheep/farming)) %>%
+livestock_select <- livestock |>
+  select(county, sub_county, admin_area, farming, sheep, goats, indigenous_cattle) |>
+  mutate(pasto_livestock = sheep + goats + indigenous_cattle) |>
+  mutate(ind_cattle_household = round(indigenous_cattle/farming)) |>
+  mutate(goats_household = round(goats/farming)) |>
+  mutate(sheep_household = round(sheep/farming)) |>
   mutate(pasto_livestock_household = round(pasto_livestock/farming))
 
 # County data for disturbed and dangerous
-livestock_select_county <- livestock_select %>%
-  filter(admin_area == "County") %>%
+livestock_select_county <- livestock_select |>
+  filter(admin_area == "County") |>
   filter(county %in% dan_dist)
 
 # Subcounty data for disturbed and dangerous
-livestock_select_subcounty <- livestock_select %>%
-  filter(admin_area == "SubCounty") %>%
+livestock_select_subcounty <- livestock_select |>
+  filter(admin_area == "SubCounty") |>
   filter(county %in% dan_dist)
 
 # Area data
 df_land_area <- V1_T2.7
 land_area <- df_land_area[2:396,]
-land_area <- land_area %>%
+land_area <- land_area |>
   clean_names()
 
 # Remove the "/"
@@ -135,16 +135,16 @@ land_area$sub_county <- toupper(land_area$sub_county)
 
 
 # County area data for disturbed and dangerous
-land_area_county <- land_area %>%
-  filter(admin_area == "County") %>%
-  select(county, land_area_in_sq_km) %>%
+land_area_county <- land_area |>
+  filter(admin_area == "County") |>
+  select(county, land_area_in_sq_km) |>
   filter(county %in% dan_dist)
 
 # Subcounty area data for disturbed and dangerous
-land_area_subcounty <- land_area %>%
-  filter(admin_area == "SubCounty") %>%
-  select(county, sub_county, land_area_in_sq_km) %>%
-  filter(county %in% dan_dist) %>%
+land_area_subcounty <- land_area |>
+  filter(admin_area == "SubCounty") |>
+  select(county, sub_county, land_area_in_sq_km) |>
+  filter(county %in% dan_dist) |>
   select(-county)
 
 ################### Final datasets used for the analysis#############
@@ -153,7 +153,7 @@ land_area_subcounty <- land_area %>%
 
 livestock_area_county <- inner_join(livestock_select_county, land_area_county, by = "county")
 
-livestock_area_county <- livestock_area_county %>%
+livestock_area_county <- livestock_area_county |>
   mutate(ind_cattle_area = round(indigenous_cattle/land_area_in_sq_km),
          sheep_area = round(sheep/land_area_in_sq_km),
          goats_area = round(goats/land_area_in_sq_km),
@@ -163,7 +163,7 @@ livestock_area_county <- livestock_area_county %>%
 
 livestock_area_subcounty <- inner_join(livestock_select_subcounty, land_area_subcounty, by = "sub_county")
 
-livestock_area_subcounty <- livestock_area_subcounty %>%
+livestock_area_subcounty <- livestock_area_subcounty |>
   mutate(ind_cattle_area = round(indigenous_cattle/land_area_in_sq_km),
          sheep_area = round(sheep/land_area_in_sq_km),
          goats_area = round(goats/land_area_in_sq_km),
@@ -172,7 +172,7 @@ livestock_area_subcounty <- livestock_area_subcounty %>%
 #4) Plots of relevant graphs (EDA)
 # a) Farming Households
 
-livestock_area_county %>%
+livestock_area_county |>
   ggplot() + 
   geom_col(aes(x= reorder(county, farming), y = farming, fill = county)) + 
   scale_fill_grey() +
@@ -198,7 +198,7 @@ livestock_area_county %>%
 
 ggsave("images/disturbed_dangerous/county_farm_house_1.png", width = 12, height = 8)
 
-livestock_area_subcounty %>%
+livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, farming), y = farming, fill = county)) + 
   coord_flip() + 
@@ -206,14 +206,14 @@ livestock_area_subcounty %>%
   theme_minimal()
 
 # b) Pastoral Livestock
-livestock_area_county %>%
+livestock_area_county |>
   ggplot() + 
   geom_col(aes(x= reorder(county, pasto_livestock), y = pasto_livestock, fill = county)) + 
   coord_flip() + 
   scale_y_continuous(labels = comma) +
   theme_minimal()
 
-livestock_area_subcounty %>%
+livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, pasto_livestock), y = pasto_livestock, fill = county)) + 
   coord_flip() + 
@@ -222,7 +222,7 @@ livestock_area_subcounty %>%
 
 # c) Pastoral Livestock per household
 
-livestock_area_county %>%
+livestock_area_county |>
   ggplot() + 
   geom_col(aes(x= reorder(county, pasto_livestock_household), y = pasto_livestock_household, fill = county)) + 
   scale_fill_grey() +
@@ -248,7 +248,7 @@ livestock_area_county %>%
 
 ggsave("images/disturbed_dangerous/county_pasto_livestock_1.png", width = 12, height = 8)
 
-livestock_area_subcounty %>%
+livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, pasto_livestock_household), y = pasto_livestock_household, fill = county)) + 
   coord_flip() + 
@@ -256,41 +256,41 @@ livestock_area_subcounty %>%
 
 # d) Each animal
 
-livestock_area_county %>%
+livestock_area_county |>
   ggplot() + 
   geom_col(aes(x= reorder(county, sheep), y = sheep, fill = county)) + 
   coord_flip() + 
   scale_y_continuous(labels = comma) +
   theme_minimal()
 
-livestock_area_subcounty %>%
+livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, sheep), y = sheep, fill = county)) + 
   coord_flip() + 
   scale_y_continuous(labels = comma) +
   theme_minimal()
 
-livestock_area_county %>%
+livestock_area_county |>
   ggplot() + 
   geom_col(aes(x= reorder(county, goats), y = goats, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
-livestock_area_subcounty %>%
+livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, goats), y = goats, fill = county)) + 
   coord_flip() + 
   scale_y_continuous(labels = comma) +
   theme_minimal()
 
-livestock_area_county %>%
+livestock_area_county |>
   ggplot() + 
   geom_col(aes(x= reorder(county, indigenous_cattle), y = indigenous_cattle, fill = county)) + 
   coord_flip() + 
   scale_y_continuous(labels = comma) +
   theme_minimal()
 
-livestock_area_subcounty %>%
+livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, indigenous_cattle), y = indigenous_cattle, fill = county)) + 
   coord_flip() + 
@@ -299,37 +299,37 @@ livestock_area_subcounty %>%
 
 # e) Each animal per household
 
-livestock_area_county %>%
+livestock_area_county |>
   ggplot() + 
   geom_col(aes(x= reorder(county, sheep_household), y = sheep_household, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
-livestock_area_subcounty %>%
+livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, sheep_household), y = sheep_household, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
-livestock_area_county %>%
+livestock_area_county |>
   ggplot() + 
   geom_col(aes(x= reorder(county, goats_household), y = goats_household, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
-livestock_area_subcounty %>%
+livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, goats_household), y = goats_household, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
-livestock_area_county %>%
+livestock_area_county |>
   ggplot() + 
   geom_col(aes(x= reorder(county, ind_cattle_household), y = ind_cattle_household, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
-livestock_area_subcounty %>%
+livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, ind_cattle_household), y = ind_cattle_household, fill = county)) + 
   coord_flip() + 
@@ -339,26 +339,26 @@ livestock_area_subcounty %>%
 # Require the webshot::install_phantomjs() to install package
 # also include the magick package
 
-livestock_area_county %>%
-  select(county, land_area_in_sq_km) %>%
-  mutate(county = str_to_title(county)) %>%
-  arrange(desc(land_area_in_sq_km)) %>%
-  adorn_totals("row") %>%
+livestock_area_county |>
+  select(county, land_area_in_sq_km) |>
+  mutate(county = str_to_title(county)) |>
+  arrange(desc(land_area_in_sq_km)) |>
+  adorn_totals("row") |>
   rename("County" = "county",
-         "Land Area (sq. km)" = "land_area_in_sq_km") %>%
-  kbl(align = "c") %>%
-  kable_classic() %>% 
-  row_spec(row = 0, font_size = 28, color = "white", background = "#000000") %>%
-  row_spec(row = c(1:7), font_size = 20) %>%
-  row_spec(row = 6, extra_css = "border-bottom: 1px solid;") %>%
-  row_spec(row = 7, bold = T) %>%
+         "Land Area (sq. km)" = "land_area_in_sq_km") |>
+  kbl(align = "c") |>
+  kable_classic() |> 
+  row_spec(row = 0, font_size = 28, color = "white", background = "#000000") |>
+  row_spec(row = c(1:7), font_size = 20) |>
+  row_spec(row = 6, extra_css = "border-bottom: 1px solid;") |>
+  row_spec(row = 7, bold = T) |>
   save_kable(file = "images/disturbed_dangerous/area_table.png",
              zoom = 5)
 
 
 # e) Animals per area
 
-livestock_area_county %>%
+livestock_area_county |>
   ggplot() + 
   geom_col(aes(x= reorder(county, pasto_livestock_area), y = pasto_livestock_area, fill = county)) + 
   coord_flip() + 
@@ -386,43 +386,43 @@ livestock_area_county %>%
 ggsave("images/disturbed_dangerous/county_pasto_livestock_density_1.png", width = 12, height = 8)
 
 
-livestock_area_subcounty %>%
+livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, pasto_livestock_area), y = pasto_livestock_area, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
-livestock_area_county %>%
+livestock_area_county |>
   ggplot() + 
   geom_col(aes(x= reorder(county, sheep_area), y = sheep_area, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
-livestock_area_subcounty %>%
+livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, sheep_area), y = sheep_area, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
-livestock_area_county %>%
+livestock_area_county |>
   ggplot() + 
   geom_col(aes(x= reorder(county, goats_area), y = goats_area, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
-livestock_area_subcounty %>%
+livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, goats_area), y = goats_area, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
-livestock_area_county %>%
+livestock_area_county |>
   ggplot() + 
   geom_col(aes(x= reorder(county, ind_cattle_area), y = ind_cattle_area, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
-livestock_area_subcounty %>%
+livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, ind_cattle_area), y = ind_cattle_area, fill = county)) + 
   coord_flip() + 

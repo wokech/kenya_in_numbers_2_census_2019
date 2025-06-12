@@ -24,7 +24,7 @@ df_2_ratio_subcounty <- df_2_ratio %>%
 top_subcounty <- df_2_ratio_subcounty %>%
   unite(col = "county_sub", c("SubCounty", "County"), sep = ", ", remove = TRUE) %>%
   arrange(desc(m_f_ratio_100)) %>%
-  slice(1:20)
+  slice(1:10)
 View(top_subcounty)
 
 top_subcounty_plot <- top_subcounty %>%
@@ -35,7 +35,7 @@ top_subcounty_plot <- top_subcounty %>%
   theme_classic()+
   labs(x = "Subcounty", 
        y = "Number of males\nper 100 females", 
-       title = "Top 20 Subcounties",
+       title = "Top 10 Subcounties",
        caption = "") +
   theme(axis.title.x =element_text(size = 15),
         axis.title.y =element_text(size = 15),
@@ -51,13 +51,13 @@ top_subcounty_plot <- top_subcounty %>%
 
 top_subcounty_plot
 
-ggsave("images/subcounty_sex_census/top_subcounty_plot.png", width = 6, height = 4)
+#ggsave("images/subcounty_sex_census/top_subcounty_plot.png", width = 6, height = 4)
 
 # Find the bottom 10 subcounties
 bottom_subcounty <- df_2_ratio_subcounty %>%
   unite(col = "county_sub", c("SubCounty", "County"), sep = ", ", remove = TRUE) %>%
   arrange(m_f_ratio_100) %>%
-  slice(1:20)
+  slice(1:10)
 View(bottom_subcounty)
 
 
@@ -69,7 +69,7 @@ bottom_subcounty_plot <- bottom_subcounty %>%
   theme_classic()+
   labs(x = "Subcounty", 
        y = "Number of males\nper 100 females", 
-       title = "Bottom 20 Subcounties",
+       title = "Bottom 10 Subcounties",
        caption = "") +
   theme(axis.title.x =element_text(size = 15),
         axis.title.y =element_text(size = 15),
@@ -85,7 +85,7 @@ bottom_subcounty_plot <- bottom_subcounty %>%
 
 bottom_subcounty_plot
 
-ggsave("images/subcounty_sex_census/bottom_subcounty_plot.png", width = 6, height = 4)
+#ggsave("images/subcounty_sex_census/bottom_subcounty_plot.png", width = 6, height = 4)
 
 top_subcounty_plot + bottom_subcounty_plot + 
   plot_annotation(title = "",
@@ -98,5 +98,5 @@ top_subcounty_plot + bottom_subcounty_plot +
                                 panel.background = element_rect(fill = "bisque", color = "bisque"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("images/subcounty_sex_census/top_bottom_plot.png", width = 12, height = 8)
+#ggsave("images/subcounty_sex_census/top_bottom_plot.png", width = 12, height = 8)
 
