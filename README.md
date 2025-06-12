@@ -10,6 +10,8 @@ The goal of this project is to generate insightful visualizations and make them 
 
 ***NOTE: Direct links to the code used to produce the image(s) below will be provided ASAP (if not provided already).***
 
+**UPDATE: REPO IS BEING REARRANGED SO LINKS BELOW WILL NOT BE FUNCTIONAL UNTIL FURTHER NOTICE (05 June 2025)**
+
 ### Visualization 1 - Kenyan Generations by Presidential Era (2019)
 ### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/pop_gen_scripts/knbs_pop_generation_2019.R)
 In this visualization, I look at the Total Kenyan Population by Generation. 
