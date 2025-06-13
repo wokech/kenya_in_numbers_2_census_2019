@@ -80,7 +80,7 @@ p1 +
                                 plot.background = element_rect(fill = "bisque1"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("images/disturbed_dangerous/county_map_1.png", width = 12, height = 8)
+#ggsave("images/disturbed_dangerous/county_map_1.png", width = 12, height = 8)
 
 # 3) Generate the various dataframes required for analysis
 
