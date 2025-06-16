@@ -148,7 +148,7 @@ barplot_meb <- merged_df |>
         panel.background = element_rect(fill = "azure2", color = "azure2"),
         legend.position = "none") + 
   geom_hline(yintercept = 98, linetype="dashed", color = "black", size=1) +
-  ggtext::geom_richtext(aes(x = 2 , y = 105, 
+  ggtext::geom_richtext(aes(x = 2, y = 102, 
                             label = "National Ratio = 98:100"), 
                         size = 10, fill = "NA", label.color = "NA",
                         angle = 90) +
@@ -187,7 +187,10 @@ map_meb <- ggplot(data = merged_df)+
     "#FFE3B3",   # Peach
     "#F8766D"),    # Orange-red
     limits = c(90, 120) # set limits to allow for scales to be maintained after highlighting
-  )
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
 map_meb
 
@@ -197,9 +200,9 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/meb_map.png", width = 12, hei
 # Bar plot and map High population counties
 
 barplot_map_meb <- barplot_meb / map_meb +
-  plot_annotation(title = "Human Sex Ratio in Kenya",
-                  subtitle = "The number of males per 100 females in Kenya's 47 counties",
-                  caption = "Data Source: rKenyaCensus | By: @kenya.in.numbers",
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
@@ -258,7 +261,7 @@ barplot_fcdc <- merged_df |>
         panel.background = element_rect(fill = "azure2", color = "azure2"),
         legend.position = "none") + 
   geom_hline(yintercept = 98, linetype="dashed", color = "black", size=1) +
-  ggtext::geom_richtext(aes(x = 2 , y = 105, 
+  ggtext::geom_richtext(aes(x = 7, y = 96, 
                             label = "National Ratio = 98:100"), 
                         size = 10, fill = "NA", label.color = "NA",
                         angle = 90) +
@@ -297,7 +300,10 @@ map_fcdc <- ggplot(data = merged_df)+
     "#FFE3B3",   # Peach
     "#F8766D"),    # Orange-red
     limits = c(90, 120) # set limits to allow for scales to be maintained after highlighting
-  )
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
 map_fcdc
 
@@ -307,9 +313,9 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/fcdc_map.png", width = 12, he
 # Bar plot and map Frontier Counties Development Council (FCDC)
 
 barplot_map_fcdc <- barplot_fcdc / map_fcdc +
-  plot_annotation(title = "Human Sex Ratio in Kenya",
-                  subtitle = "The number of males per 100 females in Kenya's 47 counties",
-                  caption = "Data Source: rKenyaCensus | By: @kenya.in.numbers",
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
@@ -368,7 +374,7 @@ barplot_noreb <- merged_df |>
         panel.background = element_rect(fill = "azure2", color = "azure2"),
         legend.position = "none") + 
   geom_hline(yintercept = 98, linetype="dashed", color = "black", size=1) +
-  ggtext::geom_richtext(aes(x = 4 , y = 105, 
+  ggtext::geom_richtext(aes(x = 3, y = 102, 
                             label = "National Ratio = 98:100"), 
                         size = 10, fill = "NA", label.color = "NA",
                         angle = 90) +
@@ -390,7 +396,7 @@ map_noreb <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% noreb, keep_scales = TRUE) +
   geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 50, nudge_x = -2, seed = 10) +
+                     force = 100, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -407,7 +413,10 @@ map_noreb <- ggplot(data = merged_df)+
     "#FFE3B3",   # Peach
     "#F8766D"),    # Orange-red
     limits = c(90, 120) # set limits to allow for scales to be maintained after highlighting
-  )
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
 map_noreb
 
@@ -417,9 +426,9 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/noreb_map.png", width = 12, h
 # Bar plot and map North Rift Economic Bloc (NOREB) - 8 counties
 
 barplot_map_noreb <- barplot_noreb / map_noreb +
-  plot_annotation(title = "Human Sex Ratio in Kenya",
-                  subtitle = "The number of males per 100 females in Kenya's 47 counties",
-                  caption = "Data Source: rKenyaCensus | By: @kenya.in.numbers",
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
@@ -478,7 +487,7 @@ barplot_lreb <- merged_df |>
         panel.background = element_rect(fill = "azure2", color = "azure2"),
         legend.position = "none") + 
   geom_hline(yintercept = 98, linetype="dashed", color = "black", size=1) +
-  ggtext::geom_richtext(aes(x = 2 , y = 105, 
+  ggtext::geom_richtext(aes(x = 5, y = 102, 
                             label = "National Ratio = 98:100"), 
                         size = 10, fill = "NA", label.color = "NA",
                         angle = 90) +
@@ -517,7 +526,10 @@ map_lreb <- ggplot(data = merged_df)+
     "#FFE3B3",   # Peach
     "#F8766D"),    # Orange-red
     limits = c(90, 120) # set limits to allow for scales to be maintained after highlighting
-  )
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
 map_lreb
 
@@ -527,9 +539,9 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/lreb_map.png", width = 12, he
 # Bar plot and map Lake Region Economic Bloc (LREB) - 14 counties
 
 barplot_map_lreb <- barplot_lreb / map_lreb +
-  plot_annotation(title = "Human Sex Ratio in Kenya",
-                  subtitle = "The number of males per 100 females in Kenya's 47 counties",
-                  caption = "Data Source: rKenyaCensus | By: @kenya.in.numbers",
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
@@ -585,7 +597,7 @@ barplot_sekeb <- merged_df |>
         panel.background = element_rect(fill = "azure2", color = "azure2"),
         legend.position = "none") + 
   geom_hline(yintercept = 98, linetype="dashed", color = "black", size=1) +
-  ggtext::geom_richtext(aes(x = 2 , y = 105, 
+  ggtext::geom_richtext(aes(x = 2, y = 102, 
                             label = "National Ratio = 98:100"), 
                         size = 10, fill = "NA", label.color = "NA",
                         angle = 90) +
@@ -624,7 +636,10 @@ map_sekeb <- ggplot(data = merged_df)+
     "#FFE3B3",   # Peach
     "#F8766D"),    # Orange-red
     limits = c(90, 120) # set limits to allow for scales to be maintained after highlighting
-  )
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
 map_sekeb
 
@@ -634,9 +649,9 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/sekeb_map.png", width = 12, h
 # Bar plot and map South Eastern Kenya Economic Bloc (SEKEB) - 3 counties
 
 barplot_map_sekeb <- barplot_sekeb / map_sekeb +
-  plot_annotation(title = "Human Sex Ratio in Kenya",
-                  subtitle = "The number of males per 100 females in Kenya's 47 counties",
-                  caption = "Data Source: rKenyaCensus | By: @kenya.in.numbers",
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
@@ -693,7 +708,7 @@ barplot_mkareb <- merged_df |>
         panel.background = element_rect(fill = "azure2", color = "azure2"),
         legend.position = "none") + 
   geom_hline(yintercept = 98, linetype="dashed", color = "black", size=1) +
-  ggtext::geom_richtext(aes(x = 2 , y = 105, 
+  ggtext::geom_richtext(aes(x = 4, y = 102, 
                             label = "National Ratio = 98:100"), 
                         size = 10, fill = "NA", label.color = "NA",
                         angle = 90) +
@@ -732,7 +747,10 @@ map_mkareb <- ggplot(data = merged_df)+
     "#FFE3B3",   # Peach
     "#F8766D"),    # Orange-red
     limits = c(90, 120) # set limits to allow for scales to be maintained after highlighting
-  )
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
 map_mkareb
 
@@ -742,9 +760,9 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/mkareb_map.png", width = 12, 
 # Bar plot and map Mt Kenya and Aberdare’s Economic Bloc - 10 counties
 
 barplot_map_mkareb <- barplot_mkareb / map_mkareb +
-  plot_annotation(title = "Human Sex Ratio in Kenya",
-                  subtitle = "The number of males per 100 females in Kenya's 47 counties",
-                  caption = "Data Source: rKenyaCensus | By: @kenya.in.numbers",
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
@@ -840,7 +858,10 @@ map_jkp <- ggplot(data = merged_df)+
     "#FFE3B3",   # Peach
     "#F8766D"),    # Orange-red
     limits = c(90, 120) # set limits to allow for scales to be maintained after highlighting
-  )
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
 map_jkp
 
@@ -850,9 +871,9 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/jkp_map.png", width = 12, hei
 # Bar plot and map Jumuiya ya Kaunti za Pwani (JKP) - 6 counties
 
 barplot_map_jkp <- barplot_jkp / map_jkp +
-  plot_annotation(title = "Human Sex Ratio in Kenya",
-                  subtitle = "The number of males per 100 females in Kenya's 47 counties",
-                  caption = "Data Source: rKenyaCensus | By: @kenya.in.numbers",
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
@@ -909,7 +930,7 @@ barplot_namet <- merged_df |>
         panel.background = element_rect(fill = "azure2", color = "azure2"),
         legend.position = "none") + 
   geom_hline(yintercept = 98, linetype="dashed", color = "black", size=1) +
-  ggtext::geom_richtext(aes(x = 2 , y = 105, 
+  ggtext::geom_richtext(aes(x = 3, y = 102, 
                             label = "National Ratio = 98:100"), 
                         size = 10, fill = "NA", label.color = "NA",
                         angle = 90) +
@@ -948,7 +969,10 @@ map_namet <- ggplot(data = merged_df)+
     "#FFE3B3",   # Peach
     "#F8766D"),    # Orange-red
     limits = c(90, 120) # set limits to allow for scales to be maintained after highlighting
-  )
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
 map_namet
 
@@ -958,9 +982,9 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/namet_map.png", width = 12, h
 # Bar plot and map Nairobi Metropolitan - 5 counties
 
 barplot_map_namet <- barplot_namet / map_namet +
-  plot_annotation(title = "Human Sex Ratio in Kenya",
-                  subtitle = "The number of males per 100 females in Kenya's 47 counties",
-                  caption = "Data Source: rKenyaCensus | By: @kenya.in.numbers",
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
@@ -1017,7 +1041,7 @@ barplot_kenya_city <- merged_df |>
         panel.background = element_rect(fill = "azure2", color = "azure2"),
         legend.position = "none") + 
   geom_hline(yintercept = 98, linetype="dashed", color = "black", size=1) +
-  ggtext::geom_richtext(aes(x = 2 , y = 105, 
+  ggtext::geom_richtext(aes(x = 3, y = 102, 
                             label = "National Ratio = 98:100"), 
                         size = 10, fill = "NA", label.color = "NA",
                         angle = 90) +
@@ -1056,7 +1080,10 @@ map_kenya_city <- ggplot(data = merged_df)+
     "#FFE3B3",   # Peach
     "#F8766D"),    # Orange-red
     limits = c(90, 120) # set limits to allow for scales to be maintained after highlighting
-  )
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
 map_kenya_city
 
@@ -1066,9 +1093,9 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/kenya_city_map.png", width = 
 # Bar plot and map Kenyan Cities - 5 counties
 
 barplot_map_kenya_city <- barplot_kenya_city / map_kenya_city +
-  plot_annotation(title = "Human Sex Ratio in Kenya",
-                  subtitle = "The number of males per 100 females in Kenya's 47 counties",
-                  caption = "Data Source: rKenyaCensus | By: @kenya.in.numbers",
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),

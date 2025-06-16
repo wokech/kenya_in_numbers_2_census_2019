@@ -176,10 +176,12 @@ map_top_10 <- ggplot(data = merged_df)+
   theme_void()+
   labs(title = "",
        caption = "",
-       fill = "Number of males\nper 100 females")+
+       fill = "Number of males per 100 females")+
   theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
-        legend.title = element_blank(),
-        legend.position = "none",
+        legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
+        legend.text = element_text(family = "Helvetica",size = 24),
+        legend.key.size = unit(1, "cm"),
+        legend.position = "bottom",
         plot.caption = element_text(family = "Helvetica",size = 12),
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
@@ -189,7 +191,10 @@ map_top_10 <- ggplot(data = merged_df)+
     "#FFE3B3",   # Peach
     "#F8766D"),    # Orange-red
     limits = c(90, 120) # set limits to allow for scales to be maintained after highlighting
-  )
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
 map_top_10
 
@@ -199,9 +204,9 @@ ggsave("sub_pro_3_sex/images/county/top_bottom_10/top_10_counties_map.png", widt
 # Bar plot and map top 10 counties
 
 barplot_map_top_10 <- barplot_top_10 / map_top_10 +
-  plot_annotation(title = "Human Sex Ratio in Kenya",
-                  subtitle = "The number of males per 100 females in Kenya's 47 counties",
-                  caption = "Data Source: rKenyaCensus | By: @kenya.in.numbers",
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
@@ -286,10 +291,12 @@ map_bottom_10 <- ggplot(data = merged_df)+
   theme_void()+
   labs(title = "",
        caption = "",
-       fill = "Number of males\nper 100 females")+
+       fill = "Number of males per 100 females")+
   theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
-        legend.title = element_blank(),
-        legend.position = "none",
+        legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
+        legend.text = element_text(family = "Helvetica",size = 24),
+        legend.key.size = unit(1, "cm"),
+        legend.position = "bottom",
         plot.caption = element_text(family = "Helvetica",size = 12),
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
@@ -298,8 +305,11 @@ map_bottom_10 <- ggplot(data = merged_df)+
     "#C9E2E7",   # Light Aqua
     "#FFE3B3",   # Peach
     "#F8766D"),    # Orange-red
-    limits = c(90, 120) # set limits to allow for scales to be maintained after highlighting
-  )
+    limits = c(90, 120)
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
 map_bottom_10
 
@@ -309,9 +319,9 @@ ggsave("sub_pro_3_sex/images/county/top_bottom_10/bottom_10_counties_map.png", w
 # Bar plot and map bottom 10 countries
 
 barplot_map_bottom_10 <- barplot_bottom_10 / map_bottom_10 +
-  plot_annotation(title = "Human Sex Ratio in Kenya",
-                  subtitle = "The number of males per 100 females in Kenya's 47 counties",
-                  caption = "Data Source: rKenyaCensus | By: @kenya.in.numbers",
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),

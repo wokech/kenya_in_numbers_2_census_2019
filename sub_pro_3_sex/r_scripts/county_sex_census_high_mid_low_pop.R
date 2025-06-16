@@ -149,14 +149,14 @@ barplot_high_pop <- merged_df |>
         panel.background = element_rect(fill = "azure2", color = "azure2"),
         legend.position = "none") + 
   geom_hline(yintercept = 98, linetype="dashed", color = "black", size=1) +
-  ggtext::geom_richtext(aes(x = 7 , y = 95, 
+  ggtext::geom_richtext(aes(x = 5, y = 102, 
                             label = "National Ratio = 98:100"), 
                         size = 10, fill = "NA", label.color = "NA",
                         angle = 90) +
   labs(title = "",
        subtitle = "",
        caption = "",
-       fill = "Number of males\nper 100 females",
+       fill = "Number of males per 100 females",
        x = "County",
        y = "Number of males per 100 females") 
 
@@ -171,14 +171,16 @@ map_high_pop <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% counties_high_pop, keep_scales = TRUE) +
   geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 10, nudge_x = -1, seed = 10) +
+                     force = 50, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
-       fill = "Number of males\nper 100 females")+
+       fill = "Number of males per 100 females")+
   theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
-        legend.title = element_blank(),
-        legend.position = "none",
+        legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
+        legend.text = element_text(family = "Helvetica",size = 24),
+        legend.key.size = unit(1, "cm"),
+        legend.position = "bottom",
         plot.caption = element_text(family = "Helvetica",size = 12),
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
@@ -187,8 +189,11 @@ map_high_pop <- ggplot(data = merged_df)+
     "#C9E2E7",   # Light Aqua
     "#FFE3B3",   # Peach
     "#F8766D"),    # Orange-red
-    limits = c(90, 120) # set limits to allow for scales to be maintained after highlighting
-  )
+    limits = c(90, 120)
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
 map_high_pop
 
@@ -198,9 +203,9 @@ ggsave("sub_pro_3_sex/images/county/high_mid_low_pop/high_pop_counties_map.png",
 # Bar plot and map High population counties
 
 barplot_map_high_pop <- barplot_high_pop / map_high_pop +
-  plot_annotation(title = "Human Sex Ratio in Kenya",
-                  subtitle = "The number of males per 100 females in Kenya's 47 counties",
-                  caption = "Data Source: rKenyaCensus | By: @kenya.in.numbers",
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
@@ -258,14 +263,14 @@ barplot_mid_pop <- merged_df |>
         panel.background = element_rect(fill = "azure2", color = "azure2"),
         legend.position = "none") + 
   geom_hline(yintercept = 98, linetype="dashed", color = "black", size=1) +
-  ggtext::geom_richtext(aes(x = 7 , y = 95, 
+  ggtext::geom_richtext(aes(x = 4, y = 103, 
                             label = "National Ratio = 98:100"), 
                         size = 10, fill = "NA", label.color = "NA",
                         angle = 90) +
   labs(title = "",
        subtitle = "",
        caption = "",
-       fill = "Number of males\nper 100 females",
+       fill = "Number of males per 100 females",
        x = "County",
        y = "Number of males per 100 females") 
 
@@ -280,14 +285,16 @@ map_mid_pop <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% counties_mid_pop, keep_scales = TRUE) +
   geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 10, nudge_x = -1, seed = 10) +
+                     force = 50, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
-       fill = "Number of males\nper 100 females")+
+       fill = "Number of males per 100 females")+
   theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
-        legend.title = element_blank(),
-        legend.position = "none",
+        legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
+        legend.text = element_text(family = "Helvetica",size = 24),
+        legend.key.size = unit(1, "cm"),
+        legend.position = "bottom",
         plot.caption = element_text(family = "Helvetica",size = 12),
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
@@ -296,8 +303,11 @@ map_mid_pop <- ggplot(data = merged_df)+
     "#C9E2E7",   # Light Aqua
     "#FFE3B3",   # Peach
     "#F8766D"),    # Orange-red
-    limits = c(90, 120) # set limits to allow for scales to be maintained after highlighting
-  )
+    limits = c(90, 120)
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
 map_mid_pop
 
@@ -307,9 +317,9 @@ ggsave("sub_pro_3_sex/images/county/high_mid_low_pop/mid_pop_counties_map.png", 
 # Bar plot and map Mid population counties
 
 barplot_map_mid_pop <- barplot_mid_pop / map_mid_pop +
-  plot_annotation(title = "Human Sex Ratio in Kenya",
-                  subtitle = "The number of males per 100 females in Kenya's 47 counties",
-                  caption = "Data Source: rKenyaCensus | By: @kenya.in.numbers",
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
@@ -367,14 +377,14 @@ barplot_low_pop <- merged_df |>
         panel.background = element_rect(fill = "azure2", color = "azure2"),
         legend.position = "none") + 
   geom_hline(yintercept = 98, linetype="dashed", color = "black", size=1) +
-  ggtext::geom_richtext(aes(x = 7 , y = 95, 
+  ggtext::geom_richtext(aes(x = 4, y = 103, 
                             label = "National Ratio = 98:100"), 
                         size = 10, fill = "NA", label.color = "NA",
                         angle = 90) +
   labs(title = "",
        subtitle = "",
        caption = "",
-       fill = "Number of males\nper 100 females",
+       fill = "Number of males per 100 females",
        x = "County",
        y = "Number of males per 100 females") 
 
@@ -389,14 +399,16 @@ map_low_pop <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% counties_low_pop, keep_scales = TRUE) +
   geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 10, nudge_x = -1, seed = 10) +
+                     force = 50, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
-       fill = "Number of males\nper 100 females")+
+       fill = "Number of males per 100 females")+
   theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
-        legend.title = element_blank(),
-        legend.position = "none",
+        legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
+        legend.text = element_text(family = "Helvetica",size = 24),
+        legend.key.size = unit(1, "cm"),
+        legend.position = "bottom",
         plot.caption = element_text(family = "Helvetica",size = 12),
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
@@ -405,8 +417,11 @@ map_low_pop <- ggplot(data = merged_df)+
     "#C9E2E7",   # Light Aqua
     "#FFE3B3",   # Peach
     "#F8766D"),    # Orange-red
-    limits = c(90, 120) # set limits to allow for scales to be maintained after highlighting
-  )
+    limits = c(90, 120)
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
 map_low_pop
 
@@ -416,9 +431,9 @@ ggsave("sub_pro_3_sex/images/county/high_mid_low_pop/low_pop_counties_map.png", 
 # Bar plot and map Low population counties
 
 barplot_map_low_pop <- barplot_low_pop / map_low_pop +
-  plot_annotation(title = "Human Sex Ratio in Kenya",
-                  subtitle = "The number of males per 100 females in Kenya's 47 counties",
-                  caption = "Data Source: rKenyaCensus | By: @kenya.in.numbers",
+  plot_annotation(title = "",
+                  subtitle = "",
+                  caption = "",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),

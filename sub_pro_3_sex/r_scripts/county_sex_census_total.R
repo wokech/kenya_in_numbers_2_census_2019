@@ -141,7 +141,9 @@ barplot <- merged_df |>
         legend.position = "") + 
   geom_hline(yintercept = 98, linetype="dashed", color = "black", size=1) +
   ggtext::geom_richtext(aes(x = 15 , y = 101, 
-                            label = "National Ratio = 98:100"), size = 6, angle=90) +
+                                label = "National Ratio = 98:100"), 
+                            size = 8, fill = "NA", label.color = "NA",
+                            angle = 90) +
   labs(title = "",
        subtitle = "",
        caption = "",
@@ -154,7 +156,7 @@ barplot
 # Save the plot
 ggsave("sub_pro_3_sex/images/county/total/barplot.png", width = 12, height = 12, dpi = 300)
 
-# Map w/o legend
+# Map with legend
 
 map <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
@@ -174,8 +176,9 @@ map <- ggplot(data = merged_df)+
     "#00BFC4",   # Teal
     "#C9E2E7",   # Light Aqua
     "#FFE3B3",   # Peach
-    "#F8766D"    # Orange-red
-  )) +
+    "#F8766D"),    # Orange-red
+    limits = c(90, 120)
+    ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
                                barwidth = unit(15, "cm")))
