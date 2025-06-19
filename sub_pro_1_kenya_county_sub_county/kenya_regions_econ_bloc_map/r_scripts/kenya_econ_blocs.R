@@ -59,6 +59,18 @@ full_map_kenya
 # Save the plot
 ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/econ_blocs/full_map_kenya.png", width = 12, height = 12, dpi = 300)
 
+
+# Void map for Canva
+
+full_map_kenya_canva <- ggplot(kenya_counties_sf) + 
+  geom_sf(fill = 'goldenrod3', linewidth = 0.6, color = 'goldenrod3') + 
+  theme_void()
+
+full_map_kenya_canva
+
+# Save the plot
+ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/econ_blocs/full_map_kenya_canva.png", width = 3, height = 3, dpi = 72)
+
 #) Change the title case of the counties and fix the names
 
 unique(kenya_counties_sf$County)

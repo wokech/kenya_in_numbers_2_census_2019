@@ -201,7 +201,7 @@ ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/reg
 map_eastern_zoom <- ggplot(data = eastern_df)+
   geom_sf(aes(fill = County), linewidth = 0.5)+
   geom_sf_text_repel(aes(label = County), size = 10,
-                     force = 10, nudge_x = -1, seed = 10,
+                     force = 50, nudge_x = -2, seed = 10,
                      min.segment.length = 0.25,
                      force_pull = 0.1,
                      max.overlaps = Inf,  # allow as many as possible
