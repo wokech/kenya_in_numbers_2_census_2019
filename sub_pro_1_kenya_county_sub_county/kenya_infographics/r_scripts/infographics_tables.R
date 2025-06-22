@@ -6,6 +6,35 @@
 #####PART A
 #####################
 
+# Load all the required packages and libraries required for accessing the census data
+
+#install.packages("devtools")
+#devtools::install_github("Shelmith-Kariuki/rKenyaCensus")
+library(rKenyaCensus) # Contains the 2019 Kenya Census data
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(scales) # control axis/scale format
+library(devtools)
+#devtools::install_github('bbc/bbplot')
+library(bbplot) # plotting theme
+library(gghighlight) # highlight specific data
+#install.packages("sf")
+library(sf) # simple features
+#install.packages("tmap") #Thematic maps 
+library(tmap)
+#install.packages("leaflet") # Used for creating interactive maps
+library(leaflet)
+#install.packages("ggbreak")
+library(ggbreak)
+library(patchwork)
+library(ggrepel)
+library(ggsflabel)
+
+# View the data available in the data catalogue
+
+data("DataCatalogue")
+
 # a) Merge the tables in V1. Table 2.2 to 2.4
 
 df_v1_t2_2 <- V1_T2.2 # male/female
@@ -65,7 +94,8 @@ df_v1_t2_2 <- df_v1_t2_2 |>
   mutate(County = case_when(
     County == "Total" ~ "Kenya",
     TRUE ~ County  # keep other values unchanged
-  ))
+  )) |>
+  mutate(M_F_Ratio_per_100 = round((Male/Female)*100, 0))
 
 df_v1_t2_3 <- df_v1_t2_3 |>
   mutate(County = case_when(
@@ -88,7 +118,8 @@ df_v1_t2_4 <- df_v1_t2_4 |>
     County == "Homabay" ~ "Homa Bay",
     County == "Nairobicity" ~ "Nairobi City",
     TRUE ~ County  # keep other values unchanged
-  ))
+  )) |>
+  mutate(share_land_area = round((`LandArea(in Sq. Km)`/580876.3)*100, 3))
 
 # Merge the tables
 
@@ -142,8 +173,8 @@ setdiff(merged_table_2$County, merged_table_1$County)
 merged_table_total <- merged_table_1 |>
   left_join(merged_table_2, by = "County")
 
-write_csv(merged_table_total, 
-          "sub_pro_1_kenya_county_sub_county/kenya_infographics/datasets/infographic_data_1.csv")
+# write_csv(merged_table_total, 
+#           "sub_pro_1_kenya_county_sub_county/kenya_infographics/datasets/infographic_data_1.csv")
 
 #####################
 #####PART B - Visualize Data
