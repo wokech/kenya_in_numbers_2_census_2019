@@ -224,6 +224,109 @@ map_eastern_zoom
 # Save the plot
 ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/regions/eastern_map_zoom.png", width = 12, height = 12, dpi = 300)
 
+
+# Upper Eastern Region - 5 counties
+upper_eastern <- c("Marsabit", "Isiolo", "Meru", "Tharaka Nithi", "Embu")
+upper_eastern_df <- kenya_counties_sf |> filter(County %in% upper_eastern)
+
+map_upper_eastern <- ggplot(data = kenya_counties_sf)+
+  geom_sf(aes(fill = County), linewidth = 0.5)+
+  scale_fill_d3(palette = 'category20') +
+  gghighlight(County %in% upper_eastern) +
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "Number of males\nper 100 females")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        legend.title = element_blank(),
+        legend.position = "none",
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2"))
+
+map_upper_eastern
+
+# Save the plot
+ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/regions/upper_eastern_map.png", width = 12, height = 12, dpi = 300)
+
+map_upper_eastern_zoom <- ggplot(data = upper_eastern_df)+
+  geom_sf(aes(fill = County), linewidth = 0.5)+
+  geom_sf_text_repel(aes(label = County), size = 10,
+                     force = 50, nudge_x = -2, seed = 10,
+                     min.segment.length = 0.25,
+                     force_pull = 0.1,
+                     max.overlaps = Inf,  # allow as many as possible
+                     box.padding = 0.5, 
+                     point.padding = 0.3) +
+  scale_fill_d3(palette = 'category20') +
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "Number of males\nper 100 females")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        legend.title = element_blank(),
+        legend.position = "none",
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2"))
+
+map_upper_eastern_zoom
+
+# Save the plot
+ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/regions/upper_eastern_map_zoom.png", width = 12, height = 12, dpi = 300)
+
+
+# Lower Eastern Region - 3 counties
+lower_eastern <- c("Kitui", "Machakos", "Makueni")
+lower_eastern_df <- kenya_counties_sf |> filter(County %in% lower_eastern)
+
+map_lower_eastern <- ggplot(data = kenya_counties_sf)+
+  geom_sf(aes(fill = County), linewidth = 0.5)+
+  scale_fill_d3(palette = 'category20') +
+  gghighlight(County %in% lower_eastern) +
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "Number of males\nper 100 females")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        legend.title = element_blank(),
+        legend.position = "none",
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2"))
+
+map_lower_eastern
+
+# Save the plot
+ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/regions/lower_eastern_map.png", width = 12, height = 12, dpi = 300)
+
+map_lower_eastern_zoom <- ggplot(data = lower_eastern_df)+
+  geom_sf(aes(fill = County), linewidth = 0.5)+
+  geom_sf_text_repel(aes(label = County), size = 10,
+                     force = 50, nudge_x = -2, seed = 10,
+                     min.segment.length = 0.25,
+                     force_pull = 0.1,
+                     max.overlaps = Inf,  # allow as many as possible
+                     box.padding = 0.5, 
+                     point.padding = 0.3) +
+  scale_fill_d3(palette = 'category20') +
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "Number of males\nper 100 females")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        legend.title = element_blank(),
+        legend.position = "none",
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2"))
+
+map_lower_eastern_zoom
+
+# Save the plot
+ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/regions/lower_eastern_map_zoom.png", width = 12, height = 12, dpi = 300)
+
+
 # Central Region - 5 counties
 central <- c("Nyeri", "Kirinyaga", "Kiambu", "Murang’a", "Nyandarua")
 central_df <- kenya_counties_sf |> filter(County %in% central)
@@ -325,6 +428,111 @@ map_rift_valley_zoom
 
 # Save the plot
 ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/regions/rift_valley_map_zoom.png", width = 12, height = 12, dpi = 300)
+
+
+# North Rift Valley Region - 9 counties
+north_rift_valley <- c("Turkana", "West Pokot", "Samburu", "Trans Nzoia", "Uasin Gishu", 
+                 "Elgeyo Marakwet", "Nandi", "Baringo", "Laikipia")
+north_rift_valley_df <- kenya_counties_sf |> filter(County %in% north_rift_valley)
+
+map_north_rift_valley <- ggplot(data = kenya_counties_sf)+
+  geom_sf(aes(fill = County), linewidth = 0.5)+
+  scale_fill_d3(palette = 'category20') +
+  gghighlight(County %in% north_rift_valley) +
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "Number of males\nper 100 females")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        legend.title = element_blank(),
+        legend.position = "none",
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2"))
+
+map_north_rift_valley
+
+# Save the plot
+ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/regions/north_rift_valley_map.png", width = 12, height = 12, dpi = 300)
+
+map_north_rift_valley_zoom <- ggplot(data = north_rift_valley_df)+
+  geom_sf(aes(fill = County), linewidth = 0.5)+
+  geom_sf_text_repel(aes(label = County), size = 10,
+                     force = 100, nudge_x = -2, seed = 10,
+                     min.segment.length = 0.25,
+                     force_pull = 0.1,
+                     max.overlaps = Inf,  # allow as many as possible
+                     box.padding = 0.5, 
+                     point.padding = 0.3) +
+  scale_fill_d3(palette = 'category20') +
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "Number of males\nper 100 females")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        legend.title = element_blank(),
+        legend.position = "none",
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2"))
+
+map_north_rift_valley_zoom
+
+# Save the plot
+ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/regions/north_rift_valley_map_zoom.png", width = 12, height = 12, dpi = 300)
+
+
+# South Rift Valley Region - 5 counties
+south_rift_valley <- c("Nakuru", "Narok", "Kajiado", "Kericho", "Bomet")
+south_rift_valley_df <- kenya_counties_sf |> filter(County %in% south_rift_valley)
+
+map_south_rift_valley <- ggplot(data = kenya_counties_sf)+
+  geom_sf(aes(fill = County), linewidth = 0.5)+
+  scale_fill_d3(palette = 'category20') +
+  gghighlight(County %in% south_rift_valley) +
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "Number of males\nper 100 females")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        legend.title = element_blank(),
+        legend.position = "none",
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2"))
+
+map_south_rift_valley
+
+# Save the plot
+ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/regions/south_rift_valley_map.png", width = 12, height = 12, dpi = 300)
+
+map_south_rift_valley_zoom <- ggplot(data = south_rift_valley_df)+
+  geom_sf(aes(fill = County), linewidth = 0.5)+
+  geom_sf_text_repel(aes(label = County), size = 10,
+                     force = 100, nudge_x = -2, seed = 10,
+                     min.segment.length = 0.25,
+                     force_pull = 0.1,
+                     max.overlaps = Inf,  # allow as many as possible
+                     box.padding = 0.5, 
+                     point.padding = 0.3) +
+  scale_fill_d3(palette = 'category20') +
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "Number of males\nper 100 females")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        legend.title = element_blank(),
+        legend.position = "none",
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2"))
+
+map_south_rift_valley_zoom
+
+# Save the plot
+ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/regions/south_rift_valley_map_zoom.png", width = 12, height = 12, dpi = 300)
+
+
 
 # Western Region - 4 counties
 western <- c("Kakamega", "Vihiga", "Bungoma", "Busia")

@@ -95,6 +95,18 @@ headquarters_sf <- st_transform(headquarters_sf, st_crs(kenya_counties_sf))
 #####PART B - Visualize Data
 #####################
 
+# Void map with highlighted Capital City for Canva
+
+highlighted <- subset(kenya_counties_sf, County == "Nairobi City")
+others <- subset(kenya_counties_sf, County != "Nairobi City")
+
+ggplot() +
+  geom_sf(data = others, fill = "goldenrod2", color = "goldenrod2", linewidth = 0.01) +
+  geom_sf(data = highlighted, fill = "navy", color = "black", linewidth = 0.0) +
+  theme_void()
+
+ggsave("sub_pro_1_kenya_county_sub_county/kenya_single_county_map/images/full_map_kenya_capital_canva.png", width = 3, height = 3, dpi = 300)
+
 # County 001 - Mombasa
 
 mombasa <- c("Mombasa")
