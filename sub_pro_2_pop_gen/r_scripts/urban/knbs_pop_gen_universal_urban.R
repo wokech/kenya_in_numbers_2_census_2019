@@ -448,7 +448,7 @@ p4 / p1 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/knbs_pop_generation_2019_universal_urban_1.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_2_pop_gen/images/urban/knbs_pop_generation_2019_universal_urban_1.png", width = 12, height = 12, dpi = 300)
 
 # ii) Female
 p5 / p2 +
@@ -461,7 +461,7 @@ p5 / p2 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/knbs_pop_generation_2019_universal_urban_2.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_2_pop_gen/images/urban/knbs_pop_generation_2019_universal_urban_2.png", width = 12, height = 12, dpi = 300)
 
 # iii) Total
 
@@ -475,4 +475,4 @@ p6 / p3 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/knbs_pop_generation_2019_universal_urban_3.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_2_pop_gen/images/urban/knbs_pop_generation_2019_universal_urban_3.png", width = 12, height = 12, dpi = 300)

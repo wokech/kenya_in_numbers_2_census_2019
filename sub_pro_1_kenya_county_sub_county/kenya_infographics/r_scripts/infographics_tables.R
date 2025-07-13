@@ -37,9 +37,9 @@ data("DataCatalogue")
 
 # a) Merge the tables in V1. Table 2.2 to 2.4
 
-df_v1_t2_2 <- V1_T2.2 # male/female
-df_v1_t2_3 <- V1_T2.3 # households
-df_v1_t2_4 <- V1_T2.4 # land area and pop density
+df_v1_t2_2 <- V1_T2.2 # male/female (Distribution of Population by Sex and County)
+df_v1_t2_3 <- V1_T2.3 # households (Distribution of Population, Number of Households and Average)
+df_v1_t2_4 <- V1_T2.4 # land area and pop density (Distribution of Population, Land Area and Population Density by County)
 
 # Clean table 2.2
 
@@ -127,10 +127,11 @@ merged_table_1 <- df_v1_t2_2 %>%
   left_join(df_v1_t2_3, by = "County") %>%
   left_join(df_v1_t2_4, by = "County")
 
-# b) Clean the tables in V4. Table 2.32 to 2.36
+# b) Clean the tables in V4. Table 2.32, 2.33, and 2.36
 
-df_v4_t2_32 <- V4_T2.32
-df_v4_t2_36 <- V4_T2.36
+df_v4_t2_32 <- V4_T2.32 # Mobile Phone Ownership (Distribution of Population Age 3 years and Above Owning a Mobile Phone by Area of Residence, Sex, County and Sub County)
+df_v4_t2_33 <- V4_T2.33 # Internet Usage (Distribution of Population Age 3 Years and Above Using Internet and Computer/Laptop/Tablet by Area of Residence, Sex, County and Sub-County)
+df_v4_t2_36 <- V4_T2.36 # Functional TV/Radio/Car (Percentage Distribution of Conventional Households by Ownership of Selected Household Assets by Area of Residence, County and Sub County)
 
 # Select appropriate columns and rows
 
@@ -146,9 +147,22 @@ df_v4_t2_32 <- df_v4_t2_32 |>
   mutate(County = tools::toTitleCase(tolower(County)))
 unique(df_v4_t2_32$County)
 
+df_v4_t2_33 <- df_v4_t2_33 |>
+  filter(AdminArea == "County" | SubCounty == "KENYA") |>
+  select(County, UoI_Total_Perc)
+
+unique(df_v4_t2_33$County)
+df_v4_t2_33$County <- gsub("/", " ", df_v4_t2_33$County)
+df_v4_t2_33$County <- gsub("-", " ", df_v4_t2_33$County)
+df_v4_t2_33$County <- gsub("xxx", "Kenya", df_v4_t2_33$County)
+
+df_v4_t2_33 <- df_v4_t2_33 |> 
+  mutate(County = tools::toTitleCase(tolower(County)))
+unique(df_v4_t2_33$County)
+
 df_v4_t2_36 <- df_v4_t2_36 |>
   filter(AdminArea == "County" | SubCounty == "Kenya") |>
-  select(County, StandAloneRadio, FunctionalTV, Car, Internet)
+  select(County, StandAloneRadio, FunctionalTV, Car)
 
 unique(df_v4_t2_36$County)
 df_v4_t2_36$County <- gsub("/", " ", df_v4_t2_36$County)
@@ -162,8 +176,8 @@ setdiff(df_v4_t2_32$County, df_v4_t2_36$County)
 setdiff(df_v4_t2_36$County, df_v4_t2_32$County)
 
 merged_table_2 <- df_v4_t2_32 |>
+  left_join(df_v4_t2_33, by = "County") |>
   left_join(df_v4_t2_36, by = "County")
-
 
 setdiff(merged_table_1$County, merged_table_2$County)
 setdiff(merged_table_2$County, merged_table_1$County)
@@ -173,7 +187,7 @@ setdiff(merged_table_2$County, merged_table_1$County)
 merged_table_total <- merged_table_1 |>
   left_join(merged_table_2, by = "County")
 
-# write_csv(merged_table_total, 
+# write_csv(merged_table_total,
 #           "sub_pro_1_kenya_county_sub_county/kenya_infographics/datasets/infographic_data_1.csv")
 
 #####################

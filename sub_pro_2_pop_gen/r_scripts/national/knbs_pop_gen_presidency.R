@@ -435,7 +435,7 @@ p4 / p1 +
   theme(text = element_text('Helvetica'))
   
 
-ggsave("sub_pro_2_pop_gen/images/knbs_pop_generation_2019_president_1.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_2_pop_gen/images/national/knbs_pop_generation_2019_president_1.png", width = 12, height = 12, dpi = 300)
 
 # Female
 p5 / p2 +
@@ -448,7 +448,7 @@ p5 / p2 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/knbs_pop_generation_2019_president_2.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_2_pop_gen/images/national/knbs_pop_generation_2019_president_2.png", width = 12, height = 12, dpi = 300)
 
 # Total
 p6 / p3 +
@@ -461,4 +461,4 @@ p6 / p3 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/knbs_pop_generation_2019_president_3.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_2_pop_gen/images/national/knbs_pop_generation_2019_president_3.png", width = 12, height = 12, dpi = 300)

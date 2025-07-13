@@ -267,5 +267,5 @@ p1 + p2 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/pyramid_universal_urban_1.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_2_pop_gen/images/urban/pyramid_universal_urban_1.png", width = 12, height = 12, dpi = 300)
 

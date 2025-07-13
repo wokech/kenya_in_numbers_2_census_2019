@@ -30,10 +30,10 @@ kenya_subcounties$subcounty[str_detect(kenya_subcounties$subcounty, "ounty")]
 
 df <- V4_T1.9
 
-df_clean <- df %>%
+df_clean <- df |>
   clean_names()
 
-df_clean_new <- df_clean %>%
+df_clean_new <- df_clean |>
   mutate(county = tools::toTitleCase(tolower(county))) |>
   mutate(sub_county = tools::toTitleCase(tolower(sub_county))) |>
   rename(subcounty = sub_county)
@@ -53,6 +53,6 @@ mismatch <- full_join(kenya_subcounties, df_clean_new, by = "subcounty")
 
 
 
-ggplot(kenya_counties) + 
-  geom_sf(fill = "bisque", linewidth = 1, color = "black") + 
+ggplot(kenya_subcounties) + 
+  geom_sf(fill = "salmon", linewidth = 0.1, color = "black") + 
   theme_void()
