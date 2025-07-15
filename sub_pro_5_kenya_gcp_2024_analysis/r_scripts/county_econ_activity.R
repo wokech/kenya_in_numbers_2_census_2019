@@ -1,4 +1,4 @@
-# # What types of livestock do Kenyans keep?
+# # Economic Activity by County
 # By @willyokech
 # Data: rKenyaCensus
 
@@ -10,19 +10,16 @@ library(rKenyaCensus) # Contains the 2019 Kenya Census data
 library(tidyverse)
 library(janitor)
 #install.packages("ggpmisc")
-library(ggpmisc)
+library(ggpmisc) #ggplot2 extension
 #webshot::install_phantomjs()
 library(knitr)
 library(kableExtra)
 
 
-# 2) View the data available in the data catalogue
-
-data("DataCatalogue")
-
-# 3) Load the required data
-
-df_livestock <- V4_T2.24
+# Economic Activity by County (2023)
+gcp_econ_activity_2023 <- read_excel(here::here("sub_pro_5_kenya_gcp_2024_analysis", 
+                                                "datasets", "kenya_gcp_2024_tables",
+                                                "gcp_econ_activity_2023.xlsx"))
 
 # Table 1 for National Analysis
 table_1 <- df_livestock[1,]
@@ -45,17 +42,17 @@ table_1_select_tidy <- table_1_select %>%
   pivot_longer(c(exotic_cattle_dairy:rabbits), 
                names_to = "livestock_type", values_to = "number") %>%
   mutate(livestock_type = ifelse(livestock_type == "exotic_cattle_dairy", "Exotic Cattle (Dairy)",
-                          ifelse(livestock_type == "exotic_cattle_beef", "Exotic Cattle (Beef)",
-                          ifelse(livestock_type == "indigenous_cattle", "Indigenous Cattle",
-                          ifelse(livestock_type == "sheep", "Sheep",
-                          ifelse(livestock_type == "goats", "Goats",
-                          ifelse(livestock_type == "camels", "Camels",
-                          ifelse(livestock_type == "donkeys", "Donkeys",
-                          ifelse(livestock_type == "pigs", "Pigs",
-                          ifelse(livestock_type == "indigenous_chicken", "Indigenous Chicken",
-                          ifelse(livestock_type == "exotic_chicken_layers", "Exotic Chicken (Layers)",
-                          ifelse(livestock_type == "exotic_chicken_broilers", "Exotic Chicken (Broilers)",
-                          ifelse(livestock_type == "rabbits", "Rabbits", livestock_type))))))))))))) 
+                                 ifelse(livestock_type == "exotic_cattle_beef", "Exotic Cattle (Beef)",
+                                        ifelse(livestock_type == "indigenous_cattle", "Indigenous Cattle",
+                                               ifelse(livestock_type == "sheep", "Sheep",
+                                                      ifelse(livestock_type == "goats", "Goats",
+                                                             ifelse(livestock_type == "camels", "Camels",
+                                                                    ifelse(livestock_type == "donkeys", "Donkeys",
+                                                                           ifelse(livestock_type == "pigs", "Pigs",
+                                                                                  ifelse(livestock_type == "indigenous_chicken", "Indigenous Chicken",
+                                                                                         ifelse(livestock_type == "exotic_chicken_layers", "Exotic Chicken (Layers)",
+                                                                                                ifelse(livestock_type == "exotic_chicken_broilers", "Exotic Chicken (Broilers)",
+                                                                                                       ifelse(livestock_type == "rabbits", "Rabbits", livestock_type))))))))))))) 
 
 table_1_select_tidy
 

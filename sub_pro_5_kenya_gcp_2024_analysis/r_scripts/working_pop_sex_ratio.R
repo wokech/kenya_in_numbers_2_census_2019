@@ -1,8 +1,8 @@
-# Are more Kenyans men or women? Human Sex Ratio in Kenya's 47 Counties
+# Working Population - Sex Ratio in Kenya's 47 Counties
 # By @kenya.in.numbers
 # Inspired by Rose Mintzer-Sweeney
 # https://blog.datawrapper.de/gender-ratio-american-history/
-# Data: rKenyaCensus / Kenya Population and Housing Census (2019)
+# Data: Kenya GCP (2024)
 
 #####################
 #####PART A
@@ -32,30 +32,29 @@ library(patchwork)
 library(ggrepel)
 library(ggsflabel)
 
-# 2) View the data available in the data catalogue
-
-data("DataCatalogue")
-
 # 3) Load the required data
 
-df_1 <- V1_T2.2 # Load the "Distribution of Population by Sex and County" dataset
+# Working Population by County (2022)
+working_pop_county <- read_excel(here::here("sub_pro_5_kenya_gcp_2024_analysis", 
+                                            "datasets", "kenya_gcp_2024_tables",
+                                            "working_pop_county.xlsx"))
 
 # 4) Data Cleaning
 
 # Calculate the male:female ratio per 100
-df_1_ratio <- df_1 |>
+working_pop_county_ratio <- working_pop_county |>
   mutate(m_f_ratio = Male/Female,
          m_f_ratio_100 = round(m_f_ratio*100, 0))
 
 # Select the County, Total, and ratio columns
 
-df_1_ratio_only <- df_1_ratio |>
+working_pop_county_ratio_only <- working_pop_county_ratio |>
   select(County, m_f_ratio_100, Total)
 
 # Remove the "Total" row
-df_1_ratio_only_county <- df_1_ratio |>
+working_pop_county_ratio_only_county <- working_pop_county_ratio |>
   select(County, m_f_ratio_100, Total) |>
-  filter(County != "Total")
+  filter(County != "TOTAL")
 
 # 5) Generate the maps using shapefiles and sf package
 
@@ -74,19 +73,23 @@ ggplot(kenya_counties_sf) +
 # to see whether they match and merge the two datasets for ease of plotting
 
 unique(kenya_counties_sf$County)
-unique(df_1_ratio_only_county$County)
+unique(working_pop_county_ratio_only_county$County)
+
+# Rename Murang'a
+working_pop_county_ratio_only_county <- working_pop_county_ratio_only_county |>
+  mutate(County = recode(County, "MURANG’A" = "MURANG'A"))
 
 # Need to change case and drop certain distinguishing features from the 
 # population dataset county names
 
 # Change the County names in the population dataset to Upper Case
-df_1_ratio_only_county$County <- toupper(df_1_ratio_only_county$County)
+working_pop_county_ratio_only_county$County <- toupper(working_pop_county_ratio_only_county$County)
 
 # Inspect the county names that are different in each of the datasets
-unique(df_1_ratio_only_county$County)[which(!unique(df_1_ratio_only_county$County) %in% kenya_counties_sf$County)]
+unique(working_pop_county_ratio_only_county$County)[which(!unique(working_pop_county_ratio_only_county$County) %in% kenya_counties_sf$County)]
 
 # Merge the two datasets for ease of plotting
-merged_df <- left_join(kenya_counties_sf, df_1_ratio_only_county, by = "County")
+merged_df <- left_join(kenya_counties_sf, working_pop_county_ratio_only_county, by = "County")
 
 # Fix the county names
 
@@ -139,11 +142,11 @@ barplot <- merged_df |>
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2"),
         legend.position = "") + 
-  geom_hline(yintercept = 98, linetype="dashed", color = "black", size=1) +
-  ggtext::geom_richtext(aes(x = 15 , y = 101, 
-                                label = "National Ratio = 98:100"), 
-                            size = 8, fill = "NA", label.color = "NA",
-                            angle = 90) +
+  geom_hline(yintercept = 110, linetype="dashed", color = "black", size=1) +
+  ggtext::geom_richtext(aes(x = 10 , y = 120, 
+                            label = "National Ratio = 110:100"), 
+                        size = 8, fill = "NA", label.color = "NA",
+                        angle = 90) +
   labs(title = "",
        subtitle = "",
        caption = "",
@@ -154,7 +157,7 @@ barplot <- merged_df |>
 barplot 
 
 # Save the plot
-ggsave("sub_pro_3_sex/images/county/total/barplot.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/working_pop/total/barplot.png", width = 12, height = 12, dpi = 300)
 
 # Map with legend
 
@@ -177,8 +180,8 @@ map <- ggplot(data = merged_df)+
     "#C9E2E7",   # Light Aqua
     "#FFE3B3",   # Peach
     "#F8766D"),    # Orange-red
-    limits = c(90, 120)
-    ) +
+    limits = c(80, 400)
+  ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
                                barwidth = unit(15, "cm")))
@@ -186,7 +189,7 @@ map <- ggplot(data = merged_df)+
 map
 
 # Save the plot
-ggsave("sub_pro_3_sex/images/county/total/map.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/working_pop/total/map.png", width = 12, height = 12, dpi = 300)
 
 barplot / map +
   plot_annotation(title = "",
@@ -199,4 +202,4 @@ barplot / map +
                                 panel.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_3_sex/images/county/total/barplot_map.png", width = 12, height = 24, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/working_pop/total/barplot_map.png", width = 12, height = 24, dpi = 300)
