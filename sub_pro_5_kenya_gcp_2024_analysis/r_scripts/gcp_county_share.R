@@ -1,8 +1,8 @@
 # # GCP Share Treemap
 # By @willyokech
-# Data: rKenyaCensus
+# Data: Kenya GCP 2024
 
-#1) Load the required packages
+# 1) Load the required packages
 
 #install.packages("devtools")
 #devtools::install_github("Shelmith-Kariuki/rKenyaCensus")
@@ -15,65 +15,69 @@ library(janitor)
 library(knitr)
 library(kableExtra)
 library(readxl)
+#install.packages("treemapify")
+library(treemapify)
+library(scales)
+
+# 2) Load the data
 
 # Share of the Gross County Product (5 yr avg, 2019 - 2023)
 avg_share_gcp_2019_2023 <- read_excel(here::here("sub_pro_5_kenya_gcp_2024_analysis", 
                                                  "datasets", "kenya_gcp_2024_tables",
                                                  "avg_share_gcp_2019_2023.xlsx"))
 
-avg_share_gcp_2019_2023 <- avg_share_gcp_2019_2023 %>%
+# 3) Wrangle the Data
+
+avg_share_gcp_2019_2023 <- avg_share_gcp_2019_2023 |>
   clean_names()
 
-avg_share_gcp_2019_2023_select <- avg_share_gcp_2019_2023 %>%
+avg_share_gcp_2019_2023_select <- avg_share_gcp_2019_2023 |>
   select(c(county_number, county, x5_year_avg))
 
-# 5) Plots
+unique(avg_share_gcp_2019_2023_select$county)
+avg_share_gcp_2019_2023_select$county <- gsub("/", " ", avg_share_gcp_2019_2023_select$county)
+avg_share_gcp_2019_2023_select$county <- gsub("-", " ", avg_share_gcp_2019_2023_select$county)
+avg_share_gcp_2019_2023_select <- avg_share_gcp_2019_2023_select |> 
+  mutate(county = tools::toTitleCase(tolower(county)))
+unique(avg_share_gcp_2019_2023_select$county)
 
-# Treemap
+# Rename Murang'a
+avg_share_gcp_2019_2023_select <- avg_share_gcp_2019_2023_select |>
+  mutate(county = recode(county, "Murang’a" = "Murang'a"))
 
-#install.packages("treemapify")
-library(treemapify)
-library(scales)
+# 4) Arrange by top 5 counties and Visualize
 
-table_1_select_tidy <- table_1_select %>%
-  pivot_longer(c(exotic_cattle_dairy:rabbits), 
-               names_to = "livestock_type", values_to = "number") %>%
-  mutate(livestock_type = ifelse(livestock_type == "exotic_cattle_dairy", "Exotic Cattle (Dairy)",
-                                 ifelse(livestock_type == "exotic_cattle_beef", "Exotic Cattle (Beef)",
-                                        ifelse(livestock_type == "indigenous_cattle", "Indigenous Cattle",
-                                               ifelse(livestock_type == "sheep", "Sheep",
-                                                      ifelse(livestock_type == "goats", "Goats",
-                                                             ifelse(livestock_type == "camels", "Camels",
-                                                                    ifelse(livestock_type == "donkeys", "Donkeys",
-                                                                           ifelse(livestock_type == "pigs", "Pigs",
-                                                                                  ifelse(livestock_type == "indigenous_chicken", "Indigenous Chicken",
-                                                                                         ifelse(livestock_type == "exotic_chicken_layers", "Exotic Chicken (Layers)",
-                                                                                                ifelse(livestock_type == "exotic_chicken_broilers", "Exotic Chicken (Broilers)",
-                                                                                                       ifelse(livestock_type == "rabbits", "Rabbits", livestock_type))))))))))))) 
+avg_share_gcp_2019_2023_select_tidy <- avg_share_gcp_2019_2023_select |>
+  select(county, x5_year_avg) |>
+  filter(county != "Total")
 
-table_1_select_tidy
+avg_share_gcp_2019_2023_select_tidy_top_5 <- avg_share_gcp_2019_2023_select_tidy |>
+  arrange(desc(x5_year_avg)) |>
+  mutate(group = if_else(row_number() <= 5,
+                         county, "Other Counties")) |>
+  group_by(group) |>
+  summarise(x5_year_avg = sum(x5_year_avg))
 
-table_1_select_tidy$livestock_type
+# Visualize the data
 
-# National
+afro_stack_palette <- c(
+  "#FFB5A7", "#B5EAD7", "#9EC1CF",
+  "#F6D186", "#CC79A7", "#6D8196"
+)
 
-# Treemap showing the livestock populations
-
-# Remember that treemap is not a ggplot
-
-ggplot(table_1_select_tidy, 
-       aes(area = number, fill = livestock_type, 
-           label = livestock_type)) +
+ggplot(avg_share_gcp_2019_2023_select_tidy_top_5, 
+       aes(area = x5_year_avg, fill = group, 
+           label = paste0(group, "\n",
+                          x5_year_avg, "%"))) +
   geom_treemap() +
-  labs(title = "Livestock in Kenya",
-       subtitle = "The relative numbers of livestock owned by farming households in Kenya (2019)",
+  labs(title = "",
+       subtitle = "",
        fill = "",
-       caption = "Data Source: rKenyaCensus | By @willyokech") +
+       caption = "") +
   geom_treemap_text(colour = "black",
                     place = "centre",
-                    size = 10,
-                    grow = TRUE) + 
-  theme(legend.position = "bottom",
+                    size = 40) + 
+  theme(legend.position = "none",
         plot.title = element_text(size=24),
         plot.subtitle = element_text(size=18),
         legend.text = element_text(size = 10),
@@ -81,22 +85,93 @@ ggplot(table_1_select_tidy,
         panel.background = element_rect(fill="azure2"),
         plot.background = element_rect(fill="azure2"),
         legend.background = element_rect(fill="azure2")) +
-  scale_fill_brewer(palette = "Paired") 
+  scale_fill_manual(values = afro_stack_palette)
+
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/top_5_counties.png", width = 12, height = 12, dpi = 300)
+
+# 5) Arrange by cities and non-cities
+
+# Define the city counties of interest
+city_counties <- c("Nairobi City", "Mombasa", "Kisumu", "Nakuru", "Uasin Gishu")
+
+# Group all others as "Others"
+avg_share_gcp_2019_2023_select_tidy_city <- avg_share_gcp_2019_2023_select_tidy %>%
+  mutate(group = if_else(county %in% city_counties, county, "Others")) %>%
+  group_by(group) %>%
+  summarise(x5_year_avg = sum(x5_year_avg))
+
+# Visualize the data
+
+afro_stack_palette <- c(
+  "#FFB5A7", "#B5EAD7", "#9EC1CF",
+  "#F6D186", "#CC79A7", "#6D8196"
+)
+
+ggplot(avg_share_gcp_2019_2023_select_tidy_city, 
+       aes(area = x5_year_avg, fill = group, 
+           label = paste0(group, "\n",
+                          x5_year_avg, "%"))) +
+  geom_treemap() +
+  labs(title = "",
+       subtitle = "",
+       fill = "",
+       caption = "") +
+  geom_treemap_text(colour = "black",
+                    place = "centre",
+                    size = 40) + 
+  theme(legend.position = "none",
+        plot.title = element_text(size=24),
+        plot.subtitle = element_text(size=18),
+        legend.text = element_text(size = 10),
+        plot.caption = element_text(size =12),
+        panel.background = element_rect(fill="azure2"),
+        plot.background = element_rect(fill="azure2"),
+        legend.background = element_rect(fill="azure2")) +
+  scale_fill_manual(values = afro_stack_palette)
+
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/city_counties.png", width = 12, height = 12, dpi = 300)
 
 
-ggsave("images/livestock_kenya_national/treemap_livestock_national.png", width = 12, height = 8, dpi = 600)
 
-table_1_select_tidy_print <- data.frame(livestock_type = table_1_select_tidy$livestock_type, 
-                                        number = table_1_select_tidy$number)
+# 5) Arrange by Nairobi Metro and Non-Metro
 
-table_1_select_tidy_print %>%
-  arrange(desc(number)) %>%
-  rename("Livestock Type" = "livestock_type",
-         "Number" = "number") %>%
-  kbl(align = "c", format.args = list(big.mark = ",")) %>%
-  kable_classic() %>% 
-  row_spec(row = 0, font_size = 28, color = "white", background = "#000000") %>%
-  row_spec(row = c(1:12), font_size = 20) %>%
-  save_kable(file = "images/livestock_kenya_national/table_livestock_national.png",
-             zoom = 5)
+# Define the counties of interest
+metro_counties <- c("Nairobi City", "Kiambu", "Machakos", "Kajiado", "Murang'a")
+
+# Group all others as "Others"
+avg_share_gcp_2019_2023_select_tidy_metro <- avg_share_gcp_2019_2023_select_tidy %>%
+  mutate(group = if_else(county %in% metro_counties, county, "Others")) %>%
+  group_by(group) %>%
+  summarise(x5_year_avg = sum(x5_year_avg))
+
+# Visualize the data
+
+afro_stack_palette <- c(
+  "#FFB5A7", "#B5EAD7", "#9EC1CF",
+  "#F6D186", "#CC79A7", "#6D8196"
+)
+
+ggplot(avg_share_gcp_2019_2023_select_tidy_metro, 
+       aes(area = x5_year_avg, fill = group, 
+           label = paste0(group, "\n",
+                          x5_year_avg, "%"))) +
+  geom_treemap() +
+  labs(title = "",
+       subtitle = "",
+       fill = "",
+       caption = "") +
+  geom_treemap_text(colour = "black",
+                    place = "centre",
+                    size = 40) + 
+  theme(legend.position = "none",
+        plot.title = element_text(size=24),
+        plot.subtitle = element_text(size=18),
+        legend.text = element_text(size = 10),
+        plot.caption = element_text(size =12),
+        panel.background = element_rect(fill="azure2"),
+        plot.background = element_rect(fill="azure2"),
+        legend.background = element_rect(fill="azure2")) +
+  scale_fill_manual(values = afro_stack_palette)
+
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/metro_counties.png", width = 12, height = 12, dpi = 300)
 
