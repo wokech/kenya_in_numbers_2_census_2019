@@ -1,4 +1,4 @@
-# # Economic Activity per County
+# # Economic Activity per County (2023 Data)
 # By @kenya.in.numbers
 # Data: Kenya GCP 2024
 
@@ -17,6 +17,7 @@ library(kableExtra)
 #install.packages("treemapify")
 library(treemapify)
 library(scales)
+library(readxl)
 
 # Economic Activity by County (2023)
 gcp_econ_activity_2023 <- read_excel(here::here("sub_pro_5_kenya_gcp_2024_analysis", 
@@ -84,12 +85,51 @@ mombasa_gcp_econ_activity_2023_top_5 <- mombasa_gcp_econ_activity_2023 |>
 
 # Visualize the data
 
+ggplot(mombasa_gcp_econ_activity_2023_top_5, 
+       aes(area = percent_contribution, fill = percent_contribution, 
+           label = paste0(group, "\n",
+                          percent_contribution, "%"))) +
+  geom_treemap() +
+  labs(title = "",
+       subtitle = "",
+       fill = "",
+       caption = "") +
+  geom_treemap_text(colour = "black",
+                    place = "centre",
+                    size = 40) + 
+  theme(legend.position = "none",
+        plot.title = element_text(size=24),
+        plot.subtitle = element_text(size=18),
+        legend.text = element_text(size = 10),
+        plot.caption = element_text(size =12),
+        panel.background = element_rect(fill="azure2"),
+        plot.background = element_rect(fill="azure2"),
+        legend.background = element_rect(fill="azure2")) +
+  scale_fill_gradient(low = "#F7D9BC", high = "#E86100")
+
+# ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_2023_top_5/mombasa.png", width = 12, height = 12, dpi = 300)
+
+# Kwale
+
+kwale_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select_tidy |>
+  filter(county == "Kwale")
+
+kwale_gcp_econ_activity_2023_top_5 <- kwale_gcp_econ_activity_2023 |>
+  arrange(desc(contribution)) |>
+  mutate(group = if_else(row_number() <= 5,
+                         econ_activity, "Other Economic Activities")) |>
+  group_by(group) |>
+  summarise(contribution = sum(contribution)) |>
+  mutate(percent_contribution = round((contribution/sum(contribution))*100, 1))
+
+# Visualize the data
+
 afro_stack_palette <- c(
   "#FFB5A7", "#B5EAD7", "#9EC1CF",
   "#F6D186", "#CC79A7", "#6D8196"
 )
 
-ggplot(mombasa_gcp_econ_activity_2023_top_5, 
+ggplot(kwale_gcp_econ_activity_2023_top_5, 
        aes(area = contribution, fill = group, 
            label = paste0(group, "\n",
                           percent_contribution, "%"))) +
@@ -111,5 +151,183 @@ ggplot(mombasa_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = afro_stack_palette)
 
-# ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/top_5_counties.png", width = 12, height = 12, dpi = 300)
+# ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_2023_top_5/kwale.png", width = 12, height = 12, dpi = 300)
+
+# Kwale
+
+kwale_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select_tidy |>
+  filter(county == "Kwale")
+
+kwale_gcp_econ_activity_2023_top_5 <- kwale_gcp_econ_activity_2023 |>
+  arrange(desc(contribution)) |>
+  mutate(group = if_else(row_number() <= 5,
+                         econ_activity, "Other Economic Activities")) |>
+  group_by(group) |>
+  summarise(contribution = sum(contribution)) |>
+  mutate(percent_contribution = round((contribution/sum(contribution))*100, 1))
+
+# Visualize the data
+
+afro_stack_palette <- c(
+  "#FFB5A7", "#B5EAD7", "#9EC1CF",
+  "#F6D186", "#CC79A7", "#6D8196"
+)
+
+ggplot(kwale_gcp_econ_activity_2023_top_5, 
+       aes(area = contribution, fill = group, 
+           label = paste0(group, "\n",
+                          percent_contribution, "%"))) +
+  geom_treemap() +
+  labs(title = "",
+       subtitle = "",
+       fill = "",
+       caption = "") +
+  geom_treemap_text(colour = "black",
+                    place = "centre",
+                    size = 40) + 
+  theme(legend.position = "none",
+        plot.title = element_text(size=24),
+        plot.subtitle = element_text(size=18),
+        legend.text = element_text(size = 10),
+        plot.caption = element_text(size =12),
+        panel.background = element_rect(fill="azure2"),
+        plot.background = element_rect(fill="azure2"),
+        legend.background = element_rect(fill="azure2")) +
+  scale_fill_manual(values = afro_stack_palette)
+
+# ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_2023_top_5/kwale.png", width = 12, height = 12, dpi = 300)
+
+# Kilifi
+
+kilifi_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select_tidy |>
+  filter(county == "Kilifi")
+
+kilifi_gcp_econ_activity_2023_top_5 <- kilifi_gcp_econ_activity_2023 |>
+  arrange(desc(contribution)) |>
+  mutate(group = if_else(row_number() <= 5,
+                         econ_activity, "Other Economic Activities")) |>
+  group_by(group) |>
+  summarise(contribution = sum(contribution)) |>
+  mutate(percent_contribution = round((contribution/sum(contribution))*100, 1))
+
+# Visualize the data
+
+afro_stack_palette <- c(
+  "#FFB5A7", "#B5EAD7", "#9EC1CF",
+  "#F6D186", "#CC79A7", "#6D8196"
+)
+
+ggplot(kilifi_gcp_econ_activity_2023_top_5, 
+       aes(area = contribution, fill = group, 
+           label = paste0(group, "\n",
+                          percent_contribution, "%"))) +
+  geom_treemap() +
+  labs(title = "",
+       subtitle = "",
+       fill = "",
+       caption = "") +
+  geom_treemap_text(colour = "black",
+                    place = "centre",
+                    size = 40) + 
+  theme(legend.position = "none",
+        plot.title = element_text(size=24),
+        plot.subtitle = element_text(size=18),
+        legend.text = element_text(size = 10),
+        plot.caption = element_text(size =12),
+        panel.background = element_rect(fill="azure2"),
+        plot.background = element_rect(fill="azure2"),
+        legend.background = element_rect(fill="azure2")) +
+  scale_fill_manual(values = afro_stack_palette)
+
+# ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_2023_top_5/kilifi.png", width = 12, height = 12, dpi = 300)
+
+# Tana River
+
+tana_river_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select_tidy |>
+  filter(county == "Tana River")
+
+tana_river_gcp_econ_activity_2023_top_5 <- tana_river_gcp_econ_activity_2023 |>
+  arrange(desc(contribution)) |>
+  mutate(group = if_else(row_number() <= 5,
+                         econ_activity, "Other Economic Activities")) |>
+  group_by(group) |>
+  summarise(contribution = sum(contribution)) |>
+  mutate(percent_contribution = round((contribution/sum(contribution))*100, 1))
+
+# Visualize the data
+
+afro_stack_palette <- c(
+  "#FFB5A7", "#B5EAD7", "#9EC1CF",
+  "#F6D186", "#CC79A7", "#6D8196"
+)
+
+ggplot(tana_river_gcp_econ_activity_2023_top_5, 
+       aes(area = contribution, fill = group, 
+           label = paste0(group, "\n",
+                          percent_contribution, "%"))) +
+  geom_treemap() +
+  labs(title = "",
+       subtitle = "",
+       fill = "",
+       caption = "") +
+  geom_treemap_text(colour = "black",
+                    place = "centre",
+                    size = 40) + 
+  theme(legend.position = "none",
+        plot.title = element_text(size=24),
+        plot.subtitle = element_text(size=18),
+        legend.text = element_text(size = 10),
+        plot.caption = element_text(size =12),
+        panel.background = element_rect(fill="azure2"),
+        plot.background = element_rect(fill="azure2"),
+        legend.background = element_rect(fill="azure2")) +
+  scale_fill_manual(values = afro_stack_palette)
+
+# ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_2023_top_5/tana_river.png", width = 12, height = 12, dpi = 300)
+
+
+# Lamu
+
+lamu_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select_tidy |>
+  filter(county == "Lamu")
+
+lamu_gcp_econ_activity_2023_top_5 <- lamu_gcp_econ_activity_2023 |>
+  arrange(desc(contribution)) |>
+  mutate(group = if_else(row_number() <= 5,
+                         econ_activity, "Other Economic Activities")) |>
+  group_by(group) |>
+  summarise(contribution = sum(contribution)) |>
+  mutate(percent_contribution = round((contribution/sum(contribution))*100, 1))
+
+# Visualize the data
+
+afro_stack_palette <- c(
+  "#FFB5A7", "#B5EAD7", "#9EC1CF",
+  "#F6D186", "#CC79A7", "#6D8196"
+)
+
+ggplot(lamu_gcp_econ_activity_2023_top_5, 
+       aes(area = contribution, fill = group, 
+           label = paste0(group, "\n",
+                          percent_contribution, "%"))) +
+  geom_treemap() +
+  labs(title = "",
+       subtitle = "",
+       fill = "",
+       caption = "") +
+  geom_treemap_text(colour = "black",
+                    place = "centre",
+                    size = 40) + 
+  theme(legend.position = "none",
+        plot.title = element_text(size=24),
+        plot.subtitle = element_text(size=18),
+        legend.text = element_text(size = 10),
+        plot.caption = element_text(size =12),
+        panel.background = element_rect(fill="azure2"),
+        plot.background = element_rect(fill="azure2"),
+        legend.background = element_rect(fill="azure2")) +
+  scale_fill_manual(values = afro_stack_palette)
+
+# ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_2023_top_5/lamu.png", width = 12, height = 12, dpi = 300)
+
 

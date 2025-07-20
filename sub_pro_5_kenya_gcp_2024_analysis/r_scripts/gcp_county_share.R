@@ -175,3 +175,4 @@ ggplot(avg_share_gcp_2019_2023_select_tidy_metro,
 
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/metro_counties.png", width = 12, height = 12, dpi = 300)
 
+##### Add corresponding maps with similar color

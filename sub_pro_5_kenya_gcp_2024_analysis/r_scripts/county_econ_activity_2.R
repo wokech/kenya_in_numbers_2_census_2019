@@ -1,4 +1,4 @@
-# # Individual Economic Activity by County
+# # Individual Economic Activity by County (2023 Data)
 # By @kenya.in.numbers
 # Data: Kenya GCP 2024
 
@@ -44,6 +44,8 @@ gcp_econ_activity_2023_select <- gcp_econ_activity_2023_select |>
 
 # 3) Visualize the data
 
+# Agriculture
+
 agriculture_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, agriculture_forestry_fishing)
 
@@ -84,5 +86,48 @@ ggplot(agriculture_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = afro_stack_palette)
 
-# ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/top_5_counties.png", width = 12, height = 12, dpi = 300)
+# ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/agriculture_top_5_counties.png", width = 12, height = 12, dpi = 300)
 
+# Mining
+
+mining_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
+  select(county, mining_quarrying)
+
+mining_gcp_econ_activity_2023_top_5 <- mining_gcp_econ_activity_2023 |>
+  arrange(desc(mining_quarrying)) |>
+  mutate(group = if_else(row_number() <= 5,
+                         county, "Other Counties")) |>
+  group_by(group) |>
+  summarise(mining_quarrying = sum(mining_quarrying)) |>
+  mutate(percent_contribution = round((mining_quarrying/sum(mining_quarrying))*100, 1))
+
+# Visualize the data
+
+afro_stack_palette <- c(
+  "#FFB5A7", "#B5EAD7", "#9EC1CF",
+  "#F6D186", "#CC79A7", "#6D8196"
+)
+
+ggplot(mining_gcp_econ_activity_2023_top_5, 
+       aes(area = mining_quarrying, fill = group, 
+           label = paste0(group, "\n",
+                          percent_contribution, "%"))) +
+  geom_treemap() +
+  labs(title = "",
+       subtitle = "",
+       fill = "",
+       caption = "") +
+  geom_treemap_text(colour = "black",
+                    place = "centre",
+                    size = 40) + 
+  theme(legend.position = "none",
+        plot.title = element_text(size=24),
+        plot.subtitle = element_text(size=18),
+        legend.text = element_text(size = 10),
+        plot.caption = element_text(size =12),
+        panel.background = element_rect(fill="azure2"),
+        plot.background = element_rect(fill="azure2"),
+        legend.background = element_rect(fill="azure2")) +
+  scale_fill_manual(values = afro_stack_palette)
+
+# ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/mining_top_5_counties.png", width = 12, height = 12, dpi = 300)

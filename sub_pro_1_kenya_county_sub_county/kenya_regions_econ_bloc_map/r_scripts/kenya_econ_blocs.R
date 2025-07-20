@@ -111,13 +111,6 @@ ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/eco
 
 map_meb_zoom <- ggplot(data = meb_df)+
   geom_sf(aes(fill = County), linewidth = 0.5)+
-  geom_sf_text_repel(aes(label = County), size = 10,
-                     force = 10, nudge_x = -1, seed = 10,
-                     min.segment.length = 0.25,
-                     force_pull = 0.1,
-                     max.overlaps = Inf,  # allow as many as possible
-                     box.padding = 0.5, 
-                     point.padding = 0.3) +
   scale_fill_d3(palette = 'category20') +
   theme_void()+
   labs(title = "",
@@ -166,13 +159,6 @@ ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/eco
 
 map_fcdc_zoom <- ggplot(data = fcdc_df)+
   geom_sf(aes(fill = County), linewidth = 0.5)+
-  geom_sf_text_repel(aes(label = County), size = 10,
-                     force = 10, nudge_x = -1, seed = 10,
-                     min.segment.length = 0.25,
-                     force_pull = 0.1,
-                     max.overlaps = Inf,  # allow as many as possible
-                     box.padding = 0.5, 
-                     point.padding = 0.3) +
   scale_fill_d3(palette = 'category20') +
   theme_void()+
   labs(title = "",
@@ -219,13 +205,6 @@ ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/eco
 
 map_noreb_zoom <- ggplot(data = noreb_df)+
   geom_sf(aes(fill = County), linewidth = 0.5)+
-  geom_sf_text_repel(aes(label = County), size = 10,
-                     force = 10, nudge_x = -1, seed = 10,
-                     min.segment.length = 0.25,
-                     force_pull = 0.1,
-                     max.overlaps = Inf,  # allow as many as possible
-                     box.padding = 0.5, 
-                     point.padding = 0.3) +
   scale_fill_d3(palette = 'category20') +
   theme_void()+
   labs(title = "",
@@ -274,13 +253,6 @@ ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/eco
 
 map_lreb_zoom <- ggplot(data = lreb_df)+
   geom_sf(aes(fill = County), linewidth = 0.5)+
-  geom_sf_text_repel(aes(label = County), size = 10,
-                     force = 10, nudge_x = -1, seed = 10,
-                     min.segment.length = 0.25,
-                     force_pull = 0.1,
-                     max.overlaps = Inf,  # allow as many as possible
-                     box.padding = 0.5, 
-                     point.padding = 0.3) +
   scale_fill_d3(palette = 'category20') +
   theme_void()+
   labs(title = "",
@@ -325,13 +297,6 @@ ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/eco
 
 map_sekeb_zoom <- ggplot(data = sekeb_df)+
   geom_sf(aes(fill = County), linewidth = 0.5)+
-  geom_sf_text_repel(aes(label = County), size = 10,
-                     force = 10, nudge_x = -1, seed = 10,
-                     min.segment.length = 0.25,
-                     force_pull = 0.1,
-                     max.overlaps = Inf,  # allow as many as possible
-                     box.padding = 0.5, 
-                     point.padding = 0.3) +
   scale_fill_d3(palette = 'category20') +
   theme_void()+
   labs(title = "",
@@ -378,13 +343,6 @@ ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/eco
 
 map_mkareb_zoom <- ggplot(data = mkareb_df)+
   geom_sf(aes(fill = County), linewidth = 0.5)+
-  geom_sf_text_repel(aes(label = County), size = 10,
-                     force = 10, nudge_x = -1, seed = 10,
-                     min.segment.length = 0.25,
-                     force_pull = 0.1,
-                     max.overlaps = Inf,  # allow as many as possible
-                     box.padding = 0.5, 
-                     point.padding = 0.3) +
   scale_fill_d3(palette = 'category20') +
   theme_void()+
   labs(title = "",
@@ -430,13 +388,6 @@ ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/eco
 
 map_jkp_zoom <- ggplot(data = jkp_df)+
   geom_sf(aes(fill = County), linewidth = 0.5)+
-  geom_sf_text_repel(aes(label = County), size = 10,
-                     force = 10, nudge_x = -1, seed = 10,
-                     min.segment.length = 0.25,
-                     force_pull = 0.1,
-                     max.overlaps = Inf,  # allow as many as possible
-                     box.padding = 0.5, 
-                     point.padding = 0.3) +
   scale_fill_d3(palette = 'category20') +
   theme_void()+
   labs(title = "",
@@ -482,13 +433,6 @@ ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/eco
 
 map_namet_zoom <- ggplot(data = namet_df)+
   geom_sf(aes(fill = County), linewidth = 0.5)+
-  geom_sf_text_repel(aes(label = County), size = 10,
-                     force = 10, nudge_x = -1, seed = 10,
-                     min.segment.length = 0.25,
-                     force_pull = 0.1,
-                     max.overlaps = Inf,  # allow as many as possible
-                     box.padding = 0.5, 
-                     point.padding = 0.3) +
   scale_fill_d3(palette = 'category20') +
   theme_void()+
   labs(title = "",
@@ -534,13 +478,6 @@ ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/eco
 
 map_kenya_city_zoom <- ggplot(data = kenya_city_df)+
   geom_sf(aes(fill = County), linewidth = 0.5)+
-  geom_sf_text_repel(aes(label = County), size = 10,
-                     force = 10, nudge_x = -1, seed = 10,
-                     min.segment.length = 0.25,
-                     force_pull = 0.1,
-                     max.overlaps = Inf,  # allow as many as possible
-                     box.padding = 0.5, 
-                     point.padding = 0.3) +
   scale_fill_d3(palette = 'category20') +
   theme_void()+
   labs(title = "",
