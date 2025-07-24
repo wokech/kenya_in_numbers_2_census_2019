@@ -18,6 +18,17 @@ library(readxl)
 #install.packages("treemapify")
 library(treemapify)
 library(scales)
+#install.packages("sf")
+library(sf) # simple features
+#install.packages("tmap") #Thematic maps 
+library(tmap)
+#install.packages("leaflet") # Used for creating interactive maps
+library(leaflet)
+#install.packages("ggbreak")
+library(ggbreak)
+library(patchwork)
+library(ggrepel)
+library(ggsflabel)
 
 # 2) Load the data
 
@@ -45,7 +56,9 @@ unique(avg_share_gcp_2019_2023_select$county)
 avg_share_gcp_2019_2023_select <- avg_share_gcp_2019_2023_select |>
   mutate(county = recode(county, "Murang’a" = "Murang'a"))
 
-# 4) Arrange by top 5 counties and Visualize
+# 4) Visualize
+
+# a) Top 5 Counties
 
 avg_share_gcp_2019_2023_select_tidy <- avg_share_gcp_2019_2023_select |>
   select(county, x5_year_avg) |>
@@ -58,18 +71,22 @@ avg_share_gcp_2019_2023_select_tidy_top_5 <- avg_share_gcp_2019_2023_select_tidy
   group_by(group) |>
   summarise(x5_year_avg = sum(x5_year_avg))
 
-# Visualize the data
+# Treemap
 
-afro_stack_palette <- c(
-  "#FFB5A7", "#B5EAD7", "#9EC1CF",
-  "#F6D186", "#CC79A7", "#6D8196"
+color_map_top_5 <- c(
+  "Nairobi City" = "#FFB5A7",
+  "Kiambu" = "#B5EAD7",
+  "Nakuru" = "#9EC1CF",
+  "Mombasa" = "#F6D186",
+  "Meru" = "#CC79A7",
+  "Other Counties" = "#BEBEBE"  # For grouped others
 )
 
 ggplot(avg_share_gcp_2019_2023_select_tidy_top_5, 
        aes(area = x5_year_avg, fill = group, 
            label = paste0(group, "\n",
                           x5_year_avg, "%"))) +
-  geom_treemap() +
+  geom_treemap(color = "black", size = 2) +
   labs(title = "",
        subtitle = "",
        fill = "",
@@ -85,26 +102,93 @@ ggplot(avg_share_gcp_2019_2023_select_tidy_top_5,
         panel.background = element_rect(fill="azure2"),
         plot.background = element_rect(fill="azure2"),
         legend.background = element_rect(fill="azure2")) +
-  scale_fill_manual(values = afro_stack_palette)
+  scale_fill_manual(values = color_map_top_5)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/top_5_counties.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
 
-# 5) Arrange by cities and non-cities
+# Map Plot
+
+# Load shapefile
+
+kenya_counties_sf <- st_as_sf(KenyaCounties_SHP)
+
+# Inspect to see if names in both datasets match
+
+unique(kenya_counties_sf$County)
+
+# Fix names in shapefiles
+
+kenya_counties_sf$County <- gsub("/", " ", kenya_counties_sf$County)
+kenya_counties_sf$County <- gsub("-", " ", kenya_counties_sf$County)
+
+### Convert to title case
+kenya_counties_sf <- kenya_counties_sf |> 
+  mutate(County = tools::toTitleCase(tolower(County)))
+
+# Inspect the county names that are different in each of the datasets
+unique(avg_share_gcp_2019_2023_select_tidy$county)[which(!unique(avg_share_gcp_2019_2023_select_tidy$county) %in% kenya_counties_sf$County)]
+
+# Merge the two datasets for ease of plotting
+merged_df <- left_join(kenya_counties_sf, avg_share_gcp_2019_2023_select_tidy, by = c("County" = "county"))
+
+# Identify top 5 counties
+top5 <- merged_df |>
+  arrange(desc(x5_year_avg)) |>
+  slice_head(n = 5) |>
+  pull(County)
+
+# Add group column to full tidy dataset
+merged_df_with_groups_top_5 <- merged_df |>
+  mutate(group = if_else(County %in% top5, County, "Other Counties"))
+
+color_map_top_5 <- c(
+  "Nairobi City" = "#FFB5A7",
+  "Kiambu" = "#B5EAD7",
+  "Nakuru" = "#9EC1CF",
+  "Mombasa" = "#F6D186",
+  "Meru" = "#CC79A7",
+  "Other Counties" = "#BEBEBE"  # For grouped others
+)
+
+ggplot(data = merged_df_with_groups_top_5)+
+  geom_sf(aes(geometry = geometry, fill = group), linewidth = 0.5)+
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2"),
+        legend.position = "none") +
+  scale_fill_manual(values = color_map_top_5)
+
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+
+# b) Arrange by cities and non-cities
 
 # Define the city counties of interest
 city_counties <- c("Nairobi City", "Mombasa", "Kisumu", "Nakuru", "Uasin Gishu")
 
+avg_share_gcp_2019_2023_select_tidy <- avg_share_gcp_2019_2023_select |>
+  select(county, x5_year_avg) |>
+  filter(county != "Total")
+
 # Group all others as "Others"
 avg_share_gcp_2019_2023_select_tidy_city <- avg_share_gcp_2019_2023_select_tidy %>%
-  mutate(group = if_else(county %in% city_counties, county, "Others")) %>%
+  mutate(group = if_else(county %in% city_counties, county, "Other Counties")) %>%
   group_by(group) %>%
   summarise(x5_year_avg = sum(x5_year_avg))
 
-# Visualize the data
+# Treemap
 
-afro_stack_palette <- c(
-  "#FFB5A7", "#B5EAD7", "#9EC1CF",
-  "#F6D186", "#CC79A7", "#6D8196"
+color_map_city <- c(
+  "Nairobi City" = "#FFB5A7",
+  "Mombasa" = "#B5EAD7",
+  "Kisumu" = "#9EC1CF",
+  "Nakuru" = "#F6D186",
+  "Uasin Gishu" = "#CC79A7",
+  "Other Counties" = "#BEBEBE"  # For grouped others
 )
 
 ggplot(avg_share_gcp_2019_2023_select_tidy_city, 
@@ -127,28 +211,84 @@ ggplot(avg_share_gcp_2019_2023_select_tidy_city,
         panel.background = element_rect(fill="azure2"),
         plot.background = element_rect(fill="azure2"),
         legend.background = element_rect(fill="azure2")) +
-  scale_fill_manual(values = afro_stack_palette)
+  scale_fill_manual(values = color_map_city)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/city_counties.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/city_counties_treemap.png", width = 12, height = 8, dpi = 300)
+
+# Map
+
+# Load shapefile
+
+kenya_counties_sf <- st_as_sf(KenyaCounties_SHP)
+
+# Inspect to see if names in both datasets match
+
+unique(kenya_counties_sf$County)
+
+# Fix names in shapefiles
+
+kenya_counties_sf$County <- gsub("/", " ", kenya_counties_sf$County)
+kenya_counties_sf$County <- gsub("-", " ", kenya_counties_sf$County)
+
+### Convert to title case
+kenya_counties_sf <- kenya_counties_sf |> 
+  mutate(County = tools::toTitleCase(tolower(County)))
+
+# Inspect the county names that are different in each of the datasets
+unique(avg_share_gcp_2019_2023_select_tidy$county)[which(!unique(avg_share_gcp_2019_2023_select_tidy$county) %in% kenya_counties_sf$County)]
+
+# Merge the two datasets for ease of plotting
+merged_df <- left_join(kenya_counties_sf, avg_share_gcp_2019_2023_select_tidy, by = c("County" = "county"))
+
+# Add group column to full tidy dataset
+merged_df_with_groups_city_county <- merged_df |>
+  mutate(group = if_else(County %in% city_counties, County, "Other Counties"))
+
+color_map_city <- c(
+  "Nairobi City" = "#FFB5A7",
+  "Mombasa" = "#B5EAD7",
+  "Kisumu" = "#9EC1CF",
+  "Nakuru" = "#F6D186",
+  "Uasin Gishu" = "#CC79A7",
+  "Other Counties" = "#BEBEBE"  # For grouped others
+)
+
+ggplot(data = merged_df_with_groups_city_county)+
+  geom_sf(aes(geometry = geometry, fill = group), linewidth = 0.5)+
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2"),
+        legend.position = "none") +
+  scale_fill_manual(values = color_map_city)
+
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/city_counties_map.png", width = 12, height = 8, dpi = 300)
 
 
-
-# 5) Arrange by Nairobi Metro and Non-Metro
+# c) Arrange by Nairobi Metro and Non-Metro
 
 # Define the counties of interest
 metro_counties <- c("Nairobi City", "Kiambu", "Machakos", "Kajiado", "Murang'a")
 
 # Group all others as "Others"
 avg_share_gcp_2019_2023_select_tidy_metro <- avg_share_gcp_2019_2023_select_tidy %>%
-  mutate(group = if_else(county %in% metro_counties, county, "Others")) %>%
+  mutate(group = if_else(county %in% metro_counties, county, "Other Counties")) %>%
   group_by(group) %>%
   summarise(x5_year_avg = sum(x5_year_avg))
 
-# Visualize the data
+# Treemap
 
-afro_stack_palette <- c(
-  "#FFB5A7", "#B5EAD7", "#9EC1CF",
-  "#F6D186", "#CC79A7", "#6D8196"
+color_map_metro <- c(
+  "Nairobi City" = "#FFB5A7",
+  "Kiambu" = "#B5EAD7",
+  "Machakos" = "#9EC1CF",
+  "Kajiado" = "#F6D186",
+  "Murang'a" = "#CC79A7",
+  "Other Counties" = "#BEBEBE"  # For grouped others
 )
 
 ggplot(avg_share_gcp_2019_2023_select_tidy_metro, 
@@ -171,8 +311,59 @@ ggplot(avg_share_gcp_2019_2023_select_tidy_metro,
         panel.background = element_rect(fill="azure2"),
         plot.background = element_rect(fill="azure2"),
         legend.background = element_rect(fill="azure2")) +
-  scale_fill_manual(values = afro_stack_palette)
+  scale_fill_manual(values = color_map_metro)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/metro_counties.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/metro_counties.png", width = 12, height = 8, dpi = 300)
 
-##### Add corresponding maps with similar color
+# Map
+
+# Load shapefile
+
+kenya_counties_sf <- st_as_sf(KenyaCounties_SHP)
+
+# Inspect to see if names in both datasets match
+
+unique(kenya_counties_sf$County)
+
+# Fix names in shapefiles
+
+kenya_counties_sf$County <- gsub("/", " ", kenya_counties_sf$County)
+kenya_counties_sf$County <- gsub("-", " ", kenya_counties_sf$County)
+
+### Convert to title case
+kenya_counties_sf <- kenya_counties_sf |> 
+  mutate(County = tools::toTitleCase(tolower(County)))
+
+# Inspect the county names that are different in each of the datasets
+unique(avg_share_gcp_2019_2023_select_tidy$county)[which(!unique(avg_share_gcp_2019_2023_select_tidy$county) %in% kenya_counties_sf$County)]
+
+# Merge the two datasets for ease of plotting
+merged_df <- left_join(kenya_counties_sf, avg_share_gcp_2019_2023_select_tidy, by = c("County" = "county"))
+
+# Add group column to full tidy dataset
+merged_df_with_groups_top_5 <- merged_df |>
+  mutate(group = if_else(County %in% metro_counties, County, "Other Counties"))
+
+color_map_metro <- c(
+  "Nairobi City" = "#FFB5A7",
+  "Kiambu" = "#B5EAD7",
+  "Machakos" = "#9EC1CF",
+  "Kajiado" = "#F6D186",
+  "Murang'a" = "#CC79A7",
+  "Other Counties" = "#BEBEBE"  # For grouped others
+)
+
+ggplot(data = merged_df_with_groups_top_5)+
+  geom_sf(aes(geometry = geometry, fill = group), linewidth = 0.5)+
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2"),
+        legend.position = "none") +
+  scale_fill_manual(values = color_map_metro)
+
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/metro_counties_map.png", width = 12, height = 8, dpi = 300)

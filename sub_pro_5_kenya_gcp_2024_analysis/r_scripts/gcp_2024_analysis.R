@@ -40,3 +40,19 @@ poverty_estimates <- read_excel(here::here("sub_pro_5_kenya_gcp_2024_analysis",
                                            "datasets", "kenya_gcp_2024_tables",
                                            "poverty_estimates.xlsx"))
 
+
+mobile_phone_internet_use <- mobile_phone_internet_use |>
+  clean_names() |>
+  filter(county != "NATIONAL") |>
+  select(county, used_internet_percent)
+
+poverty_estimates <- poverty_estimates |>
+  clean_names() |>
+  filter(residence_county != c("NATIONAL", "RURAL", "URBAN")) |>
+  select(residence_county, x2022_percent)
+
+merged_1 <- poverty_estimates |>
+  left_join(mobile_phone_internet_use, by = c("residence_county" = "county"))
+
+ggplot(merged_1) +
+  geom_point(aes(x = used_internet_percent, y = x2022_percent))
