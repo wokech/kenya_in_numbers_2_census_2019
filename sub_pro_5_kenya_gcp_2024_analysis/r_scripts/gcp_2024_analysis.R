@@ -43,8 +43,7 @@ poverty_estimates <- read_excel(here::here("sub_pro_5_kenya_gcp_2024_analysis",
 
 mobile_phone_internet_use <- mobile_phone_internet_use |>
   clean_names() |>
-  filter(county != "NATIONAL") |>
-  select(county, used_internet_percent)
+  filter(county != "NATIONAL") 
 
 poverty_estimates <- poverty_estimates |>
   clean_names() |>
@@ -54,5 +53,18 @@ poverty_estimates <- poverty_estimates |>
 merged_1 <- poverty_estimates |>
   left_join(mobile_phone_internet_use, by = c("residence_county" = "county"))
 
-ggplot(merged_1) +
-  geom_point(aes(x = used_internet_percent, y = x2022_percent))
+ggplot(merged_1, aes(x = used_internet_percent, y = x2022_percent)) +
+  geom_point(size = 2) +
+  geom_text_repel(aes(label = residence_county))
+
+ggplot(merged_1, aes(x = television_percent, y = x2022_percent)) +
+  geom_point(size = 2) +
+  geom_text_repel(aes(label = residence_county))
+
+ggplot(merged_1, aes(x = computer_percent, y = x2022_percent)) +
+  geom_point(size = 2) +
+  geom_text_repel(aes(label = residence_county))
+
+ggplot(merged_1, aes(x = mobile_phone_percent, y = x2022_percent)) +
+  geom_point(size = 2) +
+  geom_text_repel(aes(label = residence_county))
