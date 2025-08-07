@@ -293,7 +293,7 @@ ggsave("sub_pro_1_kenya_county_sub_county/kenya_regions_econ_bloc_map/images/reg
 
 
 # Central Region - 5 counties
-central <- c("Nyeri", "Kirinyaga", "Kiambu", "Murang’a", "Nyandarua")
+central <- c("Nyeri", "Kirinyaga", "Kiambu", "Murang'a", "Nyandarua")
 central_df <- kenya_counties_sf |> filter(County %in% central)
 
 map_central <- ggplot(data = kenya_counties_sf)+

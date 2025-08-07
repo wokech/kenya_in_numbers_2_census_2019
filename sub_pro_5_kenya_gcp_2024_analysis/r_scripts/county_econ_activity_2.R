@@ -113,7 +113,7 @@ ggplot(agriculture_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_agriculture)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/agriculture_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/agriculture_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -172,7 +172,7 @@ ggplot(data = merged_df_agriculture_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_agriculture)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/agriculture_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/agriculture_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 # Mining
 
@@ -220,7 +220,7 @@ ggplot(mining_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_mining)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/mining_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/mining_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -279,7 +279,7 @@ ggplot(data = merged_df_mining_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_mining)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/mining_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/mining_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 # Manufacturing
 
@@ -327,7 +327,7 @@ ggplot(manufacturing_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_manufacturing)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/manufacturing_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/manufacturing_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -386,7 +386,7 @@ ggplot(data = merged_df_manufacturing_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_manufacturing)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/manufacturing_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/manufacturing_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 # Electricity Supply
 
@@ -434,7 +434,7 @@ ggplot(electricity_supply_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_electricity_supply)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/electricity_supply_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/electricity_supply_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -493,7 +493,7 @@ ggplot(data = merged_df_electricity_supply_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_electricity_supply)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/electricity_supply_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/electricity_supply_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 # Water Supply & Waste Collection
 
@@ -541,7 +541,7 @@ ggplot(water_supply_waste_collection_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_water_supply_waste_collection)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/water_supply_waste_collection_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/water_supply_waste_collection_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -600,7 +600,7 @@ ggplot(data = merged_df_water_supply_waste_collection_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_water_supply_waste_collection)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/water_supply_waste_collection_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/water_supply_waste_collection_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 # Construction
 
@@ -648,7 +648,7 @@ ggplot(construction_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_construction)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/construction_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/construction_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -707,7 +707,7 @@ ggplot(data = merged_df_construction_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_construction)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/construction_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/construction_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 
 # Wholesale, Retail, & Motor Vehicle Repair
@@ -756,7 +756,7 @@ ggplot(wholesale_retail_trade_repair_of_motor_vehicles_gcp_econ_activity_2023_to
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_wholesale_retail_trade_repair_of_motor_vehicles)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/wholesale_retail_trade_repair_of_motor_vehicles_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/wholesale_retail_trade_repair_of_motor_vehicles_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -815,7 +815,7 @@ ggplot(data = merged_df_wholesale_retail_trade_repair_of_motor_vehicles_with_gro
         legend.position = "none") +
   scale_fill_manual(values = color_map_wholesale_retail_trade_repair_of_motor_vehicles)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/wholesale_retail_trade_repair_of_motor_vehicles_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/wholesale_retail_trade_repair_of_motor_vehicles_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 # Transport & Storage
 
@@ -863,7 +863,7 @@ ggplot(transport_storage_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_transport_storage)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/transport_storage_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/transport_storage_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -922,7 +922,7 @@ ggplot(data = merged_df_transport_storage_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_transport_storage)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/transport_storage_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/transport_storage_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 
 # Accommodation & Food Service
@@ -971,7 +971,7 @@ ggplot(accommodation_food_service_activities_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_accommodation_food_service_activities)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/accommodation_food_service_activities_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/accommodation_food_service_activities_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -1030,7 +1030,7 @@ ggplot(data = merged_df_accommodation_food_service_activities_with_groups_top_5)
         legend.position = "none") +
   scale_fill_manual(values = color_map_accommodation_food_service_activities)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/accommodation_food_service_activities_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/accommodation_food_service_activities_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 
 # ICT
@@ -1079,7 +1079,7 @@ ggplot(information_communication_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_information_communication)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/information_communication_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/information_communication_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -1138,7 +1138,7 @@ ggplot(data = merged_df_information_communication_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_information_communication)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/information_communication_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/information_communication_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 
 # Financial & Insurance Services
@@ -1187,7 +1187,7 @@ ggplot(financial_insurance_activities_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_financial_insurance_activities)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/financial_insurance_activities_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/financial_insurance_activities_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -1246,7 +1246,7 @@ ggplot(data = merged_df_financial_insurance_activities_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_financial_insurance_activities)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/financial_insurance_activities_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/financial_insurance_activities_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 # Real Estate
 
@@ -1294,7 +1294,7 @@ ggplot(real_estate_activities_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_real_estate_activities)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/real_estate_activities_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/real_estate_activities_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -1353,7 +1353,7 @@ ggplot(data = merged_df_real_estate_activities_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_real_estate_activities)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/real_estate_activities_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/real_estate_activities_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 # Professional & Technical Services
 
@@ -1401,7 +1401,7 @@ ggplot(professional_technical_services_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_professional_technical_services)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/professional_technical_services_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/professional_technical_services_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -1460,7 +1460,7 @@ ggplot(data = merged_df_professional_technical_services_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_professional_technical_services)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/professional_technical_services_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/professional_technical_services_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 # Administrative Support Services
 
@@ -1508,7 +1508,7 @@ ggplot(administrative_support_services_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_administrative_support_services)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/administrative_support_services_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/administrative_support_services_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -1567,7 +1567,7 @@ ggplot(data = merged_df_administrative_support_services_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_administrative_support_services)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/administrative_support_services_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/administrative_support_services_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 # Public Admin & Defence
 
@@ -1615,7 +1615,7 @@ ggplot(public_administration_defence_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_public_administration_defence)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/public_administration_defence_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/public_administration_defence_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -1674,7 +1674,7 @@ ggplot(data = merged_df_public_administration_defence_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_public_administration_defence)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/public_administration_defence_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/public_administration_defence_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 
 # Education
@@ -1723,7 +1723,7 @@ ggplot(education_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_education)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/education_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/education_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -1782,7 +1782,7 @@ ggplot(data = merged_df_education_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_education)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/education_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/education_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 
 # Human Health & Social Work
@@ -1831,7 +1831,7 @@ ggplot(human_health_social_work_activities_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_human_health_social_work_activities)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/human_health_social_work_activities_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/human_health_social_work_activities_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -1891,7 +1891,7 @@ ggplot(data = merged_df_human_health_social_work_activities_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_human_health_social_work_activities)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/human_health_social_work_activities_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/human_health_social_work_activities_top_5_counties_map.png", width = 12, height = 12, dpi = 300)
 
 
 # Other Services
@@ -1940,7 +1940,7 @@ ggplot(other_service_activities_gcp_econ_activity_2023_top_5,
         legend.background = element_rect(fill="azure2")) +
   scale_fill_manual(values = color_map_other_service_activities)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/other_service_activities_top_5_counties_treemap.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/other_service_activities_top_5_counties_treemap.png", width = 12, height = 12, dpi = 300)
 
 # Map Plot
 
@@ -2001,4 +2001,4 @@ ggplot(data = merged_df_other_service_activities_with_groups_top_5)+
         legend.position = "none") +
   scale_fill_manual(values = color_map_other_service_activities)
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/other_service_activities_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/other_service_activities_top_5_counties_map.png", width = 12, height = 12, dpi = 300)

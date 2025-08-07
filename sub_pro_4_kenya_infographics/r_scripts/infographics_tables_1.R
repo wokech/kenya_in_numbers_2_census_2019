@@ -182,13 +182,14 @@ merged_table_2 <- df_v4_t2_32 |>
 setdiff(merged_table_1$County, merged_table_2$County)
 setdiff(merged_table_2$County, merged_table_1$County)
 
-# All tables merged
+# All tables merged for Infographic 1
 
 merged_table_total <- merged_table_1 |>
   left_join(merged_table_2, by = "County")
 
 # write_csv(merged_table_total,
 #           "sub_pro_1_kenya_county_sub_county/kenya_infographics/datasets/infographic_data_1.csv")
+
 
 #####################
 #####PART B - Visualize Data

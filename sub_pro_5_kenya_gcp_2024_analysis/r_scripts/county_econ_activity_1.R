@@ -39,11 +39,15 @@ gcp_econ_activity_2023_select <- gcp_econ_activity_2023_select |>
   mutate(county = tools::toTitleCase(tolower(county)))
 unique(gcp_econ_activity_2023_select$county)
 
-# Rename Murang'a
+# Rename Murang'a and add totals
 gcp_econ_activity_2023_select <- gcp_econ_activity_2023_select |>
-  mutate(county = recode(county, "Murang’a" = "Murang'a"))
+  mutate(county = recode(county, "Murang’a" = "Murang'a")) |>
+  adorn_totals("row")
 
-# 3) Visualize the data
+# Rename county to "Total"
+gcp_econ_activity_2023_select[48, 2] <- "Total"
+  
+# 3a) Visualize the data
 
 gcp_econ_activity_2023_select_tidy <- gcp_econ_activity_2023_select |>
   pivot_longer(c(agriculture_forestry_fishing:other_service_activities), 
@@ -67,6 +71,48 @@ gcp_econ_activity_2023_select_tidy <- gcp_econ_activity_2023_select |>
                          ifelse(econ_activity == "human_health_social_work_activities", "Human Health & Social Work",
                          ifelse(econ_activity == "other_service_activities", "Other Services", 
                                 econ_activity))))))))))))))))))) 
+
+# 3b) Country-Level Data
+
+# Kenya
+
+kenya_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select_tidy |>
+  filter(county == "Total")
+
+kenya_gcp_econ_activity_2023_top_5 <- kenya_gcp_econ_activity_2023 |>
+  arrange(desc(contribution)) |>
+  mutate(group = if_else(row_number() <= 5,
+                         econ_activity, "Other Economic Activities")) |>
+  group_by(group) |>
+  summarise(contribution = sum(contribution)) |>
+  mutate(percent_contribution = round((contribution/sum(contribution))*100, 1))
+
+# Visualize the data
+
+ggplot(kenya_gcp_econ_activity_2023_top_5, 
+       aes(area = percent_contribution, fill = percent_contribution, 
+           label = paste0(group, "\n",
+                          percent_contribution, "%"))) +
+  geom_treemap(color = "black", size = 2) +
+  labs(title = "",
+       subtitle = "",
+       fill = "",
+       caption = "") +
+  geom_treemap_text(colour = "black",
+                    place = "centre",
+                    size = 40) + 
+  theme(legend.position = "none",
+        plot.title = element_text(size=24),
+        plot.subtitle = element_text(size=18),
+        legend.text = element_text(size = 10),
+        plot.caption = element_text(size =12),
+        panel.background = element_rect(fill="azure2"),
+        plot.background = element_rect(fill="azure2"),
+        legend.background = element_rect(fill="azure2")) +
+  scale_fill_gradient(low = "#EFD89F", high = "#DAA520")
+
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_2023_top_5/total_kenya.png", width = 12, height = 8, dpi = 300)
+
 
 # 4) Arrange by County
 
