@@ -169,8 +169,6 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/meb_barplot.png", width = 12,
 map_meb <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% meb, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 10, nudge_x = -1, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -282,8 +280,6 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/fcdc_barplot.png", width = 12
 map_fcdc <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% fcdc, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 10, nudge_x = -1, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -395,8 +391,6 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/noreb_barplot.png", width = 1
 map_noreb <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% noreb, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 100, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -508,8 +502,6 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/lreb_barplot.png", width = 12
 map_lreb <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% lreb, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 100, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -618,8 +610,6 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/sekeb_barplot.png", width = 1
 map_sekeb <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% sekeb, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 10, nudge_x = -1, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -729,8 +719,6 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/mkareb_barplot.png", width = 
 map_mkareb <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% mkareb, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 100, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -840,8 +828,6 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/jkp_barplot.png", width = 12,
 map_jkp <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% jkp, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 10, nudge_x = -1, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -951,8 +937,6 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/namet_barplot.png", width = 1
 map_namet <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% namet, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 50, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -1062,8 +1046,6 @@ ggsave("sub_pro_3_sex/images/county/reg_econ_blocs/kenya_city_barplot.png", widt
 map_kenya_city <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% kenya_city, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 10, nudge_x = -1, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",

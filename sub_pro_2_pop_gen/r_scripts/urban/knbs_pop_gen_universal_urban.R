@@ -213,7 +213,7 @@ p1 <- k_pop_male_gen |>
   ylab('') +
   coord_flip()+
   ggthemes::scale_fill_tableau()+
-  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.25)))
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.3)))
 
 p1
 
@@ -246,7 +246,7 @@ p2 <- k_pop_female_gen |>
   ylab('') +
   coord_flip()+
   ggthemes::scale_fill_tableau()+
-  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.25)))
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.3)))
 
 p2
 
@@ -277,7 +277,7 @@ p3 <- k_pop_total_gen |>
         axis.ticks.length.x = unit(3, "pt")) +
   coord_flip() +
   ggthemes::scale_fill_tableau() +
-  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.25)))
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.3)))
 
 p3
 

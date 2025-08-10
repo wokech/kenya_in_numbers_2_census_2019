@@ -139,7 +139,7 @@ barplot <- merged_df |>
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2"),
         legend.position = "") + 
-  geom_hline(yintercept = 98, linetype="dashed", color = "black", size=1) +
+  geom_hline(yintercept = 98, linetype="dashed", color = "black", linewidth=1) +
   ggtext::geom_richtext(aes(x = 15 , y = 101, 
                                 label = "National Ratio = 98:100"), 
                             size = 8, fill = "NA", label.color = "NA",

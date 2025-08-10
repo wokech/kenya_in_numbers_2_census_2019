@@ -170,8 +170,6 @@ ggsave("sub_pro_3_sex/images/county/high_mid_low_pop/high_pop_counties_barplot.p
 map_high_pop <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% counties_high_pop, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 50, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -284,8 +282,6 @@ ggsave("sub_pro_3_sex/images/county/high_mid_low_pop/mid_pop_counties_barplot.pn
 map_mid_pop <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% counties_mid_pop, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 50, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -398,8 +394,6 @@ ggsave("sub_pro_3_sex/images/county/high_mid_low_pop/low_pop_counties_barplot.pn
 map_low_pop <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% counties_low_pop, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 50, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",

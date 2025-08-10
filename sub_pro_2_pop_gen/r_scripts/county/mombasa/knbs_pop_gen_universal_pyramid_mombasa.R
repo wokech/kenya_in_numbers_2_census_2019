@@ -227,8 +227,8 @@ p1 <- k_pop_male_gen |>
   coord_flip()+
   ggthemes::scale_fill_tableau()+
   scale_y_continuous(labels = function(x) comma(abs(x)), 
-                     expand = expansion(mult = c(0.25, 0)),
-                     breaks = c(0, -150000, -300000)) +
+                     expand = expansion(mult = c(0.45, 0)),
+                     breaks = c(0, -125000, -250000)) +
   scale_x_discrete(position = "top") 
 
 p1
@@ -265,8 +265,8 @@ p2 <- k_pop_female_gen |>
   coord_flip()+
   ggthemes::scale_fill_tableau()+
   scale_y_continuous(labels = comma, 
-                     expand = expansion(mult = c(0, 0.25)),
-                     breaks = c(0, 150000, 300000))
+                     expand = expansion(mult = c(0, 0.45)),
+                     breaks = c(0, 125000, 250000))
 
 p2 
 

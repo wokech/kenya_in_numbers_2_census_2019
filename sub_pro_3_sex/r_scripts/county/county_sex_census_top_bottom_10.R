@@ -171,9 +171,7 @@ ggsave("sub_pro_3_sex/images/county/top_bottom_10/top_10_counties_barplot.png", 
 map_top_10 <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% counties_top_m_f_ratio, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 10, nudge_x = -1, seed = 10) +
-  theme_void()+
+  theme_void() +
   labs(title = "",
        caption = "",
        fill = "Number of males per 100 females")+
@@ -286,8 +284,6 @@ ggsave("sub_pro_3_sex/images/county/top_bottom_10/bottom_10_counties_barplot.png
 map_bottom_10 <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% counties_bottom_m_f_ratio, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 100, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",

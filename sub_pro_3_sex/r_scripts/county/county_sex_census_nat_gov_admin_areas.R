@@ -170,8 +170,6 @@ ggsave("sub_pro_3_sex/images/county/reg_province/coast_barplot.png", width = 12,
 map_coast <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% coast, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 50, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -279,8 +277,6 @@ ggsave("sub_pro_3_sex/images/county/reg_province/north_eastern_barplot.png", wid
 map_north_eastern <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% north_eastern, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 50, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -390,8 +386,6 @@ ggsave("sub_pro_3_sex/images/county/reg_province/eastern_barplot.png", width = 1
 map_eastern <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% eastern, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 50, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -501,8 +495,6 @@ ggsave("sub_pro_3_sex/images/county/reg_province/central_barplot.png", width = 1
 map_central <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% central, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 50, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -614,8 +606,6 @@ ggsave("sub_pro_3_sex/images/county/reg_province/rift_valley_barplot.png", width
 map_rift_valley <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% rift_valley, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 100, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -724,8 +714,6 @@ ggsave("sub_pro_3_sex/images/county/reg_province/western_barplot.png", width = 1
 map_western <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% western, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 50, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -834,8 +822,6 @@ ggsave("sub_pro_3_sex/images/county/reg_province/nyanza_barplot.png", width = 12
 map_nyanza <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% nyanza, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 50, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",
@@ -944,8 +930,6 @@ ggsave("sub_pro_3_sex/images/county/reg_province/nairobi_barplot.png", width = 1
 map_nairobi <- ggplot(data = merged_df)+
   geom_sf(aes(geometry = geometry, fill = m_f_ratio_100), linewidth = 0.5)+
   gghighlight(County %in% nairobi, keep_scales = TRUE) +
-  geom_sf_text_repel(aes(label = County), size = 8,
-                     force = 50, nudge_x = -2, seed = 10) +
   theme_void()+
   labs(title = "",
        caption = "",

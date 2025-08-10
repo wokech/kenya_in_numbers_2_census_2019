@@ -186,7 +186,7 @@ k_pop_total_gen$rank <- as.integer(k_pop_total_gen$rank)
 p1 <- k_pop_male_gen |>
   group_by(gen, rank) |>
   summarize(population = sum(population)) |>
-  mutate(lab = round(population/1000000, 2)) |>
+  mutate(lab = round(population/1000000, 3)) |>
   arrange(rank, gen) |>
   ggplot(aes(x = reorder(gen, -rank),
              y = -population, 
@@ -212,7 +212,7 @@ p1 <- k_pop_male_gen |>
   coord_flip()+
   ggthemes::scale_fill_tableau()+
   scale_y_continuous(labels = function(x) comma(abs(x)), 
-                     expand = expansion(mult = c(0.25, 0)),
+                     expand = expansion(mult = c(0.4, 0)),
                      breaks = c(0, -1500000, -3000000)) +
   scale_x_discrete(position = "top") 
 
@@ -223,7 +223,7 @@ p1
 p2 <- k_pop_female_gen |>
   group_by(gen, rank) |>
   summarize(population = sum(population)) |>
-  mutate(lab = round(population/1000000, 2)) |>
+  mutate(lab = round(population/1000000, 3)) |>
   arrange(rank, gen) |>
   ggplot(aes(x = reorder(gen, -rank),
              y = population, 
@@ -250,7 +250,7 @@ p2 <- k_pop_female_gen |>
   coord_flip()+
   ggthemes::scale_fill_tableau()+
   scale_y_continuous(labels = comma, 
-                     expand = expansion(mult = c(0, 0.25)),
+                     expand = expansion(mult = c(0, 0.4)),
                      breaks = c(0, 1500000, 3000000))
 
 p2 

@@ -197,7 +197,7 @@ p1 <- k_pop_male_gen |>
   coord_flip()+
   ggthemes::scale_fill_tableau()+
   scale_y_continuous(labels = function(x) comma(abs(x)), 
-                     expand = expansion(mult = c(0.25, 0)),
+                     expand = expansion(mult = c(0.3, 0)),
                      breaks = c(0, -3000000, -6000000)) +
   scale_x_discrete(position = "top") 
 
@@ -235,7 +235,7 @@ p2 <- k_pop_female_gen |>
   coord_flip()+
   ggthemes::scale_fill_tableau()+
   scale_y_continuous(labels = comma, 
-                     expand = expansion(mult = c(0, 0.25)),
+                     expand = expansion(mult = c(0, 0.3)),
                      breaks = c(0, 3000000, 6000000))
 
 p2
@@ -252,4 +252,4 @@ p1 + p2 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/rural/rural/pyramid_presidency_rural_1.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_2_pop_gen/images/rural/pyramid_presidency_rural_1.png", width = 12, height = 12, dpi = 300)

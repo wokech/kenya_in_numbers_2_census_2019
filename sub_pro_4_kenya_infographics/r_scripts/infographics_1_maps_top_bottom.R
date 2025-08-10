@@ -91,7 +91,7 @@ map_m_f_ratio <- ggplot(data = merged_df_infographics)+
   theme_void()+
   labs(title = "",
        caption = "",
-       fill = "Ratio of Males to Females")+
+         fill = "Ratio of Males to Females")+
   theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
         legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
         legend.text = element_text(family = "Helvetica",size = 24),
@@ -111,11 +111,10 @@ map_m_f_ratio <- ggplot(data = merged_df_infographics)+
                                barheight = unit(1.5, "cm"), 
                                barwidth = unit(15, "cm")))
 
-map
+map_m_f_ratio
 
 # Save the plot
-ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_m_f_100.png", width = 12, height = 12, dpi = 300)
-
+#ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_m_f_100.png", width = 12, height = 12, dpi = 300)
 
 # 2) Number of Households
 
@@ -150,7 +149,7 @@ map_number_hh <- ggplot(data = merged_df_infographics)+
 map_number_hh
 
 # Save the plot
-ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_number_hh.png", width = 12, height = 12, dpi = 300)
+#ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_number_hh.png", width = 12, height = 12, dpi = 300)
 
 
 # 3) Average Household Size
@@ -184,7 +183,7 @@ map_avg_hh_size <- ggplot(data = merged_df_infographics)+
 map_avg_hh_size
 
 # Save the plot
-ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_avg_hh_size.png", width = 12, height = 12, dpi = 300)
+#ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_avg_hh_size.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -221,7 +220,7 @@ map_pop <- ggplot(data = merged_df_infographics)+
 map_pop
 
 # Save the plot
-ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_pop.png", width = 12, height = 12, dpi = 300)
+#ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_pop.png", width = 12, height = 12, dpi = 300)
 
 
 # 5) Population Density
@@ -257,7 +256,7 @@ map_pop_density <- ggplot(data = merged_df_infographics)+
 map_pop_density
 
 # Save the plot
-ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_pop_density.png", width = 12, height = 12, dpi = 300)
+#ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_pop_density.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -292,7 +291,7 @@ map_mpo <- ggplot(data = merged_df_infographics)+
 map_mpo
 
 # Save the plot
-ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_mpo.png", width = 12, height = 12, dpi = 300)
+#ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_mpo.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -327,7 +326,7 @@ map_uoi <- ggplot(data = merged_df_infographics)+
 map_uoi
 
 # Save the plot
-ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_uoi.png", width = 12, height = 12, dpi = 300)
+#ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_uoi.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -362,7 +361,7 @@ map_radio <- ggplot(data = merged_df_infographics)+
 map_radio
 
 # Save the plot
-ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_radio.png", width = 12, height = 12, dpi = 300)
+#ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_radio.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -397,7 +396,7 @@ map_tv <- ggplot(data = merged_df_infographics)+
 map_tv
 
 # Save the plot
-ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_tv.png", width = 12, height = 12, dpi = 300)
+#ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_tv.png", width = 12, height = 12, dpi = 300)
 
 
 
@@ -432,5 +431,5 @@ map_car <- ggplot(data = merged_df_infographics)+
 map_car
 
 # Save the plot
-ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_car.png", width = 12, height = 12, dpi = 300)
+#ggsave("sub_pro_4_kenya_infographics/images/infographics_1_maps_top_bottom/map_car.png", width = 12, height = 12, dpi = 300)
 

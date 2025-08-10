@@ -223,7 +223,7 @@ p1 <- k_pop_male_gen |>
   ylab('') +
   coord_flip()+
   ggthemes::scale_fill_tableau()+
-  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.25)))
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.35)))
 
 p1
 
@@ -256,7 +256,7 @@ p2 <- k_pop_female_gen |>
   ylab('') +
   coord_flip()+
   ggthemes::scale_fill_tableau()+
-  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.25)))
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.35)))
 
 p2
 
@@ -287,7 +287,7 @@ p3 <- k_pop_total_gen |>
         axis.ticks.length.x = unit(3, "pt")) +
   coord_flip() +
   ggthemes::scale_fill_tableau() +
-  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.25)))
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.35)))
 
 p3
 
@@ -337,7 +337,7 @@ p4 <- k_pop_male_gen |>
            width = .7)   +
   annotate(geom="text", 
            x = gg1$age - 5, 
-           y = gg1$tot + 40000, 
+           y = gg1$tot + 4000, 
            label = gg1$gen,
            size = 5) +
   xlab('Age')+ 
@@ -377,7 +377,7 @@ p5 <- k_pop_female_gen |>
            width = .7)   +
   annotate(geom="text", 
            x = gg2$age - 5, 
-           y = gg2$tot + 40000, 
+           y = gg2$tot + 4000, 
            label = gg2$gen,
            size = 5) +
   xlab('Age')+ 
@@ -417,7 +417,7 @@ p6 <- k_pop_total_gen |>
            width = .7)   +
   annotate(geom="text", 
            x = gg3$age - 5, 
-           y = gg3$tot + 40000, 
+           y = gg3$tot + 4000, 
            label = gg3$gen,
            size = 5) +
   xlab('Age') + 

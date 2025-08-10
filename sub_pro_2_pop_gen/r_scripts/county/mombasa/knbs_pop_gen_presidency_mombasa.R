@@ -323,7 +323,7 @@ p4 <- k_pop_male_gen |>
            width = .7)   +
   annotate(geom="text", 
            x = gg1$age - 5, 
-           y = gg1$tot + 30000, 
+           y = gg1$tot + 3000, 
            label = gg1$gen,
            size = 5) +
   xlab('Age')+ 
@@ -363,7 +363,7 @@ p5 <- k_pop_female_gen |>
            width = .7)   +
   annotate(geom="text", 
            x = gg2$age - 5, 
-           y = gg2$tot + 30000, 
+           y = gg2$tot + 3000, 
            label = gg2$gen,
            size = 5) +
   xlab('Age')+ 
@@ -403,7 +403,7 @@ p6 <- k_pop_total_gen |>
            width = .7)   +
   annotate(geom="text", 
            x = gg3$age - 5, 
-           y = gg3$tot + 30000, 
+           y = gg3$tot + 3000, 
            label = gg3$gen,
            size = 5) +
   xlab('Age')+ 
