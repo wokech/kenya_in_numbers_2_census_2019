@@ -56,7 +56,23 @@ unique(avg_share_gcp_2019_2023_select$county)
 avg_share_gcp_2019_2023_select <- avg_share_gcp_2019_2023_select |>
   mutate(county = recode(county, "Murang’a" = "Murang'a"))
 
-# 4) Visualize
+# Top 10 Share GCP
+
+share_GCP_top_10 <- avg_share_gcp_2019_2023_select |>
+  select(county, x5_year_avg) |>
+  filter(county != "Total") |>
+  top_n(10) |>
+  arrange(desc(x5_year_avg))
+
+# Bottom 10 Share GCP
+
+share_GCP_bottom_10 <- avg_share_gcp_2019_2023_select |>
+  select(county, x5_year_avg) |>
+  filter(county != "Total") |>
+  top_n(-10) |>
+  arrange(x5_year_avg)
+
+ # 4) Visualize
 
 # a) Top 5 Counties
 
@@ -195,7 +211,7 @@ ggplot(avg_share_gcp_2019_2023_select_tidy_city,
        aes(area = x5_year_avg, fill = group, 
            label = paste0(group, "\n",
                           x5_year_avg, "%"))) +
-  geom_treemap() +
+  geom_treemap(color = "black", size = 2) +
   labs(title = "",
        subtitle = "",
        fill = "",
@@ -295,7 +311,7 @@ ggplot(avg_share_gcp_2019_2023_select_tidy_metro,
        aes(area = x5_year_avg, fill = group, 
            label = paste0(group, "\n",
                           x5_year_avg, "%"))) +
-  geom_treemap() +
+  geom_treemap(color = "black", size = 2) +
   labs(title = "",
        subtitle = "",
        fill = "",
@@ -367,3 +383,39 @@ ggplot(data = merged_df_with_groups_top_5)+
   scale_fill_manual(values = color_map_metro)
 
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/metro_counties_map.png", width = 12, height = 8, dpi = 300)
+
+
+# 9) GCP Share (%)
+
+map_gcp_share <- ggplot(data = merged_df)+
+  geom_sf(aes(geometry = geometry, fill = x5_year_avg), linewidth = 0.5)+
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "Share of the Gross County Product (GCP, %)")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
+        legend.text = element_text(family = "Helvetica",size = 24),
+        legend.key.size = unit(1, "cm"),
+        legend.position = "bottom",
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2")) +
+  scale_fill_gradientn(colors = c(
+    "#00BFC4",   # Teal
+    "#C9E2E7",   # Light Aqua
+    "#FFE3B3",   # Peach
+    "#F8766D"),    # Orange-red
+    limits = c(0, 30)
+  ) +
+  guides(fill = guide_colorbar(title.position = "top",
+                               title.hjust = 0.5, 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
+
+map_gcp_share
+
+# Save the plot
+
+ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/infographics_1_maps_top_bottom_gcp_share.png", width = 12, height = 12, dpi = 300)
+

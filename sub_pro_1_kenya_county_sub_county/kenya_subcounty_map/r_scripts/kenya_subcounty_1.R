@@ -48,10 +48,45 @@ setdiff(kenya_subcounties$subcounty, df_clean_new$subcounty)
 
 setdiff(df_clean_new$subcounty, kenya_subcounties$subcounty)
 
-mismatch <- full_join(kenya_subcounties, df_clean_new, by = "subcounty")
+# Find mismatches
+
+census <- df_clean_new |>
+  group_by(county) |>
+  summarise(count = n())
+  
+shapefile <- kenya_subcounties |>
+  group_by(county) |>
+  select(country, county, subcounty) |> 
+  summarise(count = n())
+
+#############
+setdiff(census$county, shapefile$county)
+
+census$county <- gsub("Elgeyo/Marakwet", "Elgeyo Marakwet", census$county)
+census$county <- gsub("Taita/Taveta", "Taita Taveta", census$county)
+
+setdiff(census$county, shapefile$county)
+#############
+
+#############
+setdiff(shapefile$county, census$county)
+
+shapefile$county <- gsub("Elgeyo-Marakwet", "Elgeyo Marakwet", shapefile$county)
+shapefile$county <- gsub("Muranga", "Murang'a", shapefile$county)
+shapefile$county <- gsub("Nairobi", "Nairobi City", shapefile$county)
+
+setdiff(shapefile$county, census$county)
+#############
+
+merged_cen_shape <- left_join(census, shapefile,
+                              by = "county")
 
 
+merged_cen_shape_similar <- merged_cen_shape |>
+  filter(count.x == count.y)
 
+merged_cen_shape_different <- merged_cen_shape |>
+  filter(count.x != count.y)
 
 ggplot(kenya_subcounties) + 
   geom_sf(fill = "salmon", linewidth = 0.1, color = "black") + 

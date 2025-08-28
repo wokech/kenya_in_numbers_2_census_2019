@@ -181,7 +181,7 @@ uoi_bottom_10 <- infographic_data_no_total |>
   top_n(-10) |>
   arrange(desc(UoI_Total_Perc))
 
-uoi_bottom_total <- infographic_data |>
+uoi_total <- infographic_data |>
   filter(County == "Kenya") |>
 select(UoI_Total_Perc)
 

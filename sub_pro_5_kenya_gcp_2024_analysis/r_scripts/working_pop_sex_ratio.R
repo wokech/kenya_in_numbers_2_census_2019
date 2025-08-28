@@ -31,6 +31,7 @@ library(ggbreak)
 library(patchwork)
 library(ggrepel)
 library(ggsflabel)
+library(readxl)
 
 # 3) Load the required data
 
@@ -203,3 +204,30 @@ barplot / map +
   theme(text = element_text('Helvetica'))
 
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/working_pop/total/barplot_map.png", width = 12, height = 24, dpi = 300)
+
+# b) Top and Bottom 10 for Working Population
+
+# a) M/F Ratio
+
+merged_df$County <- gsub("/", " ", merged_df$County)
+merged_df$County <- gsub("-", " ", merged_df$County)
+
+### Convert the m_f_ratio county names to title case
+merged_df <- merged_df |> 
+  mutate(County = tools::toTitleCase(tolower(County)))
+
+
+working_pop_ratio_top_10 <- merged_df |>
+  select(County, m_f_ratio_100) |>
+  top_n(10, m_f_ratio_100) |>
+  arrange(desc(m_f_ratio_100))
+
+working_pop_ratio_bottom_10 <- merged_df |>
+  select(County, m_f_ratio_100) |>
+  top_n(-10, m_f_ratio_100) |>
+  arrange(desc(m_f_ratio_100))
+
+working_pop_ratio_total <- working_pop_county_ratio_only |>
+  filter(County == "TOTAL") |>
+  select(m_f_ratio_100)
+

@@ -1,4 +1,4 @@
-# Kenyan Generations by Universal Classification (Lamu) - PYRAMID
+# Kenyan Generations by Universal Classification (Meru) - PYRAMID
 # Author: William Okech
 
 ################################################
@@ -39,12 +39,12 @@ county_df_age_sex <- df_age_sex |>
   mutate(County = tools::toTitleCase(tolower(County))) |>
   mutate(County = trimws(County))
 
-# Age-sex dataset for Lamu
+# Age-sex dataset for Meru
 
-county_df_age_sex_lamu <- county_df_age_sex |>
-  filter(County == "Lamu")
+county_df_age_sex_meru <- county_df_age_sex |>
+  filter(County == "Meru")
 
-county_df_age_sex_lamu$Age <- as.numeric(county_df_age_sex_lamu$Age)
+county_df_age_sex_meru$Age <- as.numeric(county_df_age_sex_meru$Age)
 
 #############################################################
 
@@ -71,10 +71,10 @@ county_df_age_sex_lamu$Age <- as.numeric(county_df_age_sex_lamu$Age)
 # i) Male
 ##############################################################
 
-county_df_age_sex_lamu_male <- county_df_age_sex_lamu |> select(Age, Male)
-county_df_age_sex_lamu_male$type <- 'male'
-county_df_age_sex_lamu_male$ref_year <- '2019'
-k_pop_male <- county_df_age_sex_lamu_male |> 
+county_df_age_sex_meru_male <- county_df_age_sex_meru |> select(Age, Male)
+county_df_age_sex_meru_male$type <- 'male'
+county_df_age_sex_meru_male$ref_year <- '2019'
+k_pop_male <- county_df_age_sex_meru_male |> 
   rename(
     age = Age,
     population = Male,
@@ -111,10 +111,10 @@ k_pop_male_gen$rank <- as.integer(k_pop_male_gen$rank)
 # ii) Female
 ###############################################################
 
-county_df_age_sex_lamu_female <- county_df_age_sex_lamu |> select(Age, Female)
-county_df_age_sex_lamu_female$type <- 'female'
-county_df_age_sex_lamu_female$ref_year <- '2019'
-k_pop_female <- county_df_age_sex_lamu_female |> 
+county_df_age_sex_meru_female <- county_df_age_sex_meru |> select(Age, Female)
+county_df_age_sex_meru_female$type <- 'female'
+county_df_age_sex_meru_female$ref_year <- '2019'
+k_pop_female <- county_df_age_sex_meru_female |> 
   rename(
     age = Age,
     population = Female,
@@ -150,11 +150,11 @@ k_pop_female_gen$rank <- as.integer(k_pop_female_gen$rank)
 # iii) Total 
 #####################################################################
 
-county_df_age_sex_lamu_total <- county_df_age_sex_lamu |> select(Age, Total)
-county_df_age_sex_lamu_total$type <- 'total'
-county_df_age_sex_lamu_total$ref_year <- '2019' # reference year = 2019
+county_df_age_sex_meru_total <- county_df_age_sex_meru |> select(Age, Total)
+county_df_age_sex_meru_total$type <- 'total'
+county_df_age_sex_meru_total$ref_year <- '2019' # reference year = 2019
 
-k_pop_total <- county_df_age_sex_lamu_total |> 
+k_pop_total <- county_df_age_sex_meru_total |> 
   rename(
     age = Age,
     population = Total,
@@ -278,5 +278,5 @@ p1 + p2 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/county/lamu/pyramid_universal_lamu_1.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_2_pop_gen/images/county/meru/pyramid_universal_meru_1.png", width = 12, height = 12, dpi = 300)
 

@@ -1,4 +1,4 @@
-# Kenyan Generations by Universal Classification (Lamu) - PYRAMID
+# Kenyan Generations by Presidential Era (Vihiga) - PYRAMID
 # Author: William Okech
 
 ################################################
@@ -17,10 +17,11 @@ library(scales)
 # install.packages("devtools")
 # devtools::install_github("Shelmith-Kariuki/rKenyaCensus")
 library(rKenyaCensus)
+library(janitor)
 
 #############################################################
 # B. Load the required data from 2019 Census
-#############################################################
+############################################################
 
 # Age-sex dataset
 df_age_sex <- V3_T2.3
@@ -39,29 +40,27 @@ county_df_age_sex <- df_age_sex |>
   mutate(County = tools::toTitleCase(tolower(County))) |>
   mutate(County = trimws(County))
 
-# Age-sex dataset for Lamu
+# Age-sex dataset for Vihiga
 
-county_df_age_sex_lamu <- county_df_age_sex |>
-  filter(County == "Lamu")
+county_df_age_sex_vihiga <- county_df_age_sex |>
+  filter(County == "Vihiga")
 
-county_df_age_sex_lamu$Age <- as.numeric(county_df_age_sex_lamu$Age)
+county_df_age_sex_vihiga$Age <- as.numeric(county_df_age_sex_vihiga$Age)
 
 #############################################################
 
-# # To create the groupings (if necessary)
-# gen <- c('Post-Z', 'Gen Z', 'Millennial',
-#          'Gen X', 'Boomers', 'Silent',
-#          'Greatest')
-# 
-# range <- c('> 2012', '1997-2012', '1981-1996',
-#            '1965-1980', '1946-1964', '1928-1945',
-#            '< 1927')
-# 
-# gen_desc <- data.frame(rank = 7:1,
+# To create the groupings (if necessary)
+# gen <- c('Kenyatta II', 'Kibaki', 'Moi', 'Kenyatta I', 'Pre-Independence')
+# gen
+
+# range <- c('> 2012', '2003-2012', '1979-2002', '1963-1978', '< 1963')
+# range
+
+# gen_desc <- data.frame(rank = 5:1,
 #                        gen = gen,
 #                        range = range,
 #                        stringsAsFactors = FALSE) |>
-#   arrange(rank)
+# arrange(rank)
 
 #############################################################
 
@@ -71,10 +70,10 @@ county_df_age_sex_lamu$Age <- as.numeric(county_df_age_sex_lamu$Age)
 # i) Male
 ##############################################################
 
-county_df_age_sex_lamu_male <- county_df_age_sex_lamu |> select(Age, Male)
-county_df_age_sex_lamu_male$type <- 'male'
-county_df_age_sex_lamu_male$ref_year <- '2019'
-k_pop_male <- county_df_age_sex_lamu_male |> 
+county_df_age_sex_vihiga_male <- county_df_age_sex_vihiga |> select(Age, Male)
+county_df_age_sex_vihiga_male$type <- 'male'
+county_df_age_sex_vihiga_male$ref_year <- '2019'
+k_pop_male <- county_df_age_sex_vihiga_male |> 
   rename(
     age = Age,
     population = Male,
@@ -87,23 +86,18 @@ k_pop_male$ref_year <- as.integer(k_pop_male$ref_year)
 k_pop_male$birth_year <- k_pop_male$ref_year - k_pop_male$age
 
 k_pop_male_gen <- k_pop_male |>
-  mutate(gen = case_when (
-    birth_year < 1928 ~ 'Greatest',
-    birth_year < 1946 & birth_year >= 1928 ~ 'Silent',
-    birth_year < 1965 & birth_year >= 1946 ~ 'Boomer',
-    birth_year < 1981 & birth_year >= 1965 ~ 'Gen X',
-    birth_year < 1996 & birth_year >= 1981 ~ 'Millenial',
-    birth_year < 2013 & birth_year >= 1996 ~ 'Gen Z',
-    birth_year > 2012 ~ 'Gen Alpha'),
+  mutate (gen = case_when (
+    birth_year < 1963 ~ 'Pre-Independence',
+    birth_year < 1979 & birth_year >= 1963 ~ 'Kenyatta I',
+    birth_year < 2003 & birth_year >= 1979 ~ 'Moi',
+    birth_year <= 2012 & birth_year >= 2003 ~ 'Kibaki',
+    birth_year > 2012 ~ 'Kenyatta II'),
     rank = case_when (
-      birth_year < 1928 ~ '1',
-      birth_year < 1946 & birth_year >= 1928 ~ '2',
-      birth_year < 1965 & birth_year >= 1946 ~ '3',
-      birth_year < 1981 & birth_year >= 1965 ~ '4',
-      birth_year < 1996 & birth_year >= 1981 ~ '5',
-      birth_year < 2013 & birth_year >= 1996 ~ '6',
-      birth_year > 2012 ~ '7'))
-
+      birth_year < 1963 ~ '1',
+      birth_year < 1979 & birth_year >= 1963 ~ '2',
+      birth_year < 2003 & birth_year >= 1979 ~ '3',
+      birth_year <= 2012 & birth_year >= 2003 ~ '4',
+      birth_year > 2012 ~ '5'))
 
 k_pop_male_gen$rank <- as.integer(k_pop_male_gen$rank)
 
@@ -111,10 +105,10 @@ k_pop_male_gen$rank <- as.integer(k_pop_male_gen$rank)
 # ii) Female
 ###############################################################
 
-county_df_age_sex_lamu_female <- county_df_age_sex_lamu |> select(Age, Female)
-county_df_age_sex_lamu_female$type <- 'female'
-county_df_age_sex_lamu_female$ref_year <- '2019'
-k_pop_female <- county_df_age_sex_lamu_female |> 
+county_df_age_sex_vihiga_female <- county_df_age_sex_vihiga |> select(Age, Female)
+county_df_age_sex_vihiga_female$type <- 'female'
+county_df_age_sex_vihiga_female$ref_year <- '2019'
+k_pop_female <- county_df_age_sex_vihiga_female |> 
   rename(
     age = Age,
     population = Female,
@@ -127,34 +121,30 @@ k_pop_female$ref_year <- as.integer(k_pop_female$ref_year)
 k_pop_female$birth_year <- k_pop_female$ref_year - k_pop_female$age
 
 k_pop_female_gen <- k_pop_female |>
-  mutate(gen = case_when (
-    birth_year < 1928 ~ 'Greatest',
-    birth_year < 1946 & birth_year >= 1928 ~ 'Silent',
-    birth_year < 1965 & birth_year >= 1946 ~ 'Boomer',
-    birth_year < 1981 & birth_year >= 1965 ~ 'Gen X',
-    birth_year < 1996 & birth_year >= 1981 ~ 'Millenial',
-    birth_year < 2013 & birth_year >= 1996 ~ 'Gen Z',
-    birth_year > 2012 ~ 'Gen Alpha'),
+  mutate (gen = case_when (
+    birth_year < 1963 ~ 'Pre-Independence',
+    birth_year < 1979 & birth_year >= 1963 ~ 'Kenyatta I',
+    birth_year < 2003 & birth_year >= 1979 ~ 'Moi',
+    birth_year <= 2012 & birth_year >= 2003 ~ 'Kibaki',
+    birth_year > 2012 ~ 'Kenyatta II'),
     rank = case_when (
-      birth_year < 1928 ~ '1',
-      birth_year < 1946 & birth_year >= 1928 ~ '2',
-      birth_year < 1965 & birth_year >= 1946 ~ '3',
-      birth_year < 1981 & birth_year >= 1965 ~ '4',
-      birth_year < 1996 & birth_year >= 1981 ~ '5',
-      birth_year < 2013 & birth_year >= 1996 ~ '6',
-      birth_year > 2012 ~ '7'))
+      birth_year < 1963 ~ '1',
+      birth_year < 1979 & birth_year >= 1963 ~ '2',
+      birth_year < 2003 & birth_year >= 1979 ~ '3',
+      birth_year <= 2012 & birth_year >= 2003 ~ '4',
+      birth_year > 2012 ~ '5'))
 
 k_pop_female_gen$rank <- as.integer(k_pop_female_gen$rank)
 
 #####################################################################
 # iii) Total 
-#####################################################################
+##################################################################### 
 
-county_df_age_sex_lamu_total <- county_df_age_sex_lamu |> select(Age, Total)
-county_df_age_sex_lamu_total$type <- 'total'
-county_df_age_sex_lamu_total$ref_year <- '2019' # reference year = 2019
+county_df_age_sex_vihiga_total <- county_df_age_sex_vihiga |> select(Age, Total)
+county_df_age_sex_vihiga_total$type <- 'total'
+county_df_age_sex_vihiga_total$ref_year <- '2019' # reference year = 2019
 
-k_pop_total <- county_df_age_sex_lamu_total |> 
+k_pop_total <- county_df_age_sex_vihiga_total |> 
   rename(
     age = Age,
     population = Total,
@@ -167,27 +157,23 @@ k_pop_total$ref_year <- as.integer(k_pop_total$ref_year)
 k_pop_total$birth_year <- k_pop_total$ref_year - k_pop_total$age
 
 k_pop_total_gen <- k_pop_total |>
-  mutate(gen = case_when (
-    birth_year < 1928 ~ 'Greatest',
-    birth_year < 1946 & birth_year >= 1928 ~ 'Silent',
-    birth_year < 1965 & birth_year >= 1946 ~ 'Boomer',
-    birth_year < 1981 & birth_year >= 1965 ~ 'Gen X',
-    birth_year < 1996 & birth_year >= 1981 ~ 'Millenial',
-    birth_year < 2013 & birth_year >= 1996 ~ 'Gen Z',
-    birth_year >= 2013 ~ 'Gen Alpha'),
+  mutate (gen = case_when (
+    birth_year < 1963 ~ 'Pre-Independence',
+    birth_year < 1979 & birth_year >= 1963 ~ 'Kenyatta I',
+    birth_year < 2003 & birth_year >= 1979 ~ 'Moi',
+    birth_year <= 2012 & birth_year >= 2003 ~ 'Kibaki',
+    birth_year > 2012 ~ 'Kenyatta II'),
     rank = case_when (
-      birth_year < 1928 ~ '1',
-      birth_year < 1946 & birth_year >= 1928 ~ '2',
-      birth_year < 1965 & birth_year >= 1946 ~ '3',
-      birth_year < 1981 & birth_year >= 1965 ~ '4',
-      birth_year < 1996 & birth_year >= 1981 ~ '5',
-      birth_year < 2013 & birth_year >= 1996 ~ '6',
-      birth_year >= 2013 ~ '7'))
+      birth_year < 1963 ~ '1',
+      birth_year < 1979 & birth_year >= 1963 ~ '2',
+      birth_year < 2003 & birth_year >= 1979 ~ '3',
+      birth_year <= 2012 & birth_year >= 2003 ~ '4',
+      birth_year > 2012 ~ '5'))
 
 k_pop_total_gen$rank <- as.integer(k_pop_total_gen$rank)
 
 ############################################################
-# C. Universal Classification Pyramid
+# C. Presidency Pyramid
 ############################################################
 
 # Population by generation
@@ -207,8 +193,8 @@ p1 <- k_pop_male_gen |>
   theme_void() + # Order matters put theme_void() before theme()
   labs(title = 'Male population (2019)', caption = '') +
   geom_text(aes(label = paste(lab, "K")), 
-            size = 7, 
-            hjust = 1.2)+
+            size = 7,
+            hjust = 1.1)+
   theme(axis.text.x = element_text(size = 20),
         axis.text.y = element_text(size = 20, margin = margin(l = 15)),
         axis.title.y = element_text(margin = margin(r = 20)),  # Increase right margin
@@ -223,7 +209,7 @@ p1 <- k_pop_male_gen |>
   coord_flip()+
   ggthemes::scale_fill_tableau()+
   scale_y_continuous(labels = function(x) comma(abs(x)), 
-                     expand = expansion(mult = c(0.35, 0)),
+                     expand = expansion(mult = c(0.4, 0)),
                      breaks = c(0, -15000, -30000)) +
   scale_x_discrete(position = "top") 
 
@@ -241,10 +227,10 @@ p2 <- k_pop_female_gen |>
              fill = gen)) +
   geom_col(show.legend = FALSE, 
            alpha = 0.75)  +
-  theme_void() + # Order matters put theme_minimal() before theme()
+  theme_void() + # Order matters put theme_void() before theme()
   labs(title = 'Female population (2019)', caption = '') +
   geom_text(aes(label = paste(lab, "K")), 
-            size = 7, 
+            size = 7,
             hjust = -0.1)+
   theme(axis.text.x = element_text(size = 20),
         axis.text.y = element_blank(),
@@ -261,10 +247,10 @@ p2 <- k_pop_female_gen |>
   coord_flip()+
   ggthemes::scale_fill_tableau()+
   scale_y_continuous(labels = comma, 
-                     expand = expansion(mult = c(0, 0.35)),
+                     expand = expansion(mult = c(0, 0.4)),
                      breaks = c(0, 15000, 30000))
 
-p2 
+p2
 
 # Combi Plot
 
@@ -278,5 +264,4 @@ p1 + p2 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/county/lamu/pyramid_universal_lamu_1.png", width = 12, height = 12, dpi = 300)
-
+ggsave("sub_pro_2_pop_gen/images/county/vihiga/pyramid_presidency_vihiga_1.png", width = 12, height = 12, dpi = 300)

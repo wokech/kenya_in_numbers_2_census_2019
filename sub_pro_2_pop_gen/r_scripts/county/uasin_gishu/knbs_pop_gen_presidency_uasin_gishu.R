@@ -1,4 +1,4 @@
-# Kenyan Generations by Universal Classification (Lamu)
+# Kenyan Generations by Presidential Era (Uasin Gishu)
 # Author: William Okech
 
 ################################################
@@ -22,7 +22,6 @@ library(rKenyaCensus)
 # B. Load the required data from 2019 Census
 ############################################################
 
-
 # Age-sex dataset
 df_age_sex <- V3_T2.3
 str(df_age_sex)
@@ -38,29 +37,27 @@ county_df_age_sex <- df_age_sex |>
   mutate(County = tools::toTitleCase(tolower(County))) |>
   mutate(County = trimws(County))
 
-# Age-sex dataset for Lamu
+# Age-sex dataset for Uasin Gishu
 
-county_df_age_sex_lamu <- county_df_age_sex |>
-  filter(County == "Lamu")
+county_df_age_sex_uasin_gishu <- county_df_age_sex |>
+  filter(County == "Uasin Gishu")
 
-county_df_age_sex_lamu$Age <- as.numeric(county_df_age_sex_lamu$Age)
+county_df_age_sex_uasin_gishu$Age <- as.numeric(county_df_age_sex_uasin_gishu$Age)
 
 #############################################################
 
-# # To create the groupings (if necessary)
-# gen <- c('Post-Z', 'Gen Z', 'Millennial',
-#          'Gen X', 'Boomers', 'Silent',
-#          'Greatest')
-# 
-# range <- c('> 2012', '1997-2012', '1981-1996',
-#            '1965-1980', '1946-1964', '1928-1945',
-#            '< 1927')
-# 
-# gen_desc <- data.frame(rank = 7:1,
+# To create the groupings (if necessary)
+# gen <- c('Kenyatta II', 'Kibaki', 'Moi', 'Kenyatta I', 'Pre-Independence')
+# gen
+
+# range <- c('> 2012', '2003-2012', '1979-2002', '1963-1978', '< 1963')
+# range
+
+# gen_desc <- data.frame(rank = 5:1,
 #                        gen = gen,
 #                        range = range,
 #                        stringsAsFactors = FALSE) |>
-#   arrange(rank)
+# arrange(rank)
 
 #############################################################
 
@@ -70,10 +67,10 @@ county_df_age_sex_lamu$Age <- as.numeric(county_df_age_sex_lamu$Age)
 # i) Male
 ##############################################################
 
-county_df_age_sex_lamu_male <- county_df_age_sex_lamu |> select(Age, Male)
-county_df_age_sex_lamu_male$type <- 'male'
-county_df_age_sex_lamu_male$ref_year <- '2019'
-k_pop_male <- county_df_age_sex_lamu_male |> 
+county_df_age_sex_uasin_gishu_male <- county_df_age_sex_uasin_gishu |> select(Age, Male)
+county_df_age_sex_uasin_gishu_male$type <- 'male'
+county_df_age_sex_uasin_gishu_male$ref_year <- '2019'
+k_pop_male <- county_df_age_sex_uasin_gishu_male |> 
   rename(
     age = Age,
     population = Male,
@@ -86,23 +83,18 @@ k_pop_male$ref_year <- as.integer(k_pop_male$ref_year)
 k_pop_male$birth_year <- k_pop_male$ref_year - k_pop_male$age
 
 k_pop_male_gen <- k_pop_male |>
-  mutate(gen = case_when (
-    birth_year < 1928 ~ 'Greatest',
-    birth_year < 1946 & birth_year >= 1928 ~ 'Silent',
-    birth_year < 1965 & birth_year >= 1946 ~ 'Boomer',
-    birth_year < 1981 & birth_year >= 1965 ~ 'Gen X',
-    birth_year < 1996 & birth_year >= 1981 ~ 'Millenial',
-    birth_year < 2013 & birth_year >= 1996 ~ 'Gen Z',
-    birth_year > 2012 ~ 'Gen Alpha'),
+  mutate (gen = case_when (
+    birth_year < 1963 ~ 'Pre-Independence',
+    birth_year < 1979 & birth_year >= 1963 ~ 'Kenyatta I',
+    birth_year < 2003 & birth_year >= 1979 ~ 'Moi',
+    birth_year <= 2012 & birth_year >= 2003 ~ 'Kibaki',
+    birth_year > 2012 ~ 'Kenyatta II'),
     rank = case_when (
-      birth_year < 1928 ~ '1',
-      birth_year < 1946 & birth_year >= 1928 ~ '2',
-      birth_year < 1965 & birth_year >= 1946 ~ '3',
-      birth_year < 1981 & birth_year >= 1965 ~ '4',
-      birth_year < 1996 & birth_year >= 1981 ~ '5',
-      birth_year < 2013 & birth_year >= 1996 ~ '6',
-      birth_year > 2012 ~ '7'))
-
+      birth_year < 1963 ~ '1',
+      birth_year < 1979 & birth_year >= 1963 ~ '2',
+      birth_year < 2003 & birth_year >= 1979 ~ '3',
+      birth_year <= 2012 & birth_year >= 2003 ~ '4',
+      birth_year > 2012 ~ '5'))
 
 k_pop_male_gen$rank <- as.integer(k_pop_male_gen$rank)
 
@@ -110,10 +102,10 @@ k_pop_male_gen$rank <- as.integer(k_pop_male_gen$rank)
 # ii) Female
 ###############################################################
 
-county_df_age_sex_lamu_female <- county_df_age_sex_lamu |> select(Age, Female)
-county_df_age_sex_lamu_female$type <- 'female'
-county_df_age_sex_lamu_female$ref_year <- '2019'
-k_pop_female <- county_df_age_sex_lamu_female |> 
+county_df_age_sex_uasin_gishu_female <- county_df_age_sex_uasin_gishu |> select(Age, Female)
+county_df_age_sex_uasin_gishu_female$type <- 'female'
+county_df_age_sex_uasin_gishu_female$ref_year <- '2019'
+k_pop_female <- county_df_age_sex_uasin_gishu_female |> 
   rename(
     age = Age,
     population = Female,
@@ -126,34 +118,30 @@ k_pop_female$ref_year <- as.integer(k_pop_female$ref_year)
 k_pop_female$birth_year <- k_pop_female$ref_year - k_pop_female$age
 
 k_pop_female_gen <- k_pop_female |>
-  mutate(gen = case_when (
-    birth_year < 1928 ~ 'Greatest',
-    birth_year < 1946 & birth_year >= 1928 ~ 'Silent',
-    birth_year < 1965 & birth_year >= 1946 ~ 'Boomer',
-    birth_year < 1981 & birth_year >= 1965 ~ 'Gen X',
-    birth_year < 1996 & birth_year >= 1981 ~ 'Millenial',
-    birth_year < 2013 & birth_year >= 1996 ~ 'Gen Z',
-    birth_year > 2012 ~ 'Gen Alpha'),
+  mutate (gen = case_when (
+    birth_year < 1963 ~ 'Pre-Independence',
+    birth_year < 1979 & birth_year >= 1963 ~ 'Kenyatta I',
+    birth_year < 2003 & birth_year >= 1979 ~ 'Moi',
+    birth_year <= 2012 & birth_year >= 2003 ~ 'Kibaki',
+    birth_year > 2012 ~ 'Kenyatta II'),
     rank = case_when (
-      birth_year < 1928 ~ '1',
-      birth_year < 1946 & birth_year >= 1928 ~ '2',
-      birth_year < 1965 & birth_year >= 1946 ~ '3',
-      birth_year < 1981 & birth_year >= 1965 ~ '4',
-      birth_year < 1996 & birth_year >= 1981 ~ '5',
-      birth_year < 2013 & birth_year >= 1996 ~ '6',
-      birth_year > 2012 ~ '7'))
+      birth_year < 1963 ~ '1',
+      birth_year < 1979 & birth_year >= 1963 ~ '2',
+      birth_year < 2003 & birth_year >= 1979 ~ '3',
+      birth_year <= 2012 & birth_year >= 2003 ~ '4',
+      birth_year > 2012 ~ '5'))
 
 k_pop_female_gen$rank <- as.integer(k_pop_female_gen$rank)
 
 #####################################################################
 # iii) Total 
-#####################################################################
+##################################################################### 
 
-county_df_age_sex_lamu_total <- county_df_age_sex_lamu |> select(Age, Total)
-county_df_age_sex_lamu_total$type <- 'total'
-county_df_age_sex_lamu_total$ref_year <- '2019' # reference year = 2019
+county_df_age_sex_uasin_gishu_total <- county_df_age_sex_uasin_gishu |> select(Age, Total)
+county_df_age_sex_uasin_gishu_total$type <- 'total'
+county_df_age_sex_uasin_gishu_total$ref_year <- '2019' # reference year = 2019
 
-k_pop_total <- county_df_age_sex_lamu_total |> 
+k_pop_total <- county_df_age_sex_uasin_gishu_total |> 
   rename(
     age = Age,
     population = Total,
@@ -166,22 +154,18 @@ k_pop_total$ref_year <- as.integer(k_pop_total$ref_year)
 k_pop_total$birth_year <- k_pop_total$ref_year - k_pop_total$age
 
 k_pop_total_gen <- k_pop_total |>
-  mutate(gen = case_when (
-    birth_year < 1928 ~ 'Greatest',
-    birth_year < 1946 & birth_year >= 1928 ~ 'Silent',
-    birth_year < 1965 & birth_year >= 1946 ~ 'Boomer',
-    birth_year < 1981 & birth_year >= 1965 ~ 'Gen X',
-    birth_year < 1996 & birth_year >= 1981 ~ 'Millenial',
-    birth_year < 2013 & birth_year >= 1996 ~ 'Gen Z',
-    birth_year >= 2013 ~ 'Gen Alpha'),
+  mutate (gen = case_when (
+    birth_year < 1963 ~ 'Pre-Independence',
+    birth_year < 1979 & birth_year >= 1963 ~ 'Kenyatta I',
+    birth_year < 2003 & birth_year >= 1979 ~ 'Moi',
+    birth_year <= 2012 & birth_year >= 2003 ~ 'Kibaki',
+    birth_year > 2012 ~ 'Kenyatta II'),
     rank = case_when (
-      birth_year < 1928 ~ '1',
-      birth_year < 1946 & birth_year >= 1928 ~ '2',
-      birth_year < 1965 & birth_year >= 1946 ~ '3',
-      birth_year < 1981 & birth_year >= 1965 ~ '4',
-      birth_year < 1996 & birth_year >= 1981 ~ '5',
-      birth_year < 2013 & birth_year >= 1996 ~ '6',
-      birth_year >= 2013 ~ '7'))
+      birth_year < 1963 ~ '1',
+      birth_year < 1979 & birth_year >= 1963 ~ '2',
+      birth_year < 2003 & birth_year >= 1979 ~ '3',
+      birth_year <= 2012 & birth_year >= 2003 ~ '4',
+      birth_year > 2012 ~ '5'))
 
 k_pop_total_gen$rank <- as.integer(k_pop_total_gen$rank)
 
@@ -209,21 +193,21 @@ p1 <- k_pop_male_gen |>
   theme_void() + # Order matters put theme_void() before theme()
   labs(title = 'Male population grouped by generation (2019)', caption = '') +
   geom_text(aes(label = paste(lab, "K")), 
-            size = 6, 
+            size = 6,
             hjust = -0.1)+
   theme(axis.text.x = element_text(size = 20),
         axis.text.y = element_text(size = 20),
         plot.title = element_text(face = "bold", size = 18),
         plot.margin = margin(t = 10, r = 10, b = 10, l = 10, unit = "pt"),
+        plot.background = element_rect(fill = "azure2", color = "azure2"),
         axis.line.x = element_line(color = "black", linewidth = 1),
         axis.ticks.x = element_line(color = "black", linewidth = 1),
-        axis.ticks.length.x = unit(3, "pt"),
-        plot.background = element_rect(fill = "azure2", color = "azure2")) +
+        axis.ticks.length.x = unit(3, "pt")) +
   xlab('') + 
   ylab('') +
   coord_flip()+
   ggthemes::scale_fill_tableau()+
-  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.25)))
+  scale_y_continuous(labels = comma, , expand = expansion(mult = c(0, 0.3)))
 
 p1
 
@@ -239,24 +223,24 @@ p2 <- k_pop_female_gen |>
              fill = gen)) +
   geom_col(show.legend = FALSE, 
            alpha = 0.75)  +
-  theme_void() + # Order matters put theme_minimal() before theme()
+  theme_void() + # Order matters put theme_void() before theme()
   labs(title = 'Female population grouped by generation (2019)', caption = '') +
   geom_text(aes(label = paste(lab, "K")), 
-            size = 6, 
+            size = 6,
             hjust = -0.1)+
   theme(axis.text.x = element_text(size = 20),
         axis.text.y = element_text(size = 20),
         plot.title = element_text(face = "bold", size = 18),
         plot.margin = margin(t = 10, r = 10, b = 10, l = 10, unit = "pt"),
+        plot.background = element_rect(fill = "azure2", color = "azure2"),
         axis.line.x = element_line(color = "black", linewidth = 1),
         axis.ticks.x = element_line(color = "black", linewidth = 1),
-        axis.ticks.length.x = unit(3, "pt"),
-        plot.background = element_rect(fill = "azure2", color = "azure2")) +
+        axis.ticks.length.x = unit(3, "pt")) +
   xlab('') + 
   ylab('') +
   coord_flip()+
   ggthemes::scale_fill_tableau()+
-  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.25)))
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.3)))
 
 p2
 
@@ -272,11 +256,11 @@ p3 <- k_pop_total_gen |>
              fill = gen)) +
   geom_col(show.legend = FALSE, 
            alpha = 0.75)  +
-  theme_void() +
+  theme_void() + # Order matters put theme_void() before theme()
   labs(title = 'Population grouped by generation (2019)', caption = '') +
   geom_text(aes(label = paste(lab, "K")), 
-            size = 6,
-            hjust = -0.1) +
+            size = 6, 
+            hjust = -0.1)+
   theme(axis.text.x = element_text(size = 20),
         axis.text.y = element_text(size = 20),
         plot.title = element_text(face = "bold", size = 18),
@@ -285,9 +269,11 @@ p3 <- k_pop_total_gen |>
         axis.line.x = element_line(color = "black", linewidth = 1),
         axis.ticks.x = element_line(color = "black", linewidth = 1),
         axis.ticks.length.x = unit(3, "pt")) +
-  coord_flip() +
-  ggthemes::scale_fill_tableau() +
-  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.25)))
+  xlab('') + 
+  ylab('') +
+  coord_flip()+
+  ggthemes::scale_fill_tableau()+
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.3)))
 
 p3
 
@@ -301,7 +287,7 @@ gg1 <- k_pop_male_gen |>
   summarize(tot = sum(population)) |>
   group_by(gen) |>
   mutate(tot = max(tot)) |> #For labels below.
-  filter(birth_year %in% c('1919', '1928', '1946', '1965', '1981', '1996', '2013'))
+  filter(birth_year %in% c('1919', '1963', '1979', '2003', '2013'))
 #View(gg1)
 
 # Female
@@ -310,7 +296,7 @@ gg2 <- k_pop_female_gen |>
   summarize(tot = sum(population)) |>
   group_by(gen) |>
   mutate(tot = max(tot)) |> #For labels below.
-  filter(birth_year %in% c('1919', '1928', '1946', '1965', '1981', '1996', '2013'))
+  filter(birth_year %in% c('1919', '1963', '1979', '2003', '2013'))
 #View(gg2)
 
 # Total
@@ -319,7 +305,7 @@ gg3 <- k_pop_total_gen |>
   summarize(tot = sum(population)) |>
   group_by(gen) |>
   mutate(tot = max(tot)) |> #For labels below.
-  filter(birth_year %in% c('1919', '1928', '1946', '1965', '1981', '1996', '2013'))
+  filter(birth_year %in% c('1919', '1963', '1979', '2003', '2013'))
 #View(gg3)
 
 # Male
@@ -351,7 +337,7 @@ p4 <- k_pop_male_gen |>
         axis.text.x = element_text(size=20),
         axis.text.y = element_text(size=20),
         axis.title.x = element_text(size=20, face = "bold"),
-        axis.title.y = element_text(size=20, face = "bold", angle = 90),
+        axis.title.y = element_text(size=20, face = "bold", angle = 90, margin = margin(r = 0)),
         plot.title = element_text(face = "bold", size = 18),
         plot.margin = margin(5, 5, 5, 5),
         plot.background = element_rect(fill = "azure2", color = "azure2")) +
@@ -388,10 +374,10 @@ p5 <- k_pop_female_gen |>
         panel.grid.major.x=element_blank(),
         panel.grid.minor.x=element_blank(),
         panel.grid.minor.y=element_blank(),
-        axis.text.x = element_text(size=20),
-        axis.text.y = element_text(size=20),
-        axis.title.x = element_text(size=20, face = "bold"),
-        axis.title.y = element_text(size=20, face = "bold", angle = 90),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20),
+        axis.title.x = element_text(size = 20, face = "bold"),
+        axis.title.y = element_text(size = 20, face = "bold", angle = 90),
         plot.title = element_text(face = "bold", size = 18),
         plot.margin = margin(5, 5, 5, 5),
         plot.background = element_rect(fill = "azure2", color = "azure2")) +
@@ -420,7 +406,7 @@ p6 <- k_pop_total_gen |>
            y = gg3$tot + 500, 
            label = gg3$gen,
            size = 5) +
-  xlab('Age') + 
+  xlab('Age')+ 
   ylab('Population') +
   theme_void() +
   theme(legend.position="bottom",
@@ -428,8 +414,8 @@ p6 <- k_pop_total_gen |>
         panel.grid.major.x=element_blank(),
         panel.grid.minor.x=element_blank(),
         panel.grid.minor.y=element_blank(),
-        axis.text.x = element_text(size=20),
-        axis.text.y = element_text(size=20),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20),
         axis.title.x = element_text(size=20, face = "bold"),
         axis.title.y = element_text(size=20, face = "bold", angle = 90),
         plot.title = element_text(face = "bold", size = 18),
@@ -446,8 +432,7 @@ p6
 # D. Production Images
 ########################################################################
 
-
-# i) Male
+# Male
 p4 / p1 +
   plot_annotation(title = "",
                   subtitle = "",
@@ -458,9 +443,10 @@ p4 / p1 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/county/lamu/knbs_pop_generation_2019_universal_1.png", width = 12, height = 12, dpi = 300)
 
-# ii) Female
+ggsave("sub_pro_2_pop_gen/images/county/uasin_gishu/knbs_pop_generation_2019_president_1.png", width = 12, height = 12, dpi = 300)
+
+# Female
 p5 / p2 +
   plot_annotation(title = "",
                   subtitle = "",
@@ -471,10 +457,9 @@ p5 / p2 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/county/lamu/knbs_pop_generation_2019_universal_2.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_2_pop_gen/images/county/uasin_gishu/knbs_pop_generation_2019_president_2.png", width = 12, height = 12, dpi = 300)
 
-# iii) Total
-
+# Total
 p6 / p3 +
   plot_annotation(title = "",
                   subtitle = "",
@@ -485,4 +470,4 @@ p6 / p3 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/county/lamu/knbs_pop_generation_2019_universal_3.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_2_pop_gen/images/county/uasin_gishu/knbs_pop_generation_2019_president_3.png", width = 12, height = 12, dpi = 300)

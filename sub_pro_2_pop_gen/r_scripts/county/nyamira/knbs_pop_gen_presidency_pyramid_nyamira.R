@@ -1,4 +1,4 @@
-# Kenyan Generations by Presidential Era (Lamu) - PYRAMID
+# Kenyan Generations by Presidential Era (Nyamira) - PYRAMID
 # Author: William Okech
 
 ################################################
@@ -40,12 +40,12 @@ county_df_age_sex <- df_age_sex |>
   mutate(County = tools::toTitleCase(tolower(County))) |>
   mutate(County = trimws(County))
 
-# Age-sex dataset for Lamu
+# Age-sex dataset for Nyamira
 
-county_df_age_sex_lamu <- county_df_age_sex |>
-  filter(County == "Lamu")
+county_df_age_sex_nyamira <- county_df_age_sex |>
+  filter(County == "Nyamira")
 
-county_df_age_sex_lamu$Age <- as.numeric(county_df_age_sex_lamu$Age)
+county_df_age_sex_nyamira$Age <- as.numeric(county_df_age_sex_nyamira$Age)
 
 #############################################################
 
@@ -70,10 +70,10 @@ county_df_age_sex_lamu$Age <- as.numeric(county_df_age_sex_lamu$Age)
 # i) Male
 ##############################################################
 
-county_df_age_sex_lamu_male <- county_df_age_sex_lamu |> select(Age, Male)
-county_df_age_sex_lamu_male$type <- 'male'
-county_df_age_sex_lamu_male$ref_year <- '2019'
-k_pop_male <- county_df_age_sex_lamu_male |> 
+county_df_age_sex_nyamira_male <- county_df_age_sex_nyamira |> select(Age, Male)
+county_df_age_sex_nyamira_male$type <- 'male'
+county_df_age_sex_nyamira_male$ref_year <- '2019'
+k_pop_male <- county_df_age_sex_nyamira_male |> 
   rename(
     age = Age,
     population = Male,
@@ -105,10 +105,10 @@ k_pop_male_gen$rank <- as.integer(k_pop_male_gen$rank)
 # ii) Female
 ###############################################################
 
-county_df_age_sex_lamu_female <- county_df_age_sex_lamu |> select(Age, Female)
-county_df_age_sex_lamu_female$type <- 'female'
-county_df_age_sex_lamu_female$ref_year <- '2019'
-k_pop_female <- county_df_age_sex_lamu_female |> 
+county_df_age_sex_nyamira_female <- county_df_age_sex_nyamira |> select(Age, Female)
+county_df_age_sex_nyamira_female$type <- 'female'
+county_df_age_sex_nyamira_female$ref_year <- '2019'
+k_pop_female <- county_df_age_sex_nyamira_female |> 
   rename(
     age = Age,
     population = Female,
@@ -140,11 +140,11 @@ k_pop_female_gen$rank <- as.integer(k_pop_female_gen$rank)
 # iii) Total 
 ##################################################################### 
 
-county_df_age_sex_lamu_total <- county_df_age_sex_lamu |> select(Age, Total)
-county_df_age_sex_lamu_total$type <- 'total'
-county_df_age_sex_lamu_total$ref_year <- '2019' # reference year = 2019
+county_df_age_sex_nyamira_total <- county_df_age_sex_nyamira |> select(Age, Total)
+county_df_age_sex_nyamira_total$type <- 'total'
+county_df_age_sex_nyamira_total$ref_year <- '2019' # reference year = 2019
 
-k_pop_total <- county_df_age_sex_lamu_total |> 
+k_pop_total <- county_df_age_sex_nyamira_total |> 
   rename(
     age = Age,
     population = Total,
@@ -264,4 +264,4 @@ p1 + p2 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/county/lamu/pyramid_presidency_lamu_1.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_2_pop_gen/images/county/nyamira/pyramid_presidency_nyamira_1.png", width = 12, height = 12, dpi = 300)

@@ -2,6 +2,7 @@
 library(patchwork)
 library(tidyverse)
 library(ggbreak)
+library(rKenyaCensus)
 
 # 1) Load the subcounty sex census data and clean
 
@@ -45,8 +46,8 @@ top_subcounty_plot <- top_subcounty %>%
         plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
         legend.title = element_text("URW Palladio L, Italic",size = 8, vjust = 1),
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
-        plot.background = element_rect(fill = "bisque", color = "bisque"),
-        panel.background = element_rect(fill = "bisque", color = "bisque")) + 
+        plot.background = element_rect(fill = "azure2", color = "azure2"),
+        panel.background = element_rect(fill = "azure2", color = "azure2")) + 
   geom_hline(yintercept = 100, linetype="dashed", color = "purple", size=0.5)
 
 top_subcounty_plot
@@ -79,23 +80,23 @@ bottom_subcounty_plot <- bottom_subcounty %>%
         plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
         legend.title = element_text("URW Palladio L, Italic",size = 8, vjust = 1),
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
-        plot.background = element_rect(fill = "bisque", color = "bisque"),
-        panel.background = element_rect(fill = "bisque", color = "bisque")) + 
+        plot.background = element_rect(fill = "azure2", color = "azure2"),
+        panel.background = element_rect(fill = "azure2", color = "azure2")) + 
   geom_hline(yintercept = 100, linetype="dashed", color = "purple", size=0.5)
 
 bottom_subcounty_plot
 
 #ggsave("images/subcounty_sex_census/bottom_subcounty_plot.png", width = 6, height = 4)
 
-top_subcounty_plot + bottom_subcounty_plot + 
+top_subcounty_plot / bottom_subcounty_plot + 
   plot_annotation(title = "",
                   subtitle = "",
                   caption = "Data Source: rKenyaCensus | By: @willyokech",
                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
                                 plot.caption = element_text(family = "Helvetica",size = 12),
-                                plot.background = element_rect(fill = "bisque", color = "bisque"),
-                                panel.background = element_rect(fill = "bisque", color = "bisque"))) &
+                                plot.background = element_rect(fill = "azure2", color = "azure2"),
+                                panel.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
 #ggsave("images/subcounty_sex_census/top_bottom_plot.png", width = 12, height = 8)
