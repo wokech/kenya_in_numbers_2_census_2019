@@ -1,4 +1,4 @@
-# Kenya New Voters
+# Kenya Teens (2019)
 # Author: William Okech
 
 ################################################
@@ -56,17 +56,17 @@ k_pop_male$population <- as.integer(k_pop_male$population)
 k_pop_male$ref_year <- as.integer(k_pop_male$ref_year)
 k_pop_male$birth_year <- k_pop_male$ref_year - k_pop_male$age
 
-k_pop_male_eligible <- k_pop_male |>
-  mutate (eligible = case_when (
-    birth_year < 2005 ~ 'Eligible',
-    birth_year < 2010 & birth_year >= 2005 ~ 'Newly Eligible',
-    birth_year >= 2010 ~ 'Not Eligible'),
+k_pop_male_age_group <- k_pop_male |>
+  mutate (age_group = case_when (
+    birth_year < 2000 ~ 'Post-Teen',
+    birth_year < 2007 & birth_year >= 2000 ~ 'Teen',
+    birth_year >= 2007 ~ 'Pre-Teen'),
     rank = case_when (
-      birth_year < 2005 ~ '1',
-      birth_year < 2010 & birth_year >= 2005 ~ '2',
-      birth_year >= 2010 ~ '3'))
+      birth_year < 2000 ~ '1',
+      birth_year < 2007 & birth_year >= 2000 ~ '2',
+      birth_year >= 2007 ~ '3'))
 
-k_pop_male_eligible$rank <- as.integer(k_pop_male_eligible$rank)
+k_pop_male_age_group$rank <- as.integer(k_pop_male_age_group$rank)
 
 ###############################################################
 # ii) Female
@@ -87,17 +87,17 @@ k_pop_female$population <- as.integer(k_pop_female$population)
 k_pop_female$ref_year <- as.integer(k_pop_female$ref_year)
 k_pop_female$birth_year <- k_pop_female$ref_year - k_pop_female$age
 
-k_pop_female_eligible <- k_pop_female |>
-  mutate (eligible = case_when (
-    birth_year < 2005 ~ 'Eligible',
-    birth_year < 2010 & birth_year >= 2005 ~ 'Newly Eligible',
-    birth_year >= 2010 ~ 'Not Eligible'),
+k_pop_female_age_group <- k_pop_female |>
+  mutate (age_group = case_when (
+    birth_year < 2000 ~ 'Post-Teen',
+    birth_year < 2007 & birth_year >= 2000 ~ 'Teen',
+    birth_year >= 2007 ~ 'Pre-Teen'),
     rank = case_when (
-      birth_year < 2005 ~ '1',
-      birth_year < 2010 & birth_year >= 2005 ~ '2',
-      birth_year >= 2010 ~ '3'))
+      birth_year < 2000 ~ '1',
+      birth_year < 2007 & birth_year >= 2000 ~ '2',
+      birth_year >= 2007 ~ '3'))
 
-k_pop_female_eligible$rank <- as.integer(k_pop_female_eligible$rank)
+k_pop_female_age_group$rank <- as.integer(k_pop_female_age_group$rank)
 
 #####################################################################
 # iii) Total 
@@ -119,17 +119,17 @@ k_pop_total$population <- as.integer(k_pop_total$population)
 k_pop_total$ref_year <- as.integer(k_pop_total$ref_year)
 k_pop_total$birth_year <- k_pop_total$ref_year - k_pop_total$age
 
-k_pop_total_eligible <- k_pop_total |>
-  mutate (eligible = case_when (
-    birth_year < 2005 ~ 'Eligible',
-    birth_year < 2010 & birth_year >= 2005 ~ 'Newly Eligible',
-    birth_year >= 2010 ~ 'Not Eligible'),
+k_pop_total_age_group <- k_pop_total |>
+  mutate (age_group = case_when (
+    birth_year < 2000 ~ 'Post-Teen',
+    birth_year < 2007 & birth_year >= 2000 ~ 'Teen',
+    birth_year >= 2007 ~ 'Pre-Teen'),
     rank = case_when (
-      birth_year < 2005 ~ '1',
-      birth_year < 2010 & birth_year >= 2005 ~ '2',
-      birth_year >= 2010 ~ '3'))
+      birth_year < 2000 ~ '1',
+      birth_year < 2007 & birth_year >= 2000 ~ '2',
+      birth_year >= 2007 ~ '3'))
 
-k_pop_total_eligible$rank <- as.integer(k_pop_total_eligible$rank)
+k_pop_total_age_group$rank <- as.integer(k_pop_total_age_group$rank)
 
 #####################################################################
 # C. Plot the graphs
@@ -142,14 +142,14 @@ k_pop_total_eligible$rank <- as.integer(k_pop_total_eligible$rank)
 # i) Population by generation
 # Male
 
-p1 <- k_pop_male_eligible |>
-  group_by(eligible, rank) |>
+p1 <- k_pop_male_age_group |>
+  group_by(age_group, rank) |>
   summarize(population = sum(population)) |>
   mutate(lab = round(population/1000000, 2)) |>
-  arrange(rank, eligible) |>
-  ggplot(aes(x = reorder(eligible, -rank),
+  arrange(rank, age_group) |>
+  ggplot(aes(x = reorder(age_group, -rank),
              y = population, 
-             fill = eligible)) +
+             fill = age_group)) +
   geom_col(show.legend = FALSE, 
            alpha = 0.75)  +
   theme_void() + # Order matters put theme_void() before theme()
@@ -175,14 +175,14 @@ p1
 
 # Female
 
-p2 <- k_pop_female_eligible |>
-  group_by(eligible, rank) |>
+p2 <- k_pop_female_age_group |>
+  group_by(age_group, rank) |>
   summarize(population = sum(population)) |>
   mutate(lab = round(population/1000000, 2)) |>
-  arrange(rank, eligible) |>
-  ggplot(aes(x = reorder(eligible, -rank),
+  arrange(rank, age_group) |>
+  ggplot(aes(x = reorder(age_group, -rank),
              y = population, 
-             fill = eligible)) +
+             fill = age_group)) +
   geom_col(show.legend = FALSE, 
            alpha = 0.75)  +
   theme_void() + # Order matters put theme_void() before theme()
@@ -208,14 +208,14 @@ p2
 
 # Total
 
-p3 <- k_pop_total_eligible |>
-  group_by(eligible, rank) |>
+p3 <- k_pop_total_age_group |>
+  group_by(age_group, rank) |>
   summarize(population = sum(population)) |>
   mutate(lab = round(population/1000000, 2)) |>
-  arrange(rank, eligible) |>
-  ggplot(aes(x = reorder(eligible, -rank),
+  arrange(rank, age_group) |>
+  ggplot(aes(x = reorder(age_group, -rank),
              y = population, 
-             fill = eligible)) +
+             fill = age_group)) +
   geom_col(show.legend = FALSE, 
            alpha = 0.75)  +
   theme_void() + # Order matters put theme_void() before theme()
@@ -244,38 +244,38 @@ p3
 ########################################################################
 
 # Male
-gg1 <- k_pop_male_eligible |> 
-  group_by(birth_year, age, eligible) |>
+gg1 <- k_pop_male_age_group |> 
+  group_by(birth_year, age, age_group) |>
   summarize(tot = sum(population)) |>
-  group_by(eligible) |>
+  group_by(age_group) |>
   mutate(tot = max(tot)) |> #For labels below.
-  filter(birth_year %in% c('1919', '2005', '2009', '2019'))
+  filter(birth_year %in% c('1919', '1999', '2006', '2019'))
 #View(gg1)
 
 # Female
-gg2 <- k_pop_female_eligible |> 
-  group_by(birth_year, age, eligible) |>
+gg2 <- k_pop_female_age_group |> 
+  group_by(birth_year, age, age_group) |>
   summarize(tot = sum(population)) |>
-  group_by(eligible) |>
+  group_by(age_group) |>
   mutate(tot = max(tot)) |> #For labels below.
-  filter(birth_year %in% c('1919', '2005', '2009', '2019'))
+  filter(birth_year %in% c('1919', '1999', '2006', '2019'))
 #View(gg2)
 
 # Total
-gg3 <- k_pop_total_eligible |> 
-  group_by(birth_year, age, eligible) |>
+gg3 <- k_pop_total_age_group |> 
+  group_by(birth_year, age, age_group) |>
   summarize(tot = sum(population)) |>
-  group_by(eligible) |>
+  group_by(age_group) |>
   mutate(tot = max(tot)) |> #For labels below.
-  filter(birth_year %in% c('1919', '2005', '2009', '2019'))
+  filter(birth_year %in% c('1919', '1999', '2006', '2019'))
 #View(gg3)
 
 # Male
 
-p4 <- k_pop_male_eligible |>
+p4 <- k_pop_male_age_group |>
   ggplot(aes(x = age, 
              y = population, 
-             fill = eligible)) +
+             fill = age_group)) +
   geom_vline(xintercept = gg1$age,
              linetype =2, 
              color = 'black', 
@@ -307,10 +307,10 @@ p4
 
 # Female
 
-p5 <- k_pop_female_eligible |>
+p5 <- k_pop_female_age_group |>
   ggplot(aes(x = age, 
              y = population, 
-             fill = eligible)) +
+             fill = age_group)) +
   geom_vline(xintercept = gg2$age,
              linetype =2, 
              color = 'black', 
@@ -342,10 +342,10 @@ p5
 
 # Total
 
-p6 <- k_pop_total_eligible |>
+p6 <- k_pop_total_age_group |>
   ggplot(aes(x = age, 
              y = population, 
-             fill = eligible)) +
+             fill = age_group)) +
   geom_vline(xintercept = gg3$age,
              linetype =2, 
              color = 'black', 
@@ -390,7 +390,7 @@ p4 / p1 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/new_voters_2027/knbs_new_voters_2027_male_1.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_2_pop_gen/images/teens/knbs_teens_male_1.png", width = 12, height = 12, dpi = 300)
 
 # Female
 p5 / p2 +
@@ -403,7 +403,7 @@ p5 / p2 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/new_voters_2027/knbs_new_voters_2027_female_1.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_2_pop_gen/images/teens/knbs_teens_female_1.png", width = 12, height = 12, dpi = 300)
 
 # Total
 p6 / p3 +
@@ -416,4 +416,4 @@ p6 / p3 +
                                 plot.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_2_pop_gen/images/new_voters_2027/knbs_new_voters_2027_total_1.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_2_pop_gen/images/teens/knbs_teens_total_1.png", width = 12, height = 12, dpi = 300)

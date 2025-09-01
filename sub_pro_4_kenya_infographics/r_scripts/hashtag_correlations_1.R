@@ -69,7 +69,7 @@ ggplot(kenya_insta_hashtags, aes(x = poverty_estimates_percent_2022, y = insta_h
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2"))
 
-ggsave("sub_pro_4_kenya_infographics/images/hashtag_plots/poverty_hashtags.png", width = 12, height = 12, dpi = 300)
+# ggsave("sub_pro_4_kenya_infographics/images/hashtag_plots/poverty_hashtags.png", width = 12, height = 12, dpi = 300)
 
 
 # GCP Share (%) and Normalized Hashtags (%)
@@ -103,5 +103,5 @@ ggplot(kenya_insta_hashtags, aes(x = gcp_share_percent_2019_2023, y = insta_hash
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2"))
 
-ggsave("sub_pro_4_kenya_infographics/images/hashtag_plots/gcp_hashtags.png", width = 12, height = 12, dpi = 300)
+# ggsave("sub_pro_4_kenya_infographics/images/hashtag_plots/gcp_hashtags.png", width = 12, height = 12, dpi = 300)
 
