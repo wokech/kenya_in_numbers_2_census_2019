@@ -13,7 +13,7 @@ library(ggplot2)
 library(geogrid)
 
 # --- 1) Get Kenya counties (GADM level 1) ---
-ken_l1 <- geodata::gadm(country = "KEN", level = 1, path = tempdir())
+ken_l1 <- geodata::gadm(country = "KEN", level = 1, path = "sub_pro_1_kenya_county_sub_county")
 ken_counties <- sf::st_as_sf(ken_l1)
 
 # --- 2) Pick a name column robustly ---
@@ -49,7 +49,7 @@ ken_counties <- ken_counties |>
 set.seed(42)
 hex_grid <- calculate_grid(
   ken_counties,
-  learning_rate = 0.1,
+  learning_rate = 0.2,
   grid_type = "hexagonal"
 )
 
