@@ -13,7 +13,7 @@ library(ggplot2)
 library(geogrid)
 
 # --- 1) Get Kenya counties (GADM level 1) ---
-ken_l1 <- geodata::gadm(country = "KEN", level = 1, path = "sub_pro_1_kenya_county_sub_county")
+ken_l1 <- geodata::gadm(country = "KEN", level = 1, path = "sub_pro_1_kenya_county_sub_county/kenya_hex_map")
 ken_counties <- sf::st_as_sf(ken_l1)
 
 # --- 2) Pick a name column robustly ---
