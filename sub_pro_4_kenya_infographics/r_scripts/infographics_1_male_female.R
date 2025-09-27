@@ -87,13 +87,6 @@ uoi_county <- df_v4_t2_33 |>
   select(County, UoI_Total_Perc, UoI_Male_Perc, UoI_Female_Perc, uoi_diff_perc) |>
   clean_names()
 
-# Use of Desktop/Laptop/Tablet (%)
-
-uodlt_county <- df_v4_t2_33 |>
-  mutate(uodlt_diff_perc = UoDLT_Male_Perc - UoDLT_Female_Perc) |>
-  select(County, UoDLT_Total_Perc, UoDLT_Male_Perc, UoDLT_Female_Perc, uodlt_diff_perc) |>
-  clean_names()
-
 ################################################################################
 # Part B: Data Visualization
 ################################################################################
@@ -110,7 +103,7 @@ ggplot(mpo_county) +
   labs(x = "Mobile Phone Ownership (%)", y = "",
        title = "") +
   theme_minimal() +
-  theme(axis.title.x =element_text(size = 24),
+  theme(axis.title.x =element_text(size = 24, margin = margin(t = 20)),
         axis.title.y =element_text(size = 32, angle = 90),
         axis.text.x =element_text(size = 24),
         axis.text.y =element_text(size = 18),
@@ -139,7 +132,7 @@ ggplot(uoi_county) +
   labs(x = "Internet Usage (%)", y = "",
        title = "") +
   theme_minimal() +
-  theme(axis.title.x =element_text(size = 24),
+  theme(axis.title.x =element_text(size = 24, margin = margin(t = 20)),
         axis.title.y =element_text(size = 32, angle = 90),
         axis.text.x =element_text(size = 24),
         axis.text.y =element_text(size = 18),
@@ -155,37 +148,9 @@ ggplot(uoi_county) +
 ggsave("sub_pro_4_kenya_infographics/images/infographics_1_male_female/uoi_male_female.png",
        width = 12, height = 12, dpi = 300)
 
-
-# Use of Desktop/Laptop/Tablet (%)
-
-ggplot(uodlt_county) +
-  geom_segment(aes(x = uo_dlt_male_perc, xend = uo_dlt_female_perc, 
-                   y = reorder(county, uo_dlt_total_perc), yend = reorder(county, uo_dlt_total_perc)), 
-               color = "purple", linewidth = 2) +
-  geom_point(aes(x = uo_dlt_male_perc, y = reorder(county, uo_dlt_total_perc)), color = "navy", size = 5) +
-  geom_point(aes(x = uo_dlt_female_perc, y = reorder(county, uo_dlt_total_perc)), color = "salmon", size = 5) +
-  scale_x_continuous() +
-  labs(x = "Use of Desktop, Laptop, or Tablet (%)", y = "",
-       title = "") +
-  theme_minimal() +
-  theme(axis.title.x =element_text(size = 24),
-        axis.title.y =element_text(size = 32, angle = 90),
-        axis.text.x =element_text(size = 24),
-        axis.text.y =element_text(size = 18),
-        axis.line.x = element_line(),
-        axis.ticks.x = element_line(),
-        axis.ticks.length.x = unit(5, "pt"),
-        #plot.title = element_markdown(family = "Helvetica",size = 36, hjust = 0.5),
-        legend.title = element_blank(),
-        plot.caption = element_text(family = "Helvetica",size = 12),
-        plot.background = element_rect(fill = "azure2", color = "azure2"), 
-        panel.background = element_rect(fill = "azure2", color = "azure2"))
-
-ggsave("sub_pro_4_kenya_infographics/images/infographics_1_male_female/uodlt_male_female.png",
-       width = 12, height = 12, dpi = 300)
-
-
+################################################################################
 # Plot Male-Female Differences in percentage
+################################################################################
 
 # Mobile Phone Ownership (%)
 
@@ -195,10 +160,10 @@ ggplot(mpo_county) +
                color = "purple", linewidth = 2) +
   geom_point(aes(x = m_f_diff_perc, y = reorder(county, m_f_diff_perc)), color = "purple", size = 5) +
   scale_x_continuous() +
-  labs(x = "Magnitude of sex differences in mobile phone ownership (%)", y = "",
+  labs(x = "Magnitude of sex differences in\nmobile phone ownership (%)", y = "",
        title = "") +
   theme_minimal() +
-  theme(axis.title.x =element_text(size = 24),
+  theme(axis.title.x =element_text(size = 24, margin = margin(t = 20)),
         axis.title.y =element_text(size = 32, angle = 90),
         axis.text.x =element_text(size = 24),
         axis.text.y =element_text(size = 18),
@@ -214,7 +179,6 @@ ggplot(mpo_county) +
 ggsave("sub_pro_4_kenya_infographics/images/infographics_1_male_female/mpo_male_female_diff.png",
        width = 12, height = 12, dpi = 300)
 
-
 # Internet Usage (%)
 
 ggplot(uoi_county) +
@@ -223,10 +187,10 @@ ggplot(uoi_county) +
                color = "purple", linewidth = 2) +
   geom_point(aes(x = uoi_diff_perc, y = reorder(county, uoi_diff_perc)), color = "purple", size = 5) +
   scale_x_continuous() +
-  labs(x = "Magnitude of sex differences in internet usage (%)", y = "",
+  labs(x = "Magnitude of sex differences in\ninternet usage (%)", y = "",
        title = "") +
   theme_minimal() +
-  theme(axis.title.x =element_text(size = 24),
+  theme(axis.title.x =element_text(size = 24, margin = margin(t = 20)),
         axis.title.y =element_text(size = 32, angle = 90),
         axis.text.x =element_text(size = 24),
         axis.text.y =element_text(size = 18),
@@ -240,32 +204,4 @@ ggplot(uoi_county) +
         panel.background = element_rect(fill = "azure2", color = "azure2"))
 
 ggsave("sub_pro_4_kenya_infographics/images/infographics_1_male_female/uoi_male_female_diff.png",
-       width = 12, height = 12, dpi = 300)
-
-
-# Use of Desktop/Laptop/Tablet (%)
-
-ggplot(uodlt_county) +
-  geom_segment(aes(x = 0, xend = uodlt_diff_perc, 
-                   y = reorder(county, uodlt_diff_perc), yend = reorder(county, uodlt_diff_perc)), 
-               color = "purple", linewidth = 2) +
-  geom_point(aes(x = uodlt_diff_perc, y = reorder(county, uodlt_diff_perc)), color = "purple", size = 5) +
-  scale_x_continuous() +
-  labs(x = "Magnitude of sex differences in desktop, laptop, or tablet use (%)", y = "",
-       title = "") +
-  theme_minimal() +
-  theme(axis.title.x =element_text(size = 24),
-        axis.title.y =element_text(size = 32, angle = 90),
-        axis.text.x =element_text(size = 24),
-        axis.text.y =element_text(size = 18),
-        axis.line.x = element_line(),
-        axis.ticks.x = element_line(),
-        axis.ticks.length.x = unit(5, "pt"),
-        #plot.title = element_markdown(family = "Helvetica",size = 36, hjust = 0.5),
-        legend.title = element_blank(),
-        plot.caption = element_text(family = "Helvetica",size = 12),
-        plot.background = element_rect(fill = "azure2", color = "azure2"), 
-        panel.background = element_rect(fill = "azure2", color = "azure2"))
-
-ggsave("sub_pro_4_kenya_infographics/images/infographics_1_male_female/uodlt_male_female_diff.png",
        width = 12, height = 12, dpi = 300)

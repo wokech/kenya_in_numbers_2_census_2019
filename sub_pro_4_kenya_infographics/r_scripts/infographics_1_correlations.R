@@ -1,6 +1,9 @@
 # KNBS Census (2019)
 # By @kenya.in.numbers
 
+###############################
+# Pop Density,  Number of HH, and Avg HH size correlations
+###############################
 
 #####################
 #####PART A
@@ -47,8 +50,10 @@ hh_thresh <- median(infographic_data_clean$number_of_households)
 avg_hh_thresh <- median(infographic_data_clean$average_household_size)
 
 ggplot(infographic_data_clean, aes(x = number_of_households, y = average_household_size)) +
-  geom_jitter(color = "brown4", size = 4) +
-  geom_text_repel(aes(label = county), color = "brown4", size = 8) +
+  geom_jitter(color = "purple", size = 3, alpha = 0.75) +
+  geom_text_repel(data = subset(infographic_data_clean, 
+                                number_of_households > hh_thresh & average_household_size > avg_hh_thresh),
+                  aes(label = county), color = "black", size = 6) +
   labs(x = "Number of Households", y = "Average Household Size", title = "") +
   annotate("rect", xmin = hh_thresh, xmax = Inf,
            ymin = avg_hh_thresh, ymax = Inf, alpha = 0.2, fill = "pink") +
@@ -71,8 +76,8 @@ ggplot(infographic_data_clean, aes(x = number_of_households, y = average_househo
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2"))
 
-# ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/infographic_correlations_1/poverty_internet.png", width = 12, height = 12, dpi = 300)
-
+ggsave("sub_pro_4_kenya_infographics/images/infographics_1_correlations/avg_hh_vs_no_hh.png",
+       width = 12, height = 12, dpi = 300)
 
 # Population Density vs Number of Households
 
@@ -82,7 +87,9 @@ pop_density_thresh <- median(infographic_data_clean$population_density_no_per_sq
 
 ggplot(infographic_data_clean, aes(x = number_of_households, y = population_density_no_per_sq_km)) +
   geom_jitter(color = "brown4", size = 4) +
-  geom_text_repel(aes(label = county), color = "brown4", size = 8) +
+  geom_text_repel(data = subset(infographic_data_clean, 
+                                number_of_households > hh_thresh & population_density_no_per_sq_km > pop_density_thresh),
+                  aes(label = county), color = "brown4", size = 8) +
   labs(x = "Number of Households", y = "Population Density (sq. km.)", title = "") +
   annotate("rect", xmin = hh_thresh, xmax = Inf,
            ymin = pop_density_thresh, ymax = Inf, alpha = 0.2, fill = "pink") +
@@ -105,8 +112,8 @@ ggplot(infographic_data_clean, aes(x = number_of_households, y = population_dens
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2"))
 
-# ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/infographic_correlations_1/poverty_internet.png", width = 12, height = 12, dpi = 300)
-
+ggsave("sub_pro_4_kenya_infographics/images/infographics_1_correlations/pop_density_vs_no_hh.png",
+       width = 12, height = 12, dpi = 300)
 
 # Population Density vs Average Household Size
 
@@ -116,7 +123,9 @@ pop_density_thresh <- median(infographic_data_clean$population_density_no_per_sq
 
 ggplot(infographic_data_clean, aes(x = average_household_size, y = population_density_no_per_sq_km)) +
   geom_jitter(color = "brown4", size = 4) +
-  geom_text_repel(aes(label = county), color = "brown4", size = 8) +
+  geom_text_repel(data = subset(infographic_data_clean, 
+                                average_household_size > avg_hh_thresh & population_density_no_per_sq_km > pop_density_thresh),
+                  aes(label = county), color = "brown4", size = 8) +
   labs(x = "Average Household Size", y = "Population Density (sq. km.)", title = "") +
   annotate("rect", xmin = avg_hh_thresh, xmax = Inf,
            ymin = pop_density_thresh, ymax = Inf, alpha = 0.2, fill = "pink") +
@@ -139,4 +148,5 @@ ggplot(infographic_data_clean, aes(x = average_household_size, y = population_de
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2"))
 
-# ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/infographic_correlations_1/poverty_internet.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_4_kenya_infographics/images/infographics_1_correlations/pop_density_vs_avg_hh.png",
+       width = 12, height = 12, dpi = 300)

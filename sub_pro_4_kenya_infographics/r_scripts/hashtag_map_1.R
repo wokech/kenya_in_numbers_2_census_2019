@@ -27,6 +27,7 @@ library(patchwork)
 library(ggrepel)
 library(ggsflabel)
 library(ggtext)
+library(rKenyaCensus)
 
 
 # Load the required data
@@ -111,7 +112,7 @@ map_hashtag <- ggplot(data = merged_df)+
 map_hashtag
 
 # Save the plot
-ggsave("sub_pro_4_kenya_infographics/images/hashtag_plots/map_hashtag.png", width = 12, height = 12, dpi = 300)
+#ggsave("sub_pro_4_kenya_infographics/images/hashtag_plots/map_hashtag.png", width = 12, height = 12, dpi = 300)
 
 
 # 2) Normalized Hashtags by Population (%) Map
@@ -121,7 +122,7 @@ map_hashtag_normalized <- ggplot(data = merged_df)+
   theme_void()+
   labs(title = "",
        caption = "",
-       fill = "Normalized Hashtags\nby Population (%)")+
+       fill = "Hashtags/Population (%)")+
   theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
         legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
         legend.text = element_text(family = "Helvetica",size = 24),

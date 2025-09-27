@@ -97,7 +97,7 @@ subcounty_plot_sex_ratio <- merge_top_bottom_subcounty_m_f_100  |>
        y = "Number of males\nper 100 females", 
        title = "",
        caption = "") +
-  theme(axis.title.x =element_text(size = 28),
+  theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
         axis.title.y =element_text(size = 28),
         axis.text.x =element_text(size = 24, color = "black"),
         axis.text.y =element_blank(),
@@ -111,8 +111,8 @@ subcounty_plot_sex_ratio <- merge_top_bottom_subcounty_m_f_100  |>
 
 subcounty_plot_sex_ratio
 
-# ggsave("sub_pro_4_kenya_infographics/images/infographics_1_subcounty/top_bottom_subcounty_sex_ratio.png", 
-#        width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_4_kenya_infographics/images/infographics_1_subcounty/top_bottom_subcounty_sex_ratio.png",
+       width = 12, height = 12, dpi = 300)
 
 ################################################################################
 # Population
@@ -165,7 +165,7 @@ subcounty_plot_population <- merge_top_bottom_subcounty_population  |>
        y = "Population", 
        title = "",
        caption = "") +
-  theme(axis.title.x =element_text(size = 28),
+  theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
         axis.title.y =element_text(size = 28),
         axis.text.x =element_text(size = 24, color = "black"),
         axis.text.y =element_text(size = 24, face = "bold", color = "black"),
@@ -179,8 +179,8 @@ subcounty_plot_population <- merge_top_bottom_subcounty_population  |>
 
 subcounty_plot_population
 
-# ggsave("sub_pro_4_kenya_infographics/images/infographics_1_subcounty/top_bottom_subcounty_population.png", 
-#        width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_4_kenya_infographics/images/infographics_1_subcounty/top_bottom_subcounty_population.png",
+       width = 12, height = 12, dpi = 300)
 
 ################################################################################
 # Other components of Infographic 1 (except Poverty(%) and GCP(%))
@@ -246,14 +246,14 @@ subcounty_plot_hh <- merge_top_bottom_subcounty_number_hh  |>
             fontface = "bold",
             size = 8) +
   scale_y_continuous(labels = comma, 
-                     expand = expansion(mult = c(0, 0.1))) +
+                     expand = expansion(mult = c(0.05, 0.15))) +
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
        y = "Number of Households", 
        title = "",
        caption = "") +
-  theme(axis.title.x =element_text(size = 28),
+  theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
         axis.title.y =element_text(size = 28),
         axis.text.x =element_text(size = 24, color = "black"),
         axis.text.y =element_text(size = 24, face = "bold", color = "black"),
@@ -267,8 +267,8 @@ subcounty_plot_hh <- merge_top_bottom_subcounty_number_hh  |>
 
 subcounty_plot_hh
 
-# ggsave("sub_pro_4_kenya_infographics/images/infographics_1_subcounty/top_bottom_subcounty_number_hh.png",
-#        width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_4_kenya_infographics/images/infographics_1_subcounty/top_bottom_subcounty_number_hh.png",
+       width = 12, height = 12, dpi = 300)
 
 ################################################################################
 # Average Household Size
@@ -321,7 +321,7 @@ subcounty_plot_avg_hh_size <- merge_top_bottom_subcounty_avg_hh_size  |>
        y = "Avg Household Size", 
        title = "",
        caption = "") +
-  theme(axis.title.x =element_text(size = 28),
+  theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
         axis.title.y =element_text(size = 28),
         axis.text.x =element_text(size = 24, color = "black"),
         axis.text.y =element_text(size = 24, face = "bold", color = "black"),
@@ -395,14 +395,14 @@ subcounty_plot_pop_density <- merge_top_bottom_subcounty_pop_density  |>
             fontface = "bold",
             size = 8) +
   scale_y_continuous(labels = comma, 
-                     expand = expansion(mult = c(0, 0.1))) +
+                     expand = expansion(mult = c(0.05, 0.15))) +
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
        y = "Population Density\n(per square kilometre)", 
        title = "",
        caption = "") +
-  theme(axis.title.x =element_text(size = 28),
+  theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
         axis.title.y =element_text(size = 28),
         axis.text.x =element_text(size = 24, color = "black"),
         axis.text.y =element_text(size = 24, face = "bold", color = "black"),
@@ -458,7 +458,7 @@ subcounty_plot_area <- merge_top_bottom_subcounty_area  |>
   ggplot(aes(x = reorder(county_sub, land_area_in_sq_km), y = land_area_in_sq_km, fill = bar_color)) + 
   geom_col(width = 0.95) + 
   coord_flip() + 
-  geom_text(aes(x = county_sub, y = land_area_in_sq_km+2000, label = comma(land_area_in_sq_km)), 
+  geom_text(aes(x = county_sub, y = land_area_in_sq_km+2500, label = comma(land_area_in_sq_km)), 
             color = "black", 
             fontface = "bold",
             size = 8) +
@@ -470,7 +470,7 @@ subcounty_plot_area <- merge_top_bottom_subcounty_area  |>
        y = "Area (square kilometres)", 
        title = "",
        caption = "") +
-  theme(axis.title.x =element_text(size = 28),
+  theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
         axis.title.y =element_text(size = 28),
         axis.text.x =element_text(size = 24, color = "black"),
         axis.text.y =element_text(size = 24, face = "bold", color = "black"),
@@ -552,7 +552,7 @@ subcounty_plot_mpo <- merge_top_bottom_subcounty_mpo  |>
        y = "Mobile Phone Ownership (%)", 
        title = "",
        caption = "") +
-  theme(axis.title.x =element_text(size = 28),
+  theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
         axis.title.y =element_text(size = 28),
         axis.text.x =element_text(size = 24, color = "black"),
         axis.text.y =element_text(size = 24, face = "bold", color = "black"),
@@ -634,7 +634,7 @@ subcounty_plot_uoi <- merge_top_bottom_subcounty_uoi  |>
        y = "Internet Usage (%)", 
        title = "",
        caption = "") +
-  theme(axis.title.x =element_text(size = 28),
+  theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
         axis.title.y =element_text(size = 28),
         axis.text.x =element_text(size = 24, color = "black"),
         axis.text.y =element_text(size = 24, face = "bold", color = "black"),
@@ -681,11 +681,11 @@ top_subcounty_tv <- infographic_1_hh_items_clean |>
   slice(1:10) |>
   mutate(bar_color = "Top")
 
-View(top_subcounty_uoi)
+View(top_subcounty_tv)
 
 # Find the bottom 10 subcounties (TV (%))
 
-bottom_subcounty_uoi <- infographic_1_hh_items_clean |>
+bottom_subcounty_tv <- infographic_1_hh_items_clean |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
   arrange(functional_tv) |>
   slice(1:10) |>
@@ -708,7 +708,7 @@ subcounty_plot_tv <- merge_top_bottom_subcounty_tv  |>
   ggplot(aes(x = reorder(county_sub, functional_tv), y = functional_tv, fill = bar_color)) + 
   geom_col(width = 0.95) + 
   coord_flip() + 
-  geom_text(aes(x = county_sub, y = functional_tv+5, label = comma(functional_tv)), 
+  geom_text(aes(x = county_sub, y = functional_tv+7.5, label = comma(functional_tv)), 
             color = "black", 
             fontface = "bold",
             size = 8) +
@@ -720,7 +720,7 @@ subcounty_plot_tv <- merge_top_bottom_subcounty_tv  |>
        y = "TV (%)", 
        title = "",
        caption = "") +
-  theme(axis.title.x =element_text(size = 28),
+  theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
         axis.title.y =element_text(size = 28),
         axis.text.x =element_text(size = 24, color = "black"),
         axis.text.y =element_text(size = 24, face = "bold", color = "black"),
@@ -788,7 +788,7 @@ subcounty_plot_car <- merge_top_bottom_subcounty_car  |>
        y = "Car (%)", 
        title = "",
        caption = "") +
-  theme(axis.title.x =element_text(size = 28),
+  theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
         axis.title.y =element_text(size = 28),
         axis.text.x =element_text(size = 24, color = "black"),
         axis.text.y =element_text(size = 24, face = "bold", color = "black"),
@@ -856,7 +856,7 @@ subcounty_plot_radio <- merge_top_bottom_subcounty_radio |>
        y = "Radio (%)", 
        title = "",
        caption = "") +
-  theme(axis.title.x =element_text(size = 28),
+  theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
         axis.title.y =element_text(size = 28),
         axis.text.x =element_text(size = 24, color = "black"),
         axis.text.y =element_text(size = 24, face = "bold", color = "black"),
