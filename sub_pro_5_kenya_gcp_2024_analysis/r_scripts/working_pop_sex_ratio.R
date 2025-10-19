@@ -158,7 +158,7 @@ barplot <- merged_df |>
 barplot 
 
 # Save the plot
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/working_pop/total/barplot.png", width = 12, height = 12, dpi = 300)
+#ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/working_pop/total/barplot.png", width = 12, height = 12, dpi = 300)
 
 # Map with legend
 
@@ -190,7 +190,7 @@ map <- ggplot(data = merged_df)+
 map
 
 # Save the plot
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/working_pop/total/map.png", width = 12, height = 12, dpi = 300)
+#ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/working_pop/total/map.png", width = 12, height = 12, dpi = 300)
 
 barplot / map +
   plot_annotation(title = "",
@@ -203,7 +203,7 @@ barplot / map +
                                 panel.background = element_rect(fill = "azure2", color = "azure2"))) &
   theme(text = element_text('Helvetica'))
 
-ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/working_pop/total/barplot_map.png", width = 12, height = 24, dpi = 300)
+#ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/working_pop/total/barplot_map.png", width = 12, height = 24, dpi = 300)
 
 # b) Top and Bottom 10 for Working Population
 
