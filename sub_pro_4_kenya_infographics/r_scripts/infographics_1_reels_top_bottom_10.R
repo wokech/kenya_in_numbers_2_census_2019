@@ -1,7 +1,7 @@
 # Reels for the Infographic Datasets
 # By @kenya.in.numbers
 
-# Data: Kenya GCP (2024)
+# Data: Census(2019)
 
 #####################
 #####PART A
@@ -137,7 +137,7 @@ pop_density_total <- infographic_data |>
   filter(County == "Kenya") |>
 select(`Population Density(No. per Sq. Km)`)
 
-# f) Share Land Area
+# g) Share Land Area
 
 share_land_area_top_10 <- infographic_data_no_total |>
   select(County, share_land_area) |>
@@ -153,7 +153,7 @@ share_land_area_total <- infographic_data |>
   filter(County == "Kenya") |>
 select(share_land_area)
 
-# g) Mobile Phone Ownership (%)
+# h) Mobile Phone Ownership (%)
 
 mpo_top_10 <- infographic_data_no_total |>
   select(County, MPO_Total_Perc) |>
@@ -169,7 +169,7 @@ mpo_total <- infographic_data |>
   filter(County == "Kenya") |>
 select(MPO_Total_Perc)
 
-# g) Use of Internet (%)
+# i) Use of Internet (%)
 
 uoi_top_10 <- infographic_data_no_total |>
   select(County, UoI_Total_Perc) |>
@@ -185,7 +185,7 @@ uoi_total <- infographic_data |>
   filter(County == "Kenya") |>
 select(UoI_Total_Perc)
 
-# g) Stand Alone Radio (%)
+# j) Stand Alone Radio (%)
 
 radio_top_10 <- infographic_data_no_total |>
   select(County, StandAloneRadio) |>
@@ -201,7 +201,7 @@ radio_total <- infographic_data |>
   filter(County == "Kenya") |>
 select(StandAloneRadio)
 
-# h) TV (%)
+# k) TV (%)
 
 tv_top_10 <- infographic_data_no_total |>
   select(County, FunctionalTV) |>
@@ -217,7 +217,7 @@ tv_total <- infographic_data |>
   filter(County == "Kenya") |>
 select(FunctionalTV)
 
-# h) Car (%)
+# l) Car (%)
 
 car_top_10 <- infographic_data_no_total |>
   select(County, Car) |>

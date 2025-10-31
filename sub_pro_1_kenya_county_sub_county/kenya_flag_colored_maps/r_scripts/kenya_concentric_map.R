@@ -135,3 +135,7 @@ concentric_map <- ggplot(data = merged_df)+
         panel.background = element_rect(fill = "azure2", color = "azure2"))
 
 concentric_map
+
+# Save the plot
+ggsave("sub_pro_1_kenya_county_sub_county/kenya_flag_colored_maps/images/kenya_concentric_1.png", width = 12, height = 12, dpi = 300)
+

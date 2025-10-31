@@ -1,7 +1,7 @@
-# Mapping of the Infographic Datasets
+# Mapping of the Infographic 1 Datasets
 # By @kenya.in.numbers
 
-# Data: Kenya GCP (2024)
+# Data: Census(2019)
 
 #####################
 #####PART A

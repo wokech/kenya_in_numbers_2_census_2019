@@ -1,4 +1,4 @@
-# Infographics Tables
+# Infographics Tables 1
 # By @kenya.in.numbers
 # From the Kenya Population and Housing Census Report (2019) and rKenyaCensus
 
