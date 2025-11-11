@@ -9,6 +9,8 @@ library(rKenyaCensus)
 library(janitor)
 library(scales)
 
+options(digits = 3)     # set default number of significant digits
+
 # NOTES
 
 #################################
@@ -82,7 +84,7 @@ subcounty_plot_uodlt <- merge_top_bottom_subcounty_uodlt  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Desktop, Laptop, or Tablet Usage (%)", 
+       y = "Household Usage of a\nDesktop, Laptop, or Tablet (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -172,7 +174,7 @@ subcounty_plot_dclt <- merge_top_bottom_subcounty_dclt  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = " Household Ownership of a\nPersonal Computing Device (%)", 
+       y = "Household Ownership of a\nPersonal Computing Device (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -240,7 +242,7 @@ subcounty_plot_bicycle <- merge_top_bottom_subcounty_bicycle  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Bicycle (%)", 
+       y = "Household Ownership of\na Bicycle (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -308,7 +310,7 @@ subcounty_plot_motor_cycle <- merge_top_bottom_subcounty_motor_cycle |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Motor Cycle (%)", 
+       y = " Household Ownership of\na Motor Cycle (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -378,7 +380,7 @@ subcounty_plot_refrigerator <- merge_top_bottom_subcounty_refrigerator |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Refrigerator (%)", 
+       y = "Household Ownership of\na Refrigerator (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -448,7 +450,7 @@ subcounty_plot_tlbt <- merge_top_bottom_subcounty_tlbt |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Truck, Lorry, Bus, or Three-Wheeler Truck (%)", 
+       y = "Household Ownership of a Truck, Lorry,\nBus, or Three-Wheeler Truck (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -518,7 +520,7 @@ subcounty_plot_tuk_tuk <- merge_top_bottom_subcounty_tuk_tuk |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Tuk Tuk (%)", 
+       y = "Household Ownership of a\nTuk Tuk (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),

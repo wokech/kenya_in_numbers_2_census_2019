@@ -93,7 +93,7 @@ map_dclt <- ggplot(data = merged_df_infographics)+
   theme_void()+
   labs(title = "",
        caption = "",
-       fill = "Ownership of a Personal Computing Device (%) -\n(Desktop/Computer/Laptop/Tablet)")+
+       fill = "Households with a Personal Computing Device (%) -\n(Desktop/Computer/Laptop/Tablet)")+
   theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
         legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
         legend.text = element_text(family = "Helvetica",size = 24),

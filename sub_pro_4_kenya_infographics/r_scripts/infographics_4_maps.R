@@ -324,7 +324,7 @@ map_total_torch <- ggplot(data = merged_df_infographics)+
   theme_void()+
   labs(title = "",
        caption = "",
-       fill = "Households using torches (solar- or battery-powered) for lighting (%)")+
+       fill = "Households using torches (solar- or battery-powered)\nfor lighting (%)")+
   theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
         legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
         legend.text = element_text(family = "Helvetica",size = 24),
@@ -381,20 +381,3 @@ map_total_paraffin
 
 # Save the plot
 ggsave("sub_pro_4_kenya_infographics/images/infographics_4_maps_top_bottom/map_total_paraffin.png", width = 12, height = 12, dpi = 300)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

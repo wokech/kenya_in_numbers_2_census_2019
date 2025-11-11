@@ -110,8 +110,9 @@ df_v4_t2_15 <- df_v4_t2_15 |>
 df_v4_t2_16 <- df_v4_t2_16 |>
   clean_names() |>
   select(county:conventional_households, main_sewer, septic_tank, 
-         bio_septic_tank_biodigester, open_bush) |>
-  mutate(total_flush = main_sewer + septic_tank + bio_septic_tank_biodigester)
+         bio_septic_tank_biodigester, open_bush, cess_pool) |>
+  mutate(total_flush = main_sewer + septic_tank + 
+           bio_septic_tank_biodigester + cess_pool)
 
 df_v4_t2_18 <- df_v4_t2_18 |>
   clean_names() |>

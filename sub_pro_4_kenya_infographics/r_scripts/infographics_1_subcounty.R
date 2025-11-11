@@ -10,6 +10,8 @@ library(rKenyaCensus)
 library(janitor)
 library(scales)
 
+options(digits = 3)     # set default number of significant digits
+
 # NOTES
 
 #################################
@@ -94,7 +96,7 @@ subcounty_plot_sex_ratio <- merge_top_bottom_subcounty_m_f_100  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Number of males\nper 100 females", 
+       y = "Number of males per 100 females", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -549,7 +551,7 @@ subcounty_plot_mpo <- merge_top_bottom_subcounty_mpo  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Mobile Phone Ownership (%)", 
+       y = "Household Mobile Phone Ownership (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -631,7 +633,7 @@ subcounty_plot_uoi <- merge_top_bottom_subcounty_uoi  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Internet Usage (%)", 
+       y = "Household Using the Internet (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -717,7 +719,7 @@ subcounty_plot_tv <- merge_top_bottom_subcounty_tv  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "TV (%)", 
+       y = "Household TV Ownership (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -785,7 +787,7 @@ subcounty_plot_car <- merge_top_bottom_subcounty_car  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Car (%)", 
+       y = "Household Car Ownership (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -853,7 +855,7 @@ subcounty_plot_radio <- merge_top_bottom_subcounty_radio |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Radio (%)", 
+       y = "Household Radio Ownership (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),

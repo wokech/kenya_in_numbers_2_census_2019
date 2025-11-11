@@ -9,6 +9,8 @@ library(rKenyaCensus)
 library(janitor)
 library(scales)
 
+options(digits = 3)     # set default number of significant digits
+
 # NOTES
 
 #################################
@@ -36,24 +38,24 @@ infographic_4_piped_water_clean <- infographic_4_piped_water_clean |>
   filter(!str_detect(sub_county, regex("Forest|Park", ignore_case = TRUE))) |>
   mutate(across(where(is.character),str_squish)) |> 
   mutate(county = tools::toTitleCase(tolower(county))) |> 
-  mutate(sub_county = tools::toTitleCase(tolower(sub_county)))
+  mutate(sub_county = tools::toTitleCase(tolower(sub_county))) |>
+  mutate(total_piped = pipedintodwelling + pipedtoyard_plot)
+  
 
 # Find the top 10 subcounties (Households with Piped Water (%))
 
 top_subcounty_piped_water <- infographic_4_piped_water_clean |>
-  mutate(total_piped = pipedintodwelling + pipedtoyard_plot) |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
   select(county_sub, total_piped) |>
   arrange(desc(total_piped)) |>
   slice(1:10) |>
   mutate(bar_color = "Top")
 
-View(top_subcounty_piped_water)
+#View(top_subcounty_piped_water)
 
 # Find the bottom 10 subcounties (Households with Piped Water (%))
 
 bottom_subcounty_piped_water <- infographic_4_piped_water_clean |>
-  mutate(total_piped = pipedintodwelling + pipedtoyard_plot) |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
   select(county_sub, total_piped) |>
   arrange(total_piped) |>
@@ -61,13 +63,13 @@ bottom_subcounty_piped_water <- infographic_4_piped_water_clean |>
   arrange(desc(total_piped)) |>
   mutate(bar_color = "Bottom")
 
-View(bottom_subcounty_piped_water)
+#View(bottom_subcounty_piped_water)
 
 # Merge the top and bottom subcounties
 
 merge_top_bottom_subcounty_piped_water <- rbind(top_subcounty_piped_water, bottom_subcounty_piped_water)
 
-View(merge_top_bottom_subcounty_piped_water)
+#View(merge_top_bottom_subcounty_piped_water)
 
 # Plot the top and bottom subcounties
 
@@ -78,7 +80,7 @@ subcounty_plot_piped_water <- merge_top_bottom_subcounty_piped_water  |>
   ggplot(aes(x = reorder(county_sub, total_piped), y = total_piped, fill = bar_color)) + 
   geom_col(width = 0.95) + 
   coord_flip() + 
-  geom_text(aes(x = county_sub, y = total_piped+5, label = comma(total_piped)), 
+  geom_text(aes(x = county_sub, y = total_piped+6, label = label_comma(accuracy = 0.1)(total_piped)), 
             color = "black", 
             fontface = "bold",
             size = 8) +
@@ -87,7 +89,7 @@ subcounty_plot_piped_water <- merge_top_bottom_subcounty_piped_water  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Households with piped water to compound (%)", 
+       y = "Households with piped water\nto compound (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -100,6 +102,7 @@ subcounty_plot_piped_water <- merge_top_bottom_subcounty_piped_water  |>
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
         plot.background = element_rect(fill = "azure2", color = "azure2"),
         panel.background = element_rect(fill = "azure2", color = "azure2"),
+        plot.margin = margin(t = 5, r = 20, b = 5, l = 5, unit = "pt"),
         legend.position = "")
 
 subcounty_plot_piped_water
@@ -126,7 +129,7 @@ infographic_4_open_bush_clean <- infographic_4_open_bush_clean |>
   mutate(county = tools::toTitleCase(tolower(county))) |> 
   mutate(sub_county = tools::toTitleCase(tolower(sub_county)))
 
-# Find the top 10 subcounties (Households with Piped Water (%))
+# Find the top 10 subcounties (Households with Open Bush Defecation (%))
 
 top_subcounty_open_bush <- infographic_4_open_bush_clean |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
@@ -135,9 +138,9 @@ top_subcounty_open_bush <- infographic_4_open_bush_clean |>
   slice(1:10) |>
   mutate(bar_color = "Top")
 
-View(top_subcounty_open_bush)
+#View(top_subcounty_open_bush)
 
-# Find the bottom 10 subcounties (Households with Piped Water (%))
+# Find the bottom 10 subcounties (Households with Open Bush Defecation (%))
 
 bottom_subcounty_open_bush <- infographic_4_open_bush_clean |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
@@ -147,13 +150,13 @@ bottom_subcounty_open_bush <- infographic_4_open_bush_clean |>
   arrange(desc(open_bush)) |>
   mutate(bar_color = "Bottom")
 
-View(bottom_subcounty_open_bush)
+#View(bottom_subcounty_open_bush)
 
 # Merge the top and bottom subcounties
 
 merge_top_bottom_subcounty_open_bush <- rbind(top_subcounty_open_bush, bottom_subcounty_open_bush)
 
-View(merge_top_bottom_subcounty_open_bush)
+#View(merge_top_bottom_subcounty_open_bush)
 
 # Plot the top and bottom subcounties
 
@@ -164,7 +167,7 @@ subcounty_plot_open_bush <- merge_top_bottom_subcounty_open_bush  |>
   ggplot(aes(x = reorder(county_sub, open_bush), y = open_bush, fill = bar_color)) + 
   geom_col(width = 0.95) + 
   coord_flip() + 
-  geom_text(aes(x = county_sub, y = open_bush+5, label = comma(open_bush)), 
+  geom_text(aes(x = county_sub, y = open_bush+8, label = label_comma(accuracy = 0.1)(open_bush)), 
             color = "black", 
             fontface = "bold",
             size = 8) +
@@ -173,7 +176,7 @@ subcounty_plot_open_bush <- merge_top_bottom_subcounty_open_bush  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Households practising open defecation (%)", 
+       y = "Households practising open\ndefecation (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -210,24 +213,23 @@ infographic_4_total_flush_clean <- infographic_4_total_flush_clean |>
   filter(!str_detect(sub_county, regex("Forest|Park", ignore_case = TRUE))) |>
   mutate(across(where(is.character),str_squish)) |> 
   mutate(county = tools::toTitleCase(tolower(county))) |> 
-  mutate(sub_county = tools::toTitleCase(tolower(sub_county)))
-
+  mutate(sub_county = tools::toTitleCase(tolower(sub_county))) |>
+  mutate(total_flush = main_sewer + septic_tank + bio_septic_tank_biodigester + cess_pool)
+  
 # Find the top 10 subcounties (Households with flushing toilets (septic/sewer) (%))
 
 top_subcounty_total_flush <- infographic_4_total_flush_clean |>
-  mutate(total_flush = main_sewer + septic_tank + bio_septic_tank_biodigester) |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
   select(county_sub, total_flush) |>
   arrange(desc(total_flush)) |>
   slice(1:10) |>
   mutate(bar_color = "Top")
 
-View(top_subcounty_total_flush)
+#View(top_subcounty_total_flush)
 
 # Find the bottom 10 subcounties (Households with flushing toilets (septic/sewer) (%))
 
 bottom_subcounty_total_flush <- infographic_4_total_flush_clean |>
-  mutate(total_flush = main_sewer + septic_tank + bio_septic_tank_biodigester) |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
   select(county_sub, total_flush) |>
   arrange(total_flush) |>
@@ -235,13 +237,13 @@ bottom_subcounty_total_flush <- infographic_4_total_flush_clean |>
   arrange(desc(total_flush)) |>
   mutate(bar_color = "Bottom")
 
-View(bottom_subcounty_total_flush)
+#View(bottom_subcounty_total_flush)
 
 # Merge the top and bottom subcounties
 
 merge_top_bottom_subcounty_total_flush <- rbind(top_subcounty_total_flush, bottom_subcounty_total_flush)
 
-View(merge_top_bottom_subcounty_total_flush)
+#View(merge_top_bottom_subcounty_total_flush)
 
 # Plot the top and bottom subcounties
 
@@ -252,7 +254,7 @@ subcounty_plot_total_flush <- merge_top_bottom_subcounty_total_flush  |>
   ggplot(aes(x = reorder(county_sub, total_flush), y = total_flush, fill = bar_color)) + 
   geom_col(width = 0.95) + 
   coord_flip() + 
-  geom_text(aes(x = county_sub, y = total_flush+5, label = comma(total_flush)), 
+  geom_text(aes(x = county_sub, y = total_flush+8, label = label_comma(accuracy = 0.1)(total_flush)), 
             color = "black", 
             fontface = "bold",
             size = 8) +
@@ -261,7 +263,7 @@ subcounty_plot_total_flush <- merge_top_bottom_subcounty_total_flush  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Households with flushing toilets - septic/sewer (%)", 
+       y = "Households with flushing toilets (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -297,24 +299,23 @@ infographic_4_total_gas_clean <- infographic_4_total_gas_clean |>
   filter(!str_detect(sub_county, regex("Forest|Park", ignore_case = TRUE))) |>
   mutate(across(where(is.character),str_squish)) |> 
   mutate(county = tools::toTitleCase(tolower(county))) |> 
-  mutate(sub_county = tools::toTitleCase(tolower(sub_county)))
-
-# Find the top 10 subcounties (Households with flushing toilets (septic/sewer) (%))
+  mutate(sub_county = tools::toTitleCase(tolower(sub_county))) |>
+  mutate(total_gas = gas_lpg + biogas)
+  
+# Find the top 10 subcounties (Households using clean cooking gas (%))
 
 top_subcounty_total_gas <- infographic_4_total_gas_clean |>
-  mutate(total_gas = gas_lpg + biogas) |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
   select(county_sub, total_gas) |>
   arrange(desc(total_gas)) |>
   slice(1:10) |>
   mutate(bar_color = "Top")
 
-View(top_subcounty_total_gas)
+#View(top_subcounty_total_gas)
 
-# Find the bottom 10 subcounties (Households with flushing toilets (septic/sewer) (%))
+# Find the bottom 10 subcounties (Households with clean cooking gas (%))
 
 bottom_subcounty_total_gas <- infographic_4_total_gas_clean |>
-  mutate(total_gas = gas_lpg + biogas) |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
   select(county_sub, total_gas) |>
   arrange(total_gas) |>
@@ -322,13 +323,13 @@ bottom_subcounty_total_gas <- infographic_4_total_gas_clean |>
   arrange(desc(total_gas)) |>
   mutate(bar_color = "Bottom")
 
-View(bottom_subcounty_total_gas)
+#View(bottom_subcounty_total_gas)
 
 # Merge the top and bottom subcounties
 
 merge_top_bottom_subcounty_total_gas <- rbind(top_subcounty_total_gas, bottom_subcounty_total_gas)
 
-View(merge_top_bottom_subcounty_total_gas)
+#View(merge_top_bottom_subcounty_total_gas)
 
 # Plot the top and bottom subcounties
 
@@ -339,7 +340,7 @@ subcounty_plot_total_gas <- merge_top_bottom_subcounty_total_gas  |>
   ggplot(aes(x = reorder(county_sub, total_gas), y = total_gas, fill = bar_color)) + 
   geom_col(width = 0.95) + 
   coord_flip() + 
-  geom_text(aes(x = county_sub, y = total_gas+5, label = comma(total_gas)), 
+  geom_text(aes(x = county_sub, y = total_gas+5, label = label_comma(accuracy = 0.1)(total_gas)), 
             color = "black", 
             fontface = "bold",
             size = 8) +
@@ -348,7 +349,7 @@ subcounty_plot_total_gas <- merge_top_bottom_subcounty_total_gas  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Households with flushing toilets - septic/sewer (%)", 
+       y = "Households with clean cooking gas (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -384,21 +385,21 @@ infographic_4_total_wood_clean <- infographic_4_total_wood_clean |>
   filter(!str_detect(sub_county, regex("Forest|Park", ignore_case = TRUE))) |>
   mutate(across(where(is.character),str_squish)) |> 
   mutate(county = tools::toTitleCase(tolower(county))) |> 
-  mutate(sub_county = tools::toTitleCase(tolower(sub_county)))
+  mutate(sub_county = tools::toTitleCase(tolower(sub_county))) |>
+  mutate(total_wood = firewood + charcoal)
 
-# Find the top 10 subcounties (Households with flushing toilets (septic/sewer) (%))
+# Find the top 10 subcounties (Households using wood fuel (%))
 
 top_subcounty_total_wood <- infographic_4_total_wood_clean |>
-  mutate(total_wood = firewood + charcoal) |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
   select(county_sub, total_wood) |>
   arrange(desc(total_wood)) |>
   slice(1:10) |>
   mutate(bar_color = "Top")
 
-View(top_subcounty_total_wood)
+#View(top_subcounty_total_wood)
 
-# Find the bottom 10 subcounties (Households with flushing toilets (septic/sewer) (%))
+# Find the bottom 10 subcounties (Households using wood fuel (%))
 
 bottom_subcounty_total_wood <- infographic_4_total_wood_clean |>
   mutate(total_wood = firewood + charcoal) |>
@@ -409,13 +410,13 @@ bottom_subcounty_total_wood <- infographic_4_total_wood_clean |>
   arrange(desc(total_wood)) |>
   mutate(bar_color = "Bottom")
 
-View(bottom_subcounty_total_wood)
+#View(bottom_subcounty_total_wood)
 
 # Merge the top and bottom subcounties
 
 merge_top_bottom_subcounty_total_wood <- rbind(top_subcounty_total_wood, bottom_subcounty_total_wood)
 
-View(merge_top_bottom_subcounty_total_wood)
+#View(merge_top_bottom_subcounty_total_wood)
 
 # Plot the top and bottom subcounties
 
@@ -426,7 +427,7 @@ subcounty_plot_total_wood <- merge_top_bottom_subcounty_total_wood  |>
   ggplot(aes(x = reorder(county_sub, total_wood), y = total_wood, fill = bar_color)) + 
   geom_col(width = 0.95) + 
   coord_flip() + 
-  geom_text(aes(x = county_sub, y = total_wood+5, label = comma(total_wood)), 
+  geom_text(aes(x = county_sub, y = total_wood+8, label = label_comma(accuracy = 0.1)(total_wood)), 
             color = "black", 
             fontface = "bold",
             size = 8) +
@@ -435,7 +436,7 @@ subcounty_plot_total_wood <- merge_top_bottom_subcounty_total_wood  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Households cooking with firewood and charcoal (%)", 
+       y = "Households cooking with\nfirewood and charcoal (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -473,7 +474,7 @@ infographic_4_mains_electricity_clean <- infographic_4_mains_electricity_clean |
   mutate(county = tools::toTitleCase(tolower(county))) |> 
   mutate(sub_county = tools::toTitleCase(tolower(sub_county)))
 
-# Find the top 10 subcounties (Households with flushing toilets (septic/sewer) (%))
+# Find the top 10 subcounties (Households using mains electricity (%))
 
 top_subcounty_mains_electricity <- infographic_4_mains_electricity_clean |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
@@ -482,9 +483,9 @@ top_subcounty_mains_electricity <- infographic_4_mains_electricity_clean |>
   slice(1:10) |>
   mutate(bar_color = "Top")
 
-View(top_subcounty_mains_electricity)
+#View(top_subcounty_mains_electricity)
 
-# Find the bottom 10 subcounties (Households with flushing toilets (septic/sewer) (%))
+# Find the bottom 10 subcounties (Households using mains electricity (%))
 
 bottom_subcounty_mains_electricity <- infographic_4_mains_electricity_clean |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
@@ -494,13 +495,13 @@ bottom_subcounty_mains_electricity <- infographic_4_mains_electricity_clean |>
   arrange(desc(mains_electricity)) |>
   mutate(bar_color = "Bottom")
 
-View(bottom_subcounty_mains_electricity)
+#View(bottom_subcounty_mains_electricity)
 
 # Merge the top and bottom subcounties
 
 merge_top_bottom_subcounty_mains_electricity <- rbind(top_subcounty_mains_electricity, bottom_subcounty_mains_electricity)
 
-View(merge_top_bottom_subcounty_mains_electricity)
+#View(merge_top_bottom_subcounty_mains_electricity)
 
 # Plot the top and bottom subcounties
 
@@ -511,7 +512,7 @@ subcounty_plot_mains_electricity <- merge_top_bottom_subcounty_mains_electricity
   ggplot(aes(x = reorder(county_sub, mains_electricity), y = mains_electricity, fill = bar_color)) + 
   geom_col(width = 0.95) + 
   coord_flip() + 
-  geom_text(aes(x = county_sub, y = mains_electricity+5, label = comma(mains_electricity)), 
+  geom_text(aes(x = county_sub, y = mains_electricity+7, label = label_comma(accuracy = 0.1)(mains_electricity)), 
             color = "black", 
             fontface = "bold",
             size = 8) +
@@ -520,7 +521,7 @@ subcounty_plot_mains_electricity <- merge_top_bottom_subcounty_mains_electricity
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Households cooking with firewood and charcoal (%)", 
+       y = "Households using mains electricity\nfor lighting (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -559,7 +560,7 @@ infographic_4_solar_clean <- infographic_4_solar_clean |>
   mutate(county = tools::toTitleCase(tolower(county))) |> 
   mutate(sub_county = tools::toTitleCase(tolower(sub_county)))
 
-# Find the top 10 subcounties (Households with flushing toilets (septic/sewer) (%))
+# Find the top 10 subcounties (Households using solar for lighting (%))
 
 top_subcounty_solar <- infographic_4_solar_clean |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
@@ -568,9 +569,9 @@ top_subcounty_solar <- infographic_4_solar_clean |>
   slice(1:10) |>
   mutate(bar_color = "Top")
 
-View(top_subcounty_solar)
+#View(top_subcounty_solar)
 
-# Find the bottom 10 subcounties (Households with flushing toilets (septic/sewer) (%))
+# Find the bottom 10 subcounties (Households using solar for lighting (%))
 
 bottom_subcounty_solar <- infographic_4_solar_clean |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
@@ -580,13 +581,13 @@ bottom_subcounty_solar <- infographic_4_solar_clean |>
   arrange(desc(solar)) |>
   mutate(bar_color = "Bottom")
 
-View(bottom_subcounty_solar)
+#View(bottom_subcounty_solar)
 
 # Merge the top and bottom subcounties
 
 merge_top_bottom_subcounty_solar <- rbind(top_subcounty_solar, bottom_subcounty_solar)
 
-View(merge_top_bottom_subcounty_solar)
+#View(merge_top_bottom_subcounty_solar)
 
 # Plot the top and bottom subcounties
 
@@ -597,7 +598,7 @@ subcounty_plot_solar <- merge_top_bottom_subcounty_solar  |>
   ggplot(aes(x = reorder(county_sub, solar), y = solar, fill = bar_color)) + 
   geom_col(width = 0.95) + 
   coord_flip() + 
-  geom_text(aes(x = county_sub, y = solar+5, label = comma(solar)), 
+  geom_text(aes(x = county_sub, y = solar+5, label = label_comma(accuracy = 0.1)(solar)), 
             color = "black", 
             fontface = "bold",
             size = 8) +
@@ -606,7 +607,7 @@ subcounty_plot_solar <- merge_top_bottom_subcounty_solar  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Households lighting with solar (%)", 
+       y = "Households using solar for lighting (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -643,24 +644,23 @@ infographic_4_torch_clean <- infographic_4_torch_clean |>
   filter(!str_detect(sub_county, regex("Forest|Park", ignore_case = TRUE))) |>
   mutate(across(where(is.character),str_squish)) |> 
   mutate(county = tools::toTitleCase(tolower(county))) |> 
-  mutate(sub_county = tools::toTitleCase(tolower(sub_county)))
+  mutate(sub_county = tools::toTitleCase(tolower(sub_county))) |>
+  mutate(total_torch = torch_spotlight_solar_charged + torch_spotlight_dry_cells)
 
-# Find the top 10 subcounties (Households with flushing toilets (septic/sewer) (%))
+# Find the top 10 subcounties (Households using torches for lighting (%))
 
 top_subcounty_torch <- infographic_4_torch_clean |>
-  mutate(total_torch = torch_spotlight_solar_charged + torch_spotlight_dry_cells) |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
   select(county_sub, total_torch) |>
   arrange(desc(total_torch)) |>
   slice(1:10) |>
   mutate(bar_color = "Top")
 
-View(top_subcounty_torch)
+#View(top_subcounty_torch)
 
-# Find the bottom 10 subcounties (Households with flushing toilets (septic/sewer) (%))
+# Find the bottom 10 subcounties (Households using torches for lighting (%))
 
 bottom_subcounty_torch <- infographic_4_torch_clean |>
-  mutate(total_torch = torch_spotlight_solar_charged + torch_spotlight_dry_cells) |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
   select(county_sub, total_torch) |>
   arrange(total_torch) |>
@@ -668,13 +668,13 @@ bottom_subcounty_torch <- infographic_4_torch_clean |>
   arrange(desc(total_torch)) |>
   mutate(bar_color = "Bottom")
 
-View(bottom_subcounty_torch)
+#View(bottom_subcounty_torch)
 
 # Merge the top and bottom subcounties
 
 merge_top_bottom_subcounty_torch <- rbind(top_subcounty_torch, bottom_subcounty_torch)
 
-View(merge_top_bottom_subcounty_torch)
+#View(merge_top_bottom_subcounty_torch)
 
 # Plot the top and bottom subcounties
 
@@ -685,7 +685,7 @@ subcounty_plot_torch <- merge_top_bottom_subcounty_torch  |>
   ggplot(aes(x = reorder(county_sub, total_torch), y = total_torch, fill = bar_color)) + 
   geom_col(width = 0.95) + 
   coord_flip() + 
-  geom_text(aes(x = county_sub, y = total_torch+5, label = comma(total_torch)), 
+  geom_text(aes(x = county_sub, y = total_torch+5, label = label_comma(accuracy = 0.1)(total_torch)), 
             color = "black", 
             fontface = "bold",
             size = 8) +
@@ -694,7 +694,7 @@ subcounty_plot_torch <- merge_top_bottom_subcounty_torch  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Households lighting with torch (%)", 
+       y = "Households using torches for lighting (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -731,24 +731,23 @@ infographic_4_paraffin_clean <- infographic_4_paraffin_clean |>
   filter(!str_detect(sub_county, regex("Forest|Park", ignore_case = TRUE))) |>
   mutate(across(where(is.character),str_squish)) |> 
   mutate(county = tools::toTitleCase(tolower(county))) |> 
-  mutate(sub_county = tools::toTitleCase(tolower(sub_county)))
-
+  mutate(sub_county = tools::toTitleCase(tolower(sub_county))) |>
+  mutate(total_paraffin = paraffin_lantern + paraffin_pressure_lamp + paraffin_tin_lamp)
+  
 # Find the top 10 subcounties (Households with flushing toilets (septic/sewer) (%))
 
 top_subcounty_paraffin <- infographic_4_paraffin_clean |>
-  mutate(total_paraffin = paraffin_lantern + paraffin_pressure_lamp + paraffin_tin_lamp) |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
   select(county_sub, total_paraffin) |>
   arrange(desc(total_paraffin)) |>
   slice(1:10) |>
   mutate(bar_color = "Top")
 
-View(top_subcounty_paraffin)
+#View(top_subcounty_paraffin)
 
 # Find the bottom 10 subcounties (Households with flushing toilets (septic/sewer) (%))
 
 bottom_subcounty_paraffin <- infographic_4_paraffin_clean |>
-  mutate(total_paraffin = paraffin_lantern + paraffin_pressure_lamp + paraffin_tin_lamp) |>
   unite(col = "county_sub", c("sub_county", "county"), sep = ", ", remove = TRUE) |>
   select(county_sub, total_paraffin) |>
   arrange(total_paraffin) |>
@@ -756,13 +755,13 @@ bottom_subcounty_paraffin <- infographic_4_paraffin_clean |>
   arrange(desc(total_paraffin)) |>
   mutate(bar_color = "Bottom")
 
-View(bottom_subcounty_paraffin)
+#View(bottom_subcounty_paraffin)
 
 # Merge the top and bottom subcounties
 
 merge_top_bottom_subcounty_paraffin <- rbind(top_subcounty_paraffin, bottom_subcounty_paraffin)
 
-View(merge_top_bottom_subcounty_paraffin)
+#View(merge_top_bottom_subcounty_paraffin)
 
 # Plot the top and bottom subcounties
 
@@ -773,7 +772,7 @@ subcounty_plot_paraffin <- merge_top_bottom_subcounty_paraffin  |>
   ggplot(aes(x = reorder(county_sub, total_paraffin), y = total_paraffin, fill = bar_color)) + 
   geom_col(width = 0.95) + 
   coord_flip() + 
-  geom_text(aes(x = county_sub, y = total_paraffin+5, label = comma(total_paraffin)), 
+  geom_text(aes(x = county_sub, y = total_paraffin+5, label = label_comma(accuracy = 0.1)(total_paraffin)), 
             color = "black", 
             fontface = "bold",
             size = 8) +
@@ -782,7 +781,7 @@ subcounty_plot_paraffin <- merge_top_bottom_subcounty_paraffin  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Households lighting with paraffin (%)", 
+       y = "Households using paraffin for lighting (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
