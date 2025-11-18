@@ -67,7 +67,7 @@ gcp_econ_activity_2023_select <- gcp_econ_activity_2023_select |>
 
 # 3) Visualize the data ####ADD MAP SIMILAR TO GCP SHARE####
 
-# Agriculture
+# a) Agriculture
 
 agriculture_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, agriculture_forestry_fishing)
@@ -174,7 +174,7 @@ ggplot(data = merged_df_agriculture_with_groups_top_5)+
 
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/agriculture_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
-# Mining
+# b) Mining
 
 mining_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, mining_quarrying)
@@ -281,7 +281,7 @@ ggplot(data = merged_df_mining_with_groups_top_5)+
 
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/mining_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
-# Manufacturing
+# c) Manufacturing
 
 manufacturing_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, manufacturing)
@@ -388,7 +388,7 @@ ggplot(data = merged_df_manufacturing_with_groups_top_5)+
 
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/manufacturing_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
-# Electricity Supply
+# d) Electricity Supply
 
 electricity_supply_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, electricity_supply)
@@ -495,7 +495,7 @@ ggplot(data = merged_df_electricity_supply_with_groups_top_5)+
 
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/electricity_supply_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
-# Water Supply & Waste Collection
+# e) Water Supply & Waste Collection
 
 water_supply_waste_collection_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, water_supply_waste_collection)
@@ -602,7 +602,7 @@ ggplot(data = merged_df_water_supply_waste_collection_with_groups_top_5)+
 
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/water_supply_waste_collection_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
-# Construction
+# f) Construction
 
 construction_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, construction)
@@ -710,7 +710,7 @@ ggplot(data = merged_df_construction_with_groups_top_5)+
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/construction_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
 
-# Wholesale, Retail, & Motor Vehicle Repair
+# g) Wholesale, Retail, & Motor Vehicle Repair
 
 wholesale_retail_trade_repair_of_motor_vehicles_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, wholesale_retail_trade_repair_of_motor_vehicles)
@@ -817,7 +817,7 @@ ggplot(data = merged_df_wholesale_retail_trade_repair_of_motor_vehicles_with_gro
 
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/wholesale_retail_trade_repair_of_motor_vehicles_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
-# Transport & Storage
+# h) Transport & Storage
 
 transport_storage_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, transport_storage)
@@ -925,7 +925,7 @@ ggplot(data = merged_df_transport_storage_with_groups_top_5)+
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/transport_storage_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
 
-# Accommodation & Food Service
+# i) Accommodation & Food Service
 
 accommodation_food_service_activities_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, accommodation_food_service_activities)
@@ -1033,7 +1033,7 @@ ggplot(data = merged_df_accommodation_food_service_activities_with_groups_top_5)
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/accommodation_food_service_activities_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
 
-# ICT
+# j) ICT
 
 information_communication_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, information_communication)
@@ -1141,7 +1141,7 @@ ggplot(data = merged_df_information_communication_with_groups_top_5)+
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/information_communication_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
 
-# Financial & Insurance Services
+# k) Financial & Insurance Services
 
 financial_insurance_activities_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, financial_insurance_activities)
@@ -1248,7 +1248,7 @@ ggplot(data = merged_df_financial_insurance_activities_with_groups_top_5)+
 
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/financial_insurance_activities_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
-# Real Estate
+# l) Real Estate
 
 real_estate_activities_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, real_estate_activities)
@@ -1355,7 +1355,7 @@ ggplot(data = merged_df_real_estate_activities_with_groups_top_5)+
 
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/real_estate_activities_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
-# Professional & Technical Services
+# m) Professional & Technical Services
 
 professional_technical_services_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, professional_technical_services)
@@ -1462,7 +1462,7 @@ ggplot(data = merged_df_professional_technical_services_with_groups_top_5)+
 
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/professional_technical_services_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
-# Administrative Support Services
+# n) Administrative Support Services
 
 administrative_support_services_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, administrative_support_services)
@@ -1569,7 +1569,7 @@ ggplot(data = merged_df_administrative_support_services_with_groups_top_5)+
 
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/administrative_support_services_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
-# Public Admin & Defence
+# o) Public Admin & Defence
 
 public_administration_defence_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, public_administration_defence)
@@ -1677,7 +1677,7 @@ ggplot(data = merged_df_public_administration_defence_with_groups_top_5)+
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/public_administration_defence_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
 
-# Education
+# p) Education
 
 education_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, education)
@@ -1785,7 +1785,7 @@ ggplot(data = merged_df_education_with_groups_top_5)+
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/education_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
 
-# Human Health & Social Work
+# q) Human Health & Social Work
 
 human_health_social_work_activities_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, human_health_social_work_activities)
@@ -1894,7 +1894,7 @@ ggplot(data = merged_df_human_health_social_work_activities_with_groups_top_5)+
 ggsave("sub_pro_5_kenya_gcp_2024_analysis/images/gcp_econ_activity_sector/human_health_social_work_activities_top_5_counties_map.png", width = 12, height = 8, dpi = 300)
 
 
-# Other Services
+# r) Other Services
 
 other_service_activities_gcp_econ_activity_2023 <- gcp_econ_activity_2023_select |>
   select(county, other_service_activities)

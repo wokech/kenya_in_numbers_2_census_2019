@@ -320,7 +320,7 @@ subcounty_plot_avg_hh_size <- merge_top_bottom_subcounty_avg_hh_size  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Avg Household Size", 
+       y = "Average Household Size", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),
@@ -633,7 +633,7 @@ subcounty_plot_uoi <- merge_top_bottom_subcounty_uoi  |>
   scale_fill_manual(values = classification_colors) +
   theme_classic()+
   labs(x = "", 
-       y = "Household Using the Internet (%)", 
+       y = "Households Using the Internet (%)", 
        title = "",
        caption = "") +
   theme(axis.title.x =element_text(size = 28, margin = margin(t = 20)),

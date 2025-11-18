@@ -35,8 +35,8 @@ infographic_data_select <- infographic_data |>
   clean_names() |>
   filter(county != "Kenya")
 
-# Total Population = 47,564,296
-# Approximate third = 15,854,765
+# Total Population = 47,564,296 (Approximate third = 15,854,765)
+
 
 # Lower Third
 infographic_data_select_lower_third <- infographic_data_select |>

@@ -111,9 +111,9 @@ ggplot(merge_top_bottom_subcounty_dlt) +
        title = "") +
   theme_minimal() +
   theme(axis.title.x =element_text(size = 24, margin = margin(t = 20)),
-        axis.title.y =element_text(size = 32, angle = 90),
-        axis.text.x =element_text(size = 24),
-        axis.text.y =element_text(size = 18),
+        axis.title.y =element_text(size = 24, angle = 90),
+        axis.text.x =element_text(size = 26, color = "black"),
+        axis.text.y =element_text(size = 26, color = "black"),
         axis.line.x = element_line(),
         axis.ticks.x = element_line(),
         axis.ticks.length.x = unit(5, "pt"),
@@ -156,23 +156,33 @@ View(merge_top_bottom_subcounty_dlt_diff)
 
 
 ggplot(merge_top_bottom_subcounty_dlt_diff) +
-  geom_segment(aes(x = 0, xend = uodlt_diff_perc, 
-                   y = reorder(county_sub, uodlt_diff_perc), yend = reorder(county_sub, uodlt_diff_perc)), 
-               color = "purple", linewidth = 2) +
-  geom_point(aes(x = uodlt_diff_perc, y = reorder(county_sub, uodlt_diff_perc)), color = "navy", size = 5) +
+  geom_segment(aes(x = 0, 
+                   xend = uodlt_diff_perc, 
+                   y = reorder(county_sub, uodlt_diff_perc), 
+                   yend = reorder(county_sub, uodlt_diff_perc), 
+                   color = uodlt_diff_perc > 0),
+               linewidth = 2) +
+  geom_point(aes(
+    x = uodlt_diff_perc, 
+    y = reorder(county_sub, uodlt_diff_perc), 
+    color = uodlt_diff_perc > 0),
+    size = 5) +
   scale_x_continuous() +
+  scale_color_manual(
+    values = c("TRUE" = "navy", "FALSE" = "salmon")) +
   labs(x = "Magnitude of sex differences in\ndesktop, laptop, or tablet use (%)", y = "",
        title = "") +
   theme_minimal() +
   theme(axis.title.x =element_text(size = 24, margin = margin(t = 20)),
-        axis.title.y =element_text(size = 32, angle = 90),
-        axis.text.x =element_text(size = 24),
-        axis.text.y =element_text(size = 18),
+        axis.title.y =element_text(size = 24, angle = 90),
+        axis.text.x =element_text(size = 26, color = "black"),
+        axis.text.y =element_text(size = 26, color = "black"),
         axis.line.x = element_line(),
         axis.ticks.x = element_line(),
         axis.ticks.length.x = unit(5, "pt"),
         #plot.title = element_markdown(family = "Helvetica",size = 36, hjust = 0.5),
         legend.title = element_blank(),
+        legend.position = "none",
         plot.caption = element_text(family = "Helvetica",size = 12),
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2"))

@@ -283,7 +283,7 @@ map_tuk_tuk <- ggplot(data = merged_df_infographics)+
                                barheight = unit(1.5, "cm"), 
                                barwidth = unit(15, "cm")))
 
-map_truck_lorry_bus_three_wheelertruck
+map_tuk_tuk
 
 # Save the plot
 ggsave("sub_pro_4_kenya_infographics/images/infographics_3_maps_top_bottom/map_tuk_tuk.png", width = 12, height = 12, dpi = 300)

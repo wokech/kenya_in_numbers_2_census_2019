@@ -155,9 +155,9 @@ ggplot(merge_top_bottom_subcounty_mpo) +
        title = "") +
   theme_minimal() +
   theme(axis.title.x =element_text(size = 24, margin = margin(t = 20)),
-        axis.title.y =element_text(size = 32, angle = 90),
-        axis.text.x =element_text(size = 24),
-        axis.text.y =element_text(size = 18),
+        axis.title.y =element_text(size = 24, angle = 90),
+        axis.text.x =element_text(size = 26, color = "black"),
+        axis.text.y =element_text(size = 26, color = "black"),
         axis.line.x = element_line(),
         axis.ticks.x = element_line(),
         axis.ticks.length.x = unit(5, "pt"),
@@ -210,9 +210,9 @@ ggplot(merge_top_bottom_subcounty_uoi) +
        title = "") +
   theme_minimal() +
   theme(axis.title.x =element_text(size = 24, margin = margin(t = 20)),
-        axis.title.y =element_text(size = 32, angle = 90),
-        axis.text.x =element_text(size = 24),
-        axis.text.y =element_text(size = 18),
+        axis.title.y =element_text(size = 24, angle = 90),
+        axis.text.x =element_text(size = 26, color = "black"),
+        axis.text.y =element_text(size = 26, color = "black"),
         axis.line.x = element_line(),
         axis.ticks.x = element_line(),
         axis.ticks.length.x = unit(5, "pt"),
@@ -227,10 +227,11 @@ ggsave("sub_pro_4_kenya_infographics/images/infographics_1_male_female_subcounty
 
 
 
-
+################################################################################
 
 # Plot top 10 and bottom 10 Male-Female Differences in percentage
 
+################################################################################
 
 # Mobile Phone Ownership (%)
 
@@ -260,23 +261,33 @@ View(merge_top_bottom_subcounty_mpo_diff)
 
 
 ggplot(merge_top_bottom_subcounty_mpo_diff) +
-  geom_segment(aes(x = 0, xend = m_f_diff_perc, 
-                   y = reorder(county_sub, m_f_diff_perc), yend = reorder(county_sub, m_f_diff_perc)), 
-               color = "purple", linewidth = 2) +
-  geom_point(aes(x = m_f_diff_perc, y = reorder(county_sub, m_f_diff_perc)), color = "purple", size = 5) +
+  geom_segment(aes(x = 0, 
+                   xend = m_f_diff_perc, 
+                   y = reorder(county_sub, m_f_diff_perc), 
+                   yend = reorder(county_sub, m_f_diff_perc),
+                   color = m_f_diff_perc > 0), 
+               linewidth = 2) +
+  geom_point(aes(
+    x = m_f_diff_perc, 
+    y = reorder(county_sub, m_f_diff_perc),
+    color = m_f_diff_perc > 0),
+    size = 5) +
   scale_x_continuous() +
+  scale_color_manual(
+    values = c("TRUE" = "navy", "FALSE" = "salmon")) +
   labs(x = "Magnitude of sex differences in\nmobile phone ownership (%)", y = "",
        title = "") +
   theme_minimal() +
   theme(axis.title.x =element_text(size = 24, margin = margin(t = 20)),
-        axis.title.y =element_text(size = 32, angle = 90),
-        axis.text.x =element_text(size = 24),
-        axis.text.y =element_text(size = 18),
+        axis.title.y =element_text(size = 24, angle = 90),
+        axis.text.x =element_text(size = 26, color = "black"),
+        axis.text.y =element_text(size = 26, color = "black"),
         axis.line.x = element_line(),
         axis.ticks.x = element_line(),
         axis.ticks.length.x = unit(5, "pt"),
         #plot.title = element_markdown(family = "Helvetica",size = 36, hjust = 0.5),
         legend.title = element_blank(),
+        legend.position = "none",
         plot.caption = element_text(family = "Helvetica",size = 12),
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2"))
@@ -314,23 +325,33 @@ View(merge_top_bottom_subcounty_uoi_diff)
 
 
 ggplot(merge_top_bottom_subcounty_uoi_diff) +
-  geom_segment(aes(x = 0, xend = uoi_diff_perc, 
-                   y = reorder(county_sub, uoi_diff_perc), yend = reorder(county_sub, uoi_diff_perc)), 
-               color = "purple", linewidth = 2) +
-  geom_point(aes(x = uoi_diff_perc, y = reorder(county_sub, uoi_diff_perc)), color = "purple", size = 5) +
+  geom_segment(aes(x = 0, 
+                   xend = uoi_diff_perc, 
+                   y = reorder(county_sub, uoi_diff_perc), 
+                   yend = reorder(county_sub, uoi_diff_perc),
+                   color = uoi_diff_perc > 0
+                   ), 
+               linewidth = 2) +
+  geom_point(aes(x = uoi_diff_perc, 
+                 y = reorder(county_sub, uoi_diff_perc),
+                 color = uoi_diff_perc > 0),
+             size = 5) +
   scale_x_continuous() +
+  scale_color_manual(
+    values = c("TRUE" = "navy", "FALSE" = "salmon")) +
   labs(x = "Magnitude of sex differences\nin internet usage (%)", y = "",
        title = "") +
   theme_minimal() +
   theme(axis.title.x =element_text(size = 24, margin = margin(t = 20)),
-        axis.title.y =element_text(size = 32, angle = 90),
-        axis.text.x =element_text(size = 24),
-        axis.text.y =element_text(size = 18),
+        axis.title.y =element_text(size = 24, angle = 90),
+        axis.text.x =element_text(size = 26, color = "black"),
+        axis.text.y =element_text(size = 26, color = "black"),
         axis.line.x = element_line(),
         axis.ticks.x = element_line(),
         axis.ticks.length.x = unit(5, "pt"),
         #plot.title = element_markdown(family = "Helvetica",size = 36, hjust = 0.5),
         legend.title = element_blank(),
+        legend.position = "none",
         plot.caption = element_text(family = "Helvetica",size = 12),
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2"))

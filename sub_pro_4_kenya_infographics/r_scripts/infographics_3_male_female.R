@@ -79,8 +79,8 @@ ggplot(uodlt_county) +
   theme_minimal() +
   theme(axis.title.x =element_text(size = 24, margin = margin(t = 20)),
         axis.title.y =element_text(size = 32, angle = 90),
-        axis.text.x =element_text(size = 24),
-        axis.text.y =element_text(size = 18),
+        axis.text.x =element_text(size = 24, color = "black"),
+        axis.text.y =element_text(size = 18, color = "black"),
         axis.line.x = element_line(),
         axis.ticks.x = element_line(),
         axis.ticks.length.x = unit(5, "pt"),
@@ -100,26 +100,36 @@ ggsave("sub_pro_4_kenya_infographics/images/infographics_3_male_female/uodlt_mal
 # Use of Desktop/Laptop/Tablet (%)
 
 ggplot(uodlt_county) +
-  geom_segment(aes(x = 0, xend = uodlt_diff_perc, 
-                   y = reorder(county, uodlt_diff_perc), yend = reorder(county, uodlt_diff_perc)), 
-               color = "purple", linewidth = 2) +
-  geom_point(aes(x = uodlt_diff_perc, y = reorder(county, uodlt_diff_perc)), color = "purple", size = 5) +
+  geom_segment(aes(x = 0, 
+                   xend = uodlt_diff_perc, 
+                   y = reorder(county, uodlt_diff_perc), 
+                   yend = reorder(county, uodlt_diff_perc),
+                   color = m_f_diff_perc > 0), 
+               linewidth = 2) +
+  geom_point(aes(x = uodlt_diff_perc, 
+                 y = reorder(county, uodlt_diff_perc), 
+                 color = m_f_diff_perc > 0), 
+                 size = 5) +
   scale_x_continuous() +
+  scale_color_manual(
+    values = c("TRUE" = "navy", "FALSE" = "salmon")) +
   labs(x = "Magnitude of sex differences in\ndesktop, laptop, or tablet use (%)", y = "",
        title = "") +
   theme_minimal() +
   theme(axis.title.x =element_text(size = 24, margin = margin(t = 20)),
         axis.title.y =element_text(size = 32, angle = 90),
-        axis.text.x =element_text(size = 24),
-        axis.text.y =element_text(size = 18),
+        axis.text.x =element_text(size = 24, color = "black"),
+        axis.text.y =element_text(size = 18, color = "black"),
         axis.line.x = element_line(),
         axis.ticks.x = element_line(),
         axis.ticks.length.x = unit(5, "pt"),
         #plot.title = element_markdown(family = "Helvetica",size = 36, hjust = 0.5),
         legend.title = element_blank(),
+        legend.position = "none",
         plot.caption = element_text(family = "Helvetica",size = 12),
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2"))
 
 ggsave("sub_pro_4_kenya_infographics/images/infographics_3_male_female/uodlt_male_female_diff.png",
        width = 12, height = 12, dpi = 300)
+
