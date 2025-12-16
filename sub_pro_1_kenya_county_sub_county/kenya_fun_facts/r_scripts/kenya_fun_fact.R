@@ -8,7 +8,7 @@ library(janitor)
 
 # Load the data
 
-kenya_fun_facts <- read_excel("sub_pro_1_kenya_county_sub_county/kenya_fun_fact/datasets/kenya_fun_facts_1.xlsx")
+kenya_fun_facts <- read_excel("sub_pro_1_kenya_county_sub_county/kenya_fun_facts/datasets/kenya_fun_facts_1.xlsx")
 
 # Clean names
 kenya_fun_facts <- kenya_fun_facts |>

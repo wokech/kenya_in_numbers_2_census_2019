@@ -30,6 +30,7 @@ library(ggbreak)
 library(patchwork)
 library(ggrepel)
 library(ggsflabel)
+library(ggsci)
 
 # 2) View the data available in the data catalogue
 
