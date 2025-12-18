@@ -13,76 +13,42 @@ The goal of this project is to generate insightful visualizations and make them 
 **UPDATE: REPO IS BEING REARRANGED SO LINKS BELOW WILL NOT BE FUNCTIONAL UNTIL FURTHER NOTICE (05 June 2025)**
 
 ### Visualization 1 - Kenyan Generations by Presidential Era (2019)
-### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/pop_gen_scripts/knbs_pop_generation_2019.R)
+
+[Code 1](sub_pro_2_pop_gen/r_scripts/national/knbs_pop_gen_presidency.R)
+[Code 2](sub_pro_2_pop_gen/r_scripts/national/knbs_pop_gen_presidency_pyramid.R)
+
 In this visualization, I look at the Total Kenyan Population by Generation. 
 Here, Kenyans are classified into 5 generations (Pre-Independence, Kenyatta I, Moi, Kibaki, and Kenyatta II)
 
-![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/knbs_pop_generation_2019/knbs_pop_generation_2019_3.png)
+![](sub_pro_2_pop_gen/images/national/knbs_pop_generation_2019_president_3.png)
 
-### Visualization 2 - Kenyan Generations by universal definition (2019)
-### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/pop_gen_scripts/knbs_pop_generation_2019_v2.R)
+### Visualization 2 - Kenyan Generations by Universal Definition (2019)
+
+[Code 1](sub_pro_2_pop_gen/r_scripts/national/knbs_pop_gen_universal.R)
+[Code 2](sub_pro_2_pop_gen/r_scripts/national/knbs_pop_gen_universal_pyramid.R)
+
 In this visualization, I look at the Total Kenyan Population by Generation. 
-Here, Kenyans are classified into 5 generations (Pre-Independence, Kenyatta I, Moi, Kibaki, and Kenyatta II)
+Here, Kenyans are classified into universal generations ()
 
-![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/knbs_pop_generation_2019/knbs_pop_generation_2019_3_v2.png)
+![](sub_pro_2_pop_gen/images/national/knbs_pop_generation_2019_universal_3.png)
 
 ### Notes
 1) This project is inspired by [Jason Timm's](https://jtimm.net/posts/seven-generations/) work on American generations and is modified to the Kenyan context. 
 
-### Visualization 3 - Human Sex ratio for every single-year of age in Kenya (2019)
-### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/sex_census_scripts/national_sex_census.R)
-In this visualization we look at the gender ratios for every single-year of age.
+### Visualization 3 - Instagram Hashtags normalized by Population (%)
 
-![alt_text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/national_sex_census/age_sex_ratio_2.png)
+[Code](sub_pro_4_kenya_infographics/r_scripts/hashtag_map_1.R)
 
-### Visualization 4 - Human Sex ratio in the 47 Kenyan Counties (2019)
-### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/sex_census_scripts/county_sex_census.R)
-In this visualization we look at the gender ratios for Kenya's 47 counties.
+In this visualization, we look at the number of Instagram hashtags normalized by population (%) in all of Kenya's 47 counties
 
-![alt_text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/county_sex_census/barplot_map.png)
+![](sub_pro_4_kenya_infographics/images/hashtag_plots/map_hashtag_normalized.png)
 
-### Notes
-1) Mapping inspired by inspired by Shelmith Kariuki [article](https://shelkariuki.netlify.app/post/firstmap/)
+### Visualization 4 - Top 5 County Economies in Kenya
 
-### Citation
-1) 2019 Kenya Population and Housing Census
-2) Shelmith Kariuki (2020). rKenyaCensus: 2019 Kenya Population and Housing Census Results. R package version 0.0.2.
+[Code](sub_pro_5_kenya_gcp_2024_analysis/r_scripts/infographics_2a_county_econ_activity_1.R)
 
-### Visualization 5 - Car Ownership in Kenya (2019)
+This visualization showcases the top 5 county economies in Kenya. The top 5 economies contribute to approximately half of Kenya's GDP.
 
-### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/car_ownership.R)
-
-![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/car_ownership/car_ownership_1.png)
-
-### Notes
-1) The percentage of Kenyan households that own a car in each of the 47 counties. 
-2) The ownership percentages are compared to the urban, rural, and national averages.
-
-### Visualization 6 - Where is Open Defecation Still Widely Practiced in Kenya?
-
-### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/open_defecation.R)
-
-![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/human_waste/open_def_map.png)
-
-### Notes
-1) Maps inspired by the book [Analyzing US Census Data](https://walker-data.com/census-r/working-with-census-data-outside-the-united-states.html)
-
-### Visualization 7  - Where are you most likely to find an asbestos roof in Kenya?
-
-### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/building_scripts/building_materials_kenya_roof_asbestos_county.R)
-
-![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/building_materials_kenya_asbestos_county/all_counties_asbestos_barplot_map.png)
-
-### Visualization 8  - Where do Kenyans own and where do they rent their own homes?
-
-### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/home_trends_scripts/home_trends_kenya_national.R)
-
-![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/homes_national/rur_urb_stacked.png)
-
-### Visualization 9  - Livestock numbers in Kenya (2019)
-
-### [Code](https://github.com/wokech/kenya_census_2019_insights/blob/main/R_scripts/livestock_scripts/livestock_kenya_national.R)
-
-![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/livestock_kenya_national/treemap_livestock_national.png)
-![alt text](https://github.com/wokech/kenya_census_2019_insights/blob/main/images/livestock_kenya_national/table_livestock_national.png)
+![](sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/top_5_counties_treemap.png)
+![](sub_pro_5_kenya_gcp_2024_analysis/images/gcp_county_share/top_5_counties_map.png)
 
