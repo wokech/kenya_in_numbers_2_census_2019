@@ -13,7 +13,11 @@ library(ggplot2)
 library(geogrid)
 
 # --- 1) Get Kenya counties (GADM level 1) ---
-ken_l1 <- geodata::gadm(country = "KEN", level = 1, path = "sub_pro_1_kenya_county_sub_county/kenya_hex_map")
+ken_l1 <- geodata::gadm(
+  country = "KEN",
+  level = 1,
+  path = "sub_pro_1_kenya_county_sub_county/kenya_hex_map"
+)
 ken_counties <- sf::st_as_sf(ken_l1)
 
 # --- 2) Pick a name column robustly ---
@@ -59,7 +63,11 @@ ken_hex <- assign_polygons(ken_counties, hex_grid)
 ggplot(ken_hex) +
   geom_sf(aes(fill = population_millions), color = "white", linewidth = 0.3) +
   coord_sf() +
-  scale_fill_viridis_c(option = "C", name = "Population (millions)", na.value = "grey90") +
+  scale_fill_viridis_c(
+    option = "C",
+    name = "Population (millions)",
+    na.value = "grey90"
+  ) +
   labs(
     title = "Kenya Counties — Hex Cartogram",
     subtitle = "One hex per county (adjacency-preserving layout)",
@@ -76,7 +84,11 @@ ggplot(ken_hex) +
 ggplot(ken_counties) +
   geom_sf(aes(fill = population_millions), color = "white", linewidth = 0.2) +
   coord_sf() +
-  scale_fill_viridis_c(option = "C", name = "Population (millions)", na.value = "grey90") +
+  scale_fill_viridis_c(
+    option = "C",
+    name = "Population (millions)",
+    na.value = "grey90"
+  ) +
   labs(
     title = "Kenya Counties — Actual Geography",
     caption = "Boundaries: GADM via {geodata} | Demo data"
