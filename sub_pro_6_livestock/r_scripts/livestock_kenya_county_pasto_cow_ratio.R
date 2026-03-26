@@ -24,6 +24,8 @@ df_livestock <- V4_T2.24
 
 View(df_livestock)
 
+# write.csv(df_livestock, "sub_pro_6_livestock/datasets/df_livestock_all.csv")
+
 
 # Table 1 for County and SubCounty Analysis
 table_1_pasto <- df_livestock[2:393,]

@@ -1,5 +1,5 @@
 # Mode of acquisition for the houses that have been purchased
-# By @willyokech
+# By @kenya.in.numbers
 # Data: rKenyaCensus
 
 #1) Load the required packages
@@ -20,6 +20,7 @@ df_1 <- V4_T2.11a
 
 View(df_1)
 
+write.csv(df_1, "sub_pro_9_home_acquisition/datasets/home_acquisition_all.csv")
 
 # 4) Preliminary filtering and cleanup
 

@@ -1,5 +1,5 @@
 # What type of homes do Kenyans live in? Tenure, Mode of Acquisition, and House Type.
-# By @willyokech
+# By @kenya.in.numbers
 # Data: rKenyaCensus
 
 #1) Load the required packages
@@ -16,13 +16,15 @@ data("DataCatalogue")
 
 # 3) Load the required data
 
-df_1 <- V4_T2.10
-View(df_1)
+df_own_rent <- V4_T2.10
+View(df_own_rent)
+
+#write.csv(df_own_rent, "sub_pro_11_home_ownership/datasets/own_rent_all.csv")
 
 # 4) Preliminary filtering and cleanup
 
 # Table 1 for National Analysis
-table_1 <- df_1[1:3,]
+table_1 <- df_own_rent[1:3,]
 View(table_1)
 
 table_1 <- table_1 %>%

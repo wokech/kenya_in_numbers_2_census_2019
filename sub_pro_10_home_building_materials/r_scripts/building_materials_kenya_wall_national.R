@@ -1,5 +1,5 @@
-# Mode of acquisition for the houses that have been purchased
-# By @willyokech
+# Home building materials - wall
+# By @kenya.in.numbers
 # Data: rKenyaCensus
 
 #1) Load the required packages
@@ -19,6 +19,8 @@ data("DataCatalogue")
 df_wall <- V4_T2.13
 
 View(df_wall)
+
+# write.csv(df_wall, "sub_pro_10_home_building_materials/datasets/building_materials_wall_all.csv")
 
 
 # Table 1 for National Analysis

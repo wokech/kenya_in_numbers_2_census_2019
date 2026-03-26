@@ -10,6 +10,9 @@ library(rKenyaCensus)
 df_2 <- V1_T2.5
 df_2
 
+# write.csv(df_2, "sub_pro_3_sex/datasets/df_pop_sex_subcounty_all.csv")
+
+
 
 # Calculate the male:female ratio per 100
 df_2_ratio <- df_2 %>%

@@ -1,0 +1,394 @@
+"","County","SubCounty","AdminArea","Male","Female","Intersex","Total"
+"1","xxx","Total","xxx",23548056,24014716,1524,47564296
+"2","Mombasa County","Mombasa","County",610257,598046,30,1208333
+"3","Mombasa County","Changamwe","SubCounty",68761,63121,0,131882
+"4","Mombasa County","Jomvu","SubCounty",83002,80410,3,163415
+"5","Mombasa County","Kisauni","SubCounty",146748,145176,6,291930
+"6","Mombasa County","Likoni","SubCounty",126962,123392,4,250358
+"7","Mombasa County","Mvita","SubCounty",75565,78601,5,154171
+"8","Mombasa County","Nyali","SubCounty",109219,107346,12,216577
+"9","Kwale County","Kwale","County",425121,441681,18,866820
+"10","Kwale County","Kinango","SubCounty",45413,48806,1,94220
+"11","Kwale County","Lungalunga","SubCounty",97174,101245,4,198423
+"12","Kwale County","Matuga","SubCounty",95831,98419,2,194252
+"13","Kwale County","Msambweni","SubCounty",89206,88480,4,177690
+"14","Kwale County","Samburu-Kwale","SubCounty",97497,104731,7,202235
+"15","Kilifi County","Kilifi","County",704089,749673,25,1453787
+"16","Kilifi County","Chonyi","SubCounty",29527,32807,1,62335
+"17","Kilifi County","Ganze","SubCounty",66921,76981,4,143906
+"18","Kilifi County","Kaloleni","SubCounty",92614,101063,5,193682
+"19","Kilifi County","Kauma","SubCounty",10965,11673,0,22638
+"20","Kilifi County","Kilifi North","SubCounty",86986,91836,2,178824
+"21","Kilifi County","Kilifi South","SubCounty",101852,104897,4,206753
+"22","Kilifi County","Magarini","SubCounty",93302,98308,0,191610
+"23","Kilifi County","Malindi","SubCounty",163351,169866,9,333226
+"24","Kilifi County","Rabai","SubCounty",58571,62242,0,120813
+"25","Tana River County","Tana River","County",158550,157391,2,315943
+"26","Tana River County","Tana North","SubCounty",55716,54924,0,110640
+"27","Tana River County","Tana Delta","SubCounty",59123,57632,2,116757
+"28","Tana River County","Tana River","SubCounty",43711,44835,0,88546
+"29","Lamu County","Lamu","County",76103,67813,4,143920
+"30","Lamu County","Lamu East","SubCounty",11675,10583,0,22258
+"31","Lamu County","Lamu West","SubCounty",64428,57230,4,121662
+"32","Taita/Taveta County","Taita/Taveta","County",173337,167327,7,340671
+"33","Taita/Taveta County","Mwatate","SubCounty",41426,40231,2,81659
+"34","Taita/Taveta County","Taita","SubCounty",28386,27573,0,55959
+"35","Taita/Taveta County","Taveta","SubCounty",47410,43812,0,91222
+"36","Taita/Taveta County","Voi","SubCounty",56115,55711,5,111831
+"37","Garissa County","Garissa","County",458975,382344,34,841353
+"38","Garissa County","Balambala","SubCounty",20277,11979,1,32257
+"39","Garissa County","Dadaab","SubCounty",99059,86185,8,185252
+"40","Garissa County","Fafi","SubCounty",72617,61413,10,134040
+"41","Garissa County","Garissa","SubCounty",83460,80449,5,163914
+"42","Garissa County","Hulugho","SubCounty",78081,55898,5,133984
+"43","Garissa County","Ijara","SubCounty",80458,61129,4,141591
+"44","Garissa County","Lagdera","SubCounty",25023,25291,1,50315
+"45","Wajir County","Wajir","County",415374,365840,49,781263
+"46","Wajir County","Buna","SubCounty",26796,23088,2,49886
+"47","Wajir County","Eldas","SubCounty",44743,43759,7,88509
+"48","Wajir County","Habaswein","SubCounty",94613,79505,16,174134
+"49","Wajir County","Tarbaj","SubCounty",27141,30086,5,57232
+"50","Wajir County","Wajir East","SubCounty",59359,51292,3,110654
+"51","Wajir County","Wajir North","SubCounty",31990,30209,7,62206
+"52","Wajir County","Wajir South","SubCounty",64947,51864,3,116814
+"53","Wajir County","Wajir West","SubCounty",65785,56037,6,121828
+"54","Mandera County","Mandera","County",434976,432444,37,867457
+"55","Mandera County","Mandera West","SubCounty",48166,50130,4,98300
+"56","Mandera County","Banisa","SubCounty",78301,74288,9,152598
+"57","Mandera County","Kutulo","SubCounty",35799,36593,2,72394
+"58","Mandera County","Lafey","SubCounty",40476,42976,5,83457
+"59","Mandera County","Mandera Central","SubCounty",71688,85527,5,157220
+"60","Mandera County","Mandera East","SubCounty",83538,76095,5,159638
+"61","Mandera County","Mandera North","SubCounty",77008,66835,7,143850
+"62","Marsabit County","Marsabit","County",243548,216219,18,459785
+"63","Marsabit County","Loiyangalani","SubCounty",17659,18051,3,35713
+"64","Marsabit County","Marsabit Central","SubCounty",40956,38214,11,79181
+"65","Marsabit County","Marsabit North","SubCounty",30091,24205,1,54297
+"66","Marsabit County","Marsabit South","SubCounty",33215,32161,0,65376
+"67","Marsabit County","Moyale","SubCounty",56440,52508,1,108949
+"68","Marsabit County","North Horr","SubCounty",41719,29726,2,71447
+"69","Marsabit County","Sololo","SubCounty",23468,21354,0,44822
+"70","Isiolo County","Isiolo","County",139510,128483,9,268002
+"71","Isiolo County","Garbatulla","SubCounty",54661,45068,1,99730
+"72","Isiolo County","Isiolo","SubCounty",60414,60647,5,121066
+"73","Isiolo County","Merti","SubCounty",24435,22768,3,47206
+"74","Meru County","Meru","County",767698,777975,41,1545714
+"75","Meru County","Buuri East","SubCounty",38101,38497,0,76598
+"76","Meru County","Buuri West","SubCounty",40496,40264,2,80762
+"77","Meru County","Igembe Central","SubCounty",111208,110200,4,221412
+"78","Meru County","Igembe North","SubCounty",83364,85949,4,169317
+"79","Meru County","Igembe South","SubCounty",80192,81446,8,161646
+"80","Meru County","Imenti North","SubCounty",88506,89056,5,177567
+"81","Meru County","Imenti South","SubCounty",103338,103162,6,206506
+"82","Meru County","Meru Central","SubCounty",66920,66894,4,133818
+"83","Meru County","Tigania Central","SubCounty",51814,52916,0,104730
+"84","Meru County","Tigania East","SubCounty",35352,37194,3,72549
+"85","Meru County","Tigania West","SubCounty",67715,72241,5,139961
+"86","Meru County","Meru National Park*","Special Area",283,102,0,385
+"87","Meru County","Mt Kenya Forest*","Special Area",409,54,0,463
+"88","Tharaka-Nithi County","Tharaka-Nithi","County",193764,199406,7,393177
+"89","Tharaka-Nithi County","Igambang'ombe","SubCounty",26464,26745,1,53210
+"90","Tharaka-Nithi County","Maara","SubCounty",57689,57205,0,114894
+"91","Tharaka-Nithi County","Meru South","SubCounty",44923,46155,2,91080
+"92","Tharaka-Nithi County","Tharaka North","SubCounty",28290,30053,2,58345
+"93","Tharaka-Nithi County","Tharaka South","SubCounty",36190,39058,2,75250
+"94","Tharaka-Nithi County","Mt Kenya Forest*","Special Area",208,190,0,398
+"95","Embu County","Embu","County",304208,304367,24,608599
+"96","Embu County","Embu East","SubCounty",64571,64991,2,129564
+"97","Embu County","Embu North","SubCounty",39665,39888,3,79556
+"98","Embu County","Embu West","SubCounty",63125,63966,9,127100
+"99","Embu County","Mbeere South","SubCounty",83311,80159,6,163476
+"100","Embu County","Mbeere North","SubCounty",53517,55360,4,108881
+"101","Embu County","Mt Kenya Forest*","Special Area",19,3,0,22
+"102","Kitui County","Kitui","County",549003,587151,33,1136187
+"103","Kitui County","Ikutha","SubCounty",39986,42976,2,82964
+"104","Kitui County","Katulani","SubCounty",23150,23957,1,47108
+"105","Kitui County","Kisasi","SubCounty",22646,23496,0,46142
+"106","Kitui County","Kitui Central","SubCounty",52123,53863,5,105991
+"107","Kitui County","Kitui West","SubCounty",33887,36983,1,70871
+"108","Kitui County","Kyuso","SubCounty",36789,40077,1,76867
+"109","Kitui County","Lower Yatta","SubCounty",31701,31628,0,63329
+"110","Kitui County","Matinyani","SubCounty",23362,24448,1,47811
+"111","Kitui County","Migwani","SubCounty",37525,41726,4,79255
+"112","Kitui County","Mumoni","SubCounty",13748,15596,0,29344
+"113","Kitui County","Mutitu","SubCounty",26388,28896,3,55287
+"114","Kitui County","Mutitu North","SubCounty",10337,10877,1,21215
+"115","Kitui County","Mutomo","SubCounty",54819,58531,6,113356
+"116","Kitui County","Mwingi Central","SubCounty",52539,56174,0,108713
+"117","Kitui County","Mwingi East","SubCounty",40314,44820,5,85139
+"118","Kitui County","Nzambani","SubCounty",22929,23857,2,46788
+"119","Kitui County","Thagicu","SubCounty",7141,7994,1,15136
+"120","Kitui County","Tseikuru","SubCounty",19619,21252,0,40871
+"121","Machakos County","Machakos","County",710707,711191,34,1421932
+"122","Machakos County","Athi River","SubCounty",164322,158172,5,322499
+"123","Machakos County","Kalama","SubCounty",26764,27692,6,54462
+"124","Machakos County","Kangundo","SubCounty",48697,49219,1,97917
+"125","Machakos County","Kathiani","SubCounty",54910,56976,4,111890
+"126","Machakos County","Machakos","SubCounty",85486,85114,6,170606
+"127","Machakos County","Masinga","SubCounty",73519,75001,2,148522
+"128","Machakos County","Matungulu","SubCounty",81145,80407,5,161557
+"129","Machakos County","Mwala","SubCounty",90427,91466,3,181896
+"130","Machakos County","Yatta","SubCounty",85437,87144,2,172583
+"131","Makueni County","Makueni","County",489691,497942,20,987653
+"132","Makueni County","Kathonzweni","SubCounty",39335,40442,3,79780
+"133","Makueni County","Kibwezi","SubCounty",98477,98517,6,197000
+"134","Makueni County","Kilungu","SubCounty",29019,31932,1,60952
+"135","Makueni County","Makindu","SubCounty",42204,42742,0,84946
+"136","Makueni County","Makueni","SubCounty",65418,64955,2,130375
+"137","Makueni County","Mbooni East","SubCounty",48152,49601,3,97756
+"138","Makueni County","Mbooni West","SubCounty",49434,53159,1,102594
+"139","Makueni County","Mukaa","SubCounty",54481,53068,0,107549
+"140","Makueni County","Nzaui","SubCounty",63171,63526,4,126701
+"141","Nyandarua County","Nyandarua","County",315022,323247,20,638289
+"142","Nyandarua County","Kinangop","SubCounty",54727,56679,4,111410
+"143","Nyandarua County","Nyandarua South","SubCounty",46157,47708,5,93870
+"144","Nyandarua County","Mirangine","SubCounty",33447,33766,1,67214
+"145","Nyandarua County","Kipipiri","SubCounty",46113,47740,2,93855
+"146","Nyandarua County","Nyandarua Central","SubCounty",37329,37931,2,75262
+"147","Nyandarua County","Nyandarua West","SubCounty",48752,49209,4,97965
+"148","Nyandarua County","Nyandarua North","SubCounty",48486,50210,2,98698
+"149","Nyandarua County","Aberdare National Park*","Special Area",11,4,0,15
+"150","Nyeri County","Nyeri","County",374288,384845,31,759164
+"151","Nyeri County","Tetu","SubCounty",39293,41155,5,80453
+"152","Nyeri County","Kieni East","SubCounty",55360,55012,4,110376
+"153","Nyeri County","Kieni West","SubCounty",43843,44677,5,88525
+"154","Nyeri County","Mathira East","SubCounty",48070,50992,3,99065
+"155","Nyeri County","Mathira West","SubCounty",29480,30412,3,59895
+"156","Nyeri County","Nyeri South","SubCounty",44115,46964,2,91081
+"157","Nyeri County","Mukurwe-ini","SubCounty",43975,45156,6,89137
+"158","Nyeri County","Nyeri Central","SubCounty",69955,70380,3,140338
+"159","Nyeri County","Mt Kenya Forest*","Special Area",123,65,0,188
+"160","Nyeri County","Aberdare Forest*","Special Area",74,32,0,106
+"161","Kirinyaga County","Kirinyaga","County",302011,308369,31,610411
+"162","Kirinyaga County","Kirinyaga Central","SubCounty",60118,62617,5,122740
+"163","Kirinyaga County","Kirinyaga East","SubCounty",67037,68514,8,135559
+"164","Kirinyaga County","Kirinyaga West","SubCounty",56154,58502,4,114660
+"165","Kirinyaga County","Mwea East","SubCounty",66432,66114,8,132554
+"166","Kirinyaga County","Mwea West","SubCounty",52228,52594,6,104828
+"167","Kirinyaga County","Mt Kenya Forest*","Special Area",42,28,0,70
+"168","Murang'a County","Murang'a","County",523940,532669,31,1056640
+"169","Murang'a County","Murang'a East","SubCounty",54665,55645,1,110311
+"170","Murang'a County","Kangema","SubCounty",39582,40862,3,80447
+"171","Murang'a County","Mathioya","SubCounty",45454,47359,1,92814
+"172","Murang'a County","Kahuro","SubCounty",43352,44834,7,88193
+"173","Murang'a County","Murang'a South","SubCounty",91732,93087,5,184824
+"174","Murang'a County","Gatanga","SubCounty",94437,93548,4,187989
+"175","Murang'a County","Kigumo","SubCounty",67989,68929,3,136921
+"176","Murang'a County","Kandara","SubCounty",86698,88393,7,175098
+"177","Murang'a County","Aberdare Forest*","Special Area",31,12,0,43
+"178","Kiambu County","Kiambu","County",1187146,1230454,135,2417735
+"179","Kiambu County","Gatundu North","SubCounty",54189,55678,3,109870
+"180","Kiambu County","Gatundu South","SubCounty",60384,61714,5,122103
+"181","Kiambu County","Githunguri","SubCounty",82037,83187,8,165232
+"182","Kiambu County","Juja","SubCounty",148446,152480,22,300948
+"183","Kiambu County","Kabete","SubCounty",97794,101845,14,199653
+"184","Kiambu County","Kiambaa","SubCounty",115690,120695,15,236400
+"185","Kiambu County","Kiambu","SubCounty",69661,76225,17,145903
+"186","Kiambu County","Kikuyu","SubCounty",90919,96198,5,187122
+"187","Kiambu County","Lari","SubCounty",67061,68238,4,135303
+"188","Kiambu County","Limuru","SubCounty",79632,79682,0,159314
+"189","Kiambu County","Ruiru","SubCounty",180947,190144,20,371111
+"190","Kiambu County","Thika East","SubCounty",19688,19264,4,38956
+"191","Kiambu County","Thika West","SubCounty",120698,125104,18,245820
+"192","Turkana County","Turkana","County",478087,448868,21,926976
+"193","Turkana County","Kibish","SubCounty",18651,18117,1,36769
+"194","Turkana County","Loima","SubCounty",54341,53453,1,107795
+"195","Turkana County","Turkana Central","SubCounty",93145,92160,0,185305
+"196","Turkana County","Turkana East","SubCounty",76871,61643,12,138526
+"197","Turkana County","Turkana North","SubCounty",32810,32408,0,65218
+"198","Turkana County","Turkana South","SubCounty",78402,75329,5,153736
+"199","Turkana County","Turkana West","SubCounty",123867,115758,2,239627
+"200","West Pokot County","West Pokot","County",307013,314213,15,621241
+"201","West Pokot County","Kipkomo","SubCounty",50923,51703,7,102633
+"202","West Pokot County","Pokot Central","SubCounty",59682,59331,3,119016
+"203","West Pokot County","Pokot North","SubCounty",64780,69702,3,134485
+"204","West Pokot County","Pokot South","SubCounty",39808,40851,2,80661
+"205","West Pokot County","West Pokot","SubCounty",91820,92626,0,184446
+"206","Samburu County","Samburu","County",156774,153546,7,310327
+"207","Samburu County","Samburu Central","SubCounty",83633,81307,2,164942
+"208","Samburu County","Samburu East","SubCounty",38211,39782,1,77994
+"209","Samburu County","Samburu North","SubCounty",34930,32457,4,67391
+"210","Trans Nzoia County","Trans Nzoia","County",489107,501206,28,990341
+"211","Trans Nzoia County","Trans Nzoia West","SubCounty",101198,101174,5,202377
+"212","Trans Nzoia County","Trans Nzoia East","SubCounty",113498,116029,11,229538
+"213","Trans Nzoia County","Kwanza","SubCounty",100234,103584,3,203821
+"214","Trans Nzoia County","Endebess","SubCounty",56090,55689,3,111782
+"215","Trans Nzoia County","Kiminini","SubCounty",118087,124730,6,242823
+"216","Uasin Gishu County","Uasin Gishu","County",580269,582889,28,1163186
+"217","Uasin Gishu County","Ainabkoi","SubCounty",68348,69835,1,138184
+"218","Uasin Gishu County","Kapseret","SubCounty",99650,98845,4,198499
+"219","Uasin Gishu County","Kesses","SubCounty",74301,74493,4,148798
+"220","Uasin Gishu County","Moiben","SubCounty",90309,91027,2,181338
+"221","Uasin Gishu County","Soy","SubCounty",114082,115007,5,229094
+"222","Uasin Gishu County","Turbo","SubCounty",133579,133682,12,267273
+"223","Elgeyo/Marakwet County","Elgeyo/Marakwet","County",227317,227151,12,454480
+"224","Elgeyo/Marakwet County","Keiyo North","SubCounty",49601,49574,1,99176
+"225","Elgeyo/Marakwet County","Keiyo South","SubCounty",60919,59827,4,120750
+"226","Elgeyo/Marakwet County","Marakwet East","SubCounty",47849,49190,2,97041
+"227","Elgeyo/Marakwet County","Marakwet West","SubCounty",68948,68560,5,137513
+"228","Nandi County","Nandi","County",441259,444430,22,885711
+"229","Nandi County","Chesumei","SubCounty",80949,83180,4,164133
+"230","Nandi County","Nandi Central","SubCounty",73291,74255,7,147553
+"231","Nandi County","Nandi East","SubCounty",59899,59271,3,119173
+"232","Nandi County","Nandi North","SubCounty",82512,83656,3,166171
+"233","Nandi County","Nandi South","SubCounty",85718,87029,3,172750
+"234","Nandi County","Tinderet","SubCounty",58890,57039,2,115931
+"235","Baringo County","Baringo","County",336322,330428,13,666763
+"236","Baringo County","Baringo Central","SubCounty",48120,48829,2,96951
+"237","Baringo County","Baringo North","SubCounty",52369,52500,2,104871
+"238","Baringo County","East Pokot","SubCounty",40462,39459,2,79923
+"239","Baringo County","Koibatek","SubCounty",65295,64238,2,129535
+"240","Baringo County","Marigat","SubCounty",45706,45246,3,90955
+"241","Baringo County","Mogotio","SubCounty",46014,45088,2,91104
+"242","Baringo County","Tiaty East","SubCounty",38356,35068,0,73424
+"243","Laikipia County","Laikipia","County",259440,259102,18,518560
+"244","Laikipia County","Laikipia Central","SubCounty",47888,47705,1,95594
+"245","Laikipia County","Laikipia East","SubCounty",52078,50732,5,102815
+"246","Laikipia County","Laikipia North","SubCounty",18067,18116,1,36184
+"247","Laikipia County","Laikipia West","SubCounty",65158,64102,3,129263
+"248","Laikipia County","Nyahururu","SubCounty",76249,78447,8,154704
+"249","Nakuru County","Nakuru","County",1077272,1084835,95,2162202
+"250","Nakuru County","Gilgil","SubCounty",92955,92247,7,185209
+"251","Nakuru County","Kuresoi North","SubCounty",87472,87599,3,175074
+"252","Nakuru County","Kuresoi South","SubCounty",78204,77117,3,155324
+"253","Nakuru County","Molo","SubCounty",78129,78598,5,156732
+"254","Nakuru County","Naivasha","SubCounty",179222,176132,29,355383
+"255","Nakuru County","Nakuru East","SubCounty",92956,100960,10,193926
+"256","Nakuru County","Nakuru North","SubCounty",106155,111880,15,218050
+"257","Nakuru County","Nakuru West","SubCounty",101797,96854,10,198661
+"258","Nakuru County","Njoro","SubCounty",118361,120408,4,238773
+"259","Nakuru County","Rongai","SubCounty",99976,99922,8,199906
+"260","Nakuru County","Subukia","SubCounty",42045,43118,1,85164
+"261","Narok County","Narok","County",579042,578805,26,1157873
+"262","Narok County","Narok East","SubCounty",58699,56617,7,115323
+"263","Narok County","Narok North","SubCounty",128024,123829,9,251862
+"264","Narok County","Narok South","SubCounty",118441,120029,2,238472
+"265","Narok County","Narok West","SubCounty",97085,98198,4,195287
+"266","Narok County","Trans Mara East","SubCounty",54545,56637,1,111183
+"267","Narok County","Trans Mara West","SubCounty",122220,123491,3,245714
+"268","Narok County","Mau Forest*","Special Area",28,4,0,32
+"269","Kajiado County","Kajiado","County",557098,560704,38,1117840
+"270","Kajiado County","Isinya","SubCounty",105607,104860,6,210473
+"271","Kajiado County","Kajiado Central","SubCounty",81514,80343,5,161862
+"272","Kajiado County","Kajiado North","SubCounty",150675,155908,13,306596
+"273","Kajiado County","Kajiado West","SubCounty",91607,91237,5,182849
+"274","Kajiado County","Loitokitok","SubCounty",94613,97225,8,191846
+"275","Kajiado County","Mashuuru","SubCounty",33082,31131,1,64214
+"276","Kericho County","Kericho","County",450741,451008,28,901777
+"277","Kericho County","Belgut","SubCounty",72508,72564,0,145072
+"278","Kericho County","Bureti","SubCounty",98823,100642,5,199470
+"279","Kericho County","Kericho East","SubCounty",86671,83947,7,170625
+"280","Kericho County","Kipkelion","SubCounty",61066,61460,4,122530
+"281","Kericho County","Londiani","SubCounty",68570,69000,10,137580
+"282","Kericho County","Soin Sigowet","SubCounty",63103,63395,2,126500
+"283","Bomet County","Bomet","County",434287,441379,23,875689
+"284","Bomet County","Bomet East","SubCounty",71095,73172,8,144275
+"285","Bomet County","Chepalungu","SubCounty",79921,84912,4,164837
+"286","Bomet County","Konoin","SubCounty",83120,80384,3,163507
+"287","Bomet County","Sotik","SubCounty",112369,115482,4,227855
+"288","Bomet County","Bomet Central","SubCounty",87782,87429,4,175215
+"289","Kakamega County","Kakamega","County",897133,970406,40,1867579
+"290","Kakamega County","Butere","SubCounty",73634,80463,3,154100
+"291","Kakamega County","Kakamega Central","SubCounty",92774,95432,6,188212
+"292","Kakamega County","Kakamega East","SubCounty",80853,86784,4,167641
+"293","Kakamega County","Kakamega North","SubCounty",115511,122814,5,238330
+"294","Kakamega County","Kakamega South","SubCounty",53219,58524,0,111743
+"295","Kakamega County","Khwisero","SubCounty",53670,59803,3,113476
+"296","Kakamega County","Likuyani","SubCounty",73710,78341,4,152055
+"297","Kakamega County","Lugari","SubCounty",59135,63593,0,122728
+"298","Kakamega County","Matete","SubCounty",31749,34423,0,66172
+"299","Kakamega County","Matungu","SubCounty",78793,88143,4,166940
+"300","Kakamega County","Mumias East","SubCounty",55895,60953,3,116851
+"301","Kakamega County","Mumias West","SubCounty",54915,60438,1,115354
+"302","Kakamega County","Navakholo","SubCounty",73275,80695,7,153977
+"303","Vihiga County","Vihiga","County",283678,306323,12,590013
+"304","Vihiga County","Emuhaya","SubCounty",46507,50633,1,97141
+"305","Vihiga County","Vihiga","SubCounty",45788,49501,3,95292
+"306","Vihiga County","Sabatia","SubCounty",62944,68683,1,131628
+"307","Vihiga County","Luanda","SubCounty",51525,55165,4,106694
+"308","Vihiga County","Hamisi","SubCounty",76901,82337,3,159241
+"309","Vihiga County","Kakamega Forest*","Special Area",13,4,0,17
+"310","Bungoma County","Bungoma","County",812146,858389,35,1670570
+"311","Bungoma County","Bumula","SubCounty",103368,112523,1,215892
+"312","Bungoma County","Bungoma Central","SubCounty",86302,91438,8,177748
+"313","Bungoma County","Bungoma East","SubCounty",55775,58771,2,114548
+"314","Bungoma County","Bungoma North","SubCounty",58790,62526,1,121317
+"315","Bungoma County","Bungoma South","SubCounty",139705,148055,5,287765
+"316","Bungoma County","Cheptais","SubCounty",67717,68312,6,136035
+"317","Bungoma County","Kimilili-Bungoma","SubCounty",78560,83475,3,162038
+"318","Bungoma County","Mt Elgon","SubCounty",38977,39893,3,78873
+"319","Bungoma County","Bungoma West","SubCounty",58225,61649,1,119875
+"320","Bungoma County","Tongaren","SubCounty",48685,51657,1,100343
+"321","Bungoma County","Webuye West","SubCounty",74180,78331,4,152515
+"322","Bungoma County","Mt Elgon Forest*","Special Area",1862,1759,0,3621
+"323","Busia County","Busia","County",426252,467401,28,893681
+"324","Busia County","Bunyala","SubCounty",41465,44511,1,85977
+"325","Busia County","Busia","SubCounty",69034,73373,1,142408
+"326","Busia County","Butula","SubCounty",65136,75195,3,140334
+"327","Busia County","Nambale","SubCounty",52900,58732,4,111636
+"328","Busia County","Samia","SubCounty",50821,56341,14,107176
+"329","Busia County","Teso North","SubCounty",66412,71619,3,138034
+"330","Busia County","Teso South","SubCounty",80484,87630,2,168116
+"331","Siaya County","Siaya","County",471669,521496,18,993183
+"332","Siaya County","Siaya","SubCounty",105906,118433,4,224343
+"333","Siaya County","Gem","SubCounty",85696,94092,4,179792
+"334","Siaya County","Ugenya","SubCounty",62624,71726,4,134354
+"335","Siaya County","Ugunja","SubCounty",48912,55329,0,104241
+"336","Siaya County","Bondo","SubCounty",95962,101917,4,197883
+"337","Siaya County","Rarieda","SubCounty",72569,79999,2,152570
+"338","Kisumu County","Kisumu","County",560942,594609,23,1155574
+"339","Kisumu County","Kisumu East","SubCounty",108304,112689,4,220997
+"340","Kisumu County","Kisumu Central","SubCounty",84155,89985,5,174145
+"341","Kisumu County","Kisumu West","SubCounty",85697,87121,3,172821
+"342","Kisumu County","Seme","SubCounty",57658,64007,2,121667
+"343","Kisumu County","Muhoroni","SubCounty",76770,77345,1,154116
+"344","Kisumu County","Nyando","SubCounty",77121,84380,7,161508
+"345","Kisumu County","Nyakach","SubCounty",71237,79082,1,150320
+"346","Homa Bay County","Homa Bay","County",539560,592367,23,1131950
+"347","Homa Bay County","Homa Bay","SubCounty",55756,61681,2,117439
+"348","Homa Bay County","Ndhiwa","SubCounty",103706,114422,8,218136
+"349","Homa Bay County","Rachuonyo North","SubCounty",85409,93273,4,178686
+"350","Homa Bay County","Rachuonyo East","SubCounty",57709,64111,2,121822
+"351","Homa Bay County","Rachuonyo South","SubCounty",61663,69151,0,130814
+"352","Homa Bay County","Rangwe","SubCounty",55404,62325,3,117732
+"353","Homa Bay County","Suba North","SubCounty",60530,64406,2,124938
+"354","Homa Bay County","Suba South","SubCounty",59383,62998,2,122383
+"355","Migori County","Migori","County",536187,580214,35,1116436
+"356","Migori County","Awendo","SubCounty",56348,60939,3,117290
+"357","Migori County","Kuria East","SubCounty",46969,49894,9,96872
+"358","Migori County","Kuria West","SubCounty",101090,107417,6,208513
+"359","Migori County","Nyatike","SubCounty",83989,92164,9,176162
+"360","Migori County","Rongo","SubCounty",59257,65329,1,124587
+"361","Migori County","Suna East","SubCounty",58977,63694,3,122674
+"362","Migori County","Suna West","SubCounty",61430,67459,1,128890
+"363","Migori County","Uriri","SubCounty",68127,73318,3,141448
+"364","Kisii County","Kisii","County",605784,661038,38,1266860
+"365","Kisii County","Etago","SubCounty",40137,43647,3,83787
+"366","Kisii County","Gucha","SubCounty",39631,44108,1,83740
+"367","Kisii County","Gucha South","SubCounty",40022,43598,3,83623
+"368","Kisii County","Kenyenya","SubCounty",62859,68878,3,131740
+"369","Kisii County","Kisii Central","SubCounty",81330,85573,3,166906
+"370","Kisii County","Kisii South","SubCounty",64514,70615,5,135134
+"371","Kisii County","Kitutu Central","SubCounty",74608,79561,6,154175
+"372","Kisii County","Marani","SubCounty",50598,56864,2,107464
+"373","Kisii County","Masaba South","SubCounty",58143,64248,5,122396
+"374","Kisii County","Nyamache","SubCounty",62113,68782,3,130898
+"375","Kisii County","Sameta","SubCounty",31829,35164,4,66997
+"376","Nyamira County","Nyamira","County",290907,314656,13,605576
+"377","Nyamira County","Borabu","SubCounty",36736,36431,0,73167
+"378","Nyamira County","Manga","SubCounty",44868,49339,2,94209
+"379","Nyamira County","Masaba North","SubCounty",52884,58974,2,111860
+"380","Nyamira County","Nyamira North","SubCounty",80314,86947,6,167267
+"381","Nyamira County","Nyamira South","SubCounty",76105,82965,3,159073
+"382","Nairobi City County","Nairobi City","County",2192452,2204376,245,4397073
+"383","Nairobi City County","Dagoretti","SubCounty",217651,216526,31,434208
+"384","Nairobi City County","Embakasi","SubCounty",492476,496270,62,988808
+"385","Nairobi City County","Kamukunji","SubCounty",136670,131599,7,268276
+"386","Nairobi City County","Kasarani","SubCounty",381234,399385,37,780656
+"387","Nairobi City County","Kibra","SubCounty",94199,91569,9,185777
+"388","Nairobi City County","Lang'ata","SubCounty",96698,100774,17,197489
+"389","Nairobi City County","Makadara","SubCounty",96369,93157,10,189536
+"390","Nairobi City County","Mathare","SubCounty",106522,100028,14,206564
+"391","Nairobi City County","Njiru","SubCounty",307642,318809,31,626482
+"392","Nairobi City County","Starehe","SubCounty",109173,101238,12,210423
+"393","Nairobi City County","Westlands","SubCounty",153818,155021,15,308854

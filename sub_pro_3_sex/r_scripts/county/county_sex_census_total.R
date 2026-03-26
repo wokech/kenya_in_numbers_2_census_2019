@@ -40,6 +40,8 @@ data("DataCatalogue")
 
 df_1 <- V1_T2.2 # Load the "Distribution of Population by Sex and County" dataset
 
+# write.csv(df_1, "sub_pro_3_sex/datasets/df_pop_sex_all.csv")
+
 # 4) Data Cleaning
 
 # Calculate the male:female ratio per 100

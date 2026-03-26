@@ -14,14 +14,17 @@ library(janitor)
 
 # Load data
 
-train_quals <- V4_T2.7 
+df_train_quals <- V4_T2.7
+View(df_train_quals)
 
-train_quals <- train_quals |>
+# write.csv(df_train_quals, "sub_pro_8_training_qualifications/datasets/df_train_quals_all.csv")
+
+df_train_quals <- df_train_quals |>
   clean_names() |>
   mutate(m_f_ratio_100 = round(male*100/female)) |>
   rename(training_qualification = areaof_training)
 
-train_quals_renamed <- train_quals |>
+df_train_quals_renamed <- df_train_quals |>
   mutate(training_qualification = recode(training_qualification, 
                                          "Total" = "Total population above 15 yrs of age"),
          training_qualification = recode(training_qualification, 
@@ -124,22 +127,23 @@ other_classifications <- c("Total population above 15 yrs of age",
 
 # Data frames for various pathways
 
-train_quals_renamed_stem_pathway <- train_quals_renamed |>
+df_train_quals_renamed_stem_pathway <- df_train_quals_renamed |>
   filter(training_qualification %in% stem_pathway)
 
-train_quals_renamed_social_science_pathway <- train_quals_renamed |>
+df_train_quals_renamed_social_science_pathway <- df_train_quals_renamed |>
   filter(training_qualification %in% social_science_pathway)
 
-train_quals_renamed_sports_perf_arts_pathway <- train_quals_renamed |>
+df_train_quals_renamed_sports_perf_arts_pathway <- df_train_quals_renamed |>
   filter(training_qualification %in% sports_perf_arts_pathway)
 
-train_quals_renamed_interdiscip_pathway <- train_quals_renamed |>
+df_train_quals_renamed_interdiscip_pathway <- df_train_quals_renamed |>
   filter(training_qualification %in% interdiscip_pathway)
 
-train_quals_renamed_other_classifications <- train_quals_renamed |>
+df_train_quals_renamed_other_classifications <- df_train_quals_renamed |>
   filter(training_qualification %in% other_classifications)
 
 # Assess male-female differences
 
-train_quals_renamed_all_careers <- train_quals_renamed |>
+df_train_quals_renamed_all_careers <- df_train_quals_renamed |>
   filter(!training_qualification %in% other_classifications)
+

@@ -18,6 +18,9 @@ data("DataCatalogue")
 df_1 <- V4_T2.12
 View(df_1)
 
+write.csv(df_1, "sub_pro_7_asbestos/datasets/df_roof_all.csv")
+
+
 # 4) Preliminary filtering and cleanup
 
 # Subcounty table

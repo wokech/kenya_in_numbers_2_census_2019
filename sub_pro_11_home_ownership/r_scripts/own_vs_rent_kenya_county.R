@@ -1,7 +1,6 @@
 # What type of homes do Kenyans live in? Tenure, Mode of Acquisition, and House Type.
-# By @willyokech
+# By @kenya.in.numbers
 # Data: rKenyaCensus 
-# Map generation: https://shelkariuki.netlify.app/post/firstmap/
 
 #1) Load the required packages
 
@@ -16,23 +15,26 @@ data("DataCatalogue")
 
 # 3) Load the required data
 
-df_1 <- V4_T2.10
-View(df_1)
+df_own_rent <- V4_T2.10
+View(df_own_rent)
+
+# write.csv(df_own_rent, "sub_pro_11_home_ownership/datasets/own_rent_all.csv")
+
 
 # 4) Preliminary filtering and cleanup
 
 # Table 1 for National Analysis
-table_1 <- df_1[1:3,]
+table_1 <- df_own_rent[1:3,]
 
 # Tables for County and Subcounty Analysis
 
 # Table 2 - County
-table_2 <- df_1[4:395,]
-table_2_c <- df_1[4:395,] %>%
+table_2 <- df_own_rent[4:395,]
+table_2_c <- df_own_rent[4:395,] %>%
   filter(AdminArea == "County")
 
 # Table 3 - Subcounty
-table_2_sc <- df_1[4:395,] %>%
+table_2_sc <- df_own_rent[4:395,] %>%
   filter(AdminArea != "County")
 
 # 5) Load the packages required for the maps
