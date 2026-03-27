@@ -1,4 +1,4 @@
-# E-Commerce Kenya
+# Disability in Kenya
 
 # A) Load the required libraries
 
@@ -8,7 +8,6 @@ library(janitor)
 
 # B) Load the required datasets
 
-e_commerce <- V4_T2.34
+pop_disability <- V4_T2.26
 
-write.csv(e_commerce, "sub_pro_14_e_commerce/datasets/e_commerce.csv")
-
+write.csv(pop_disability, "sub_pro_16_disability/datasets/pop_disability.csv")
