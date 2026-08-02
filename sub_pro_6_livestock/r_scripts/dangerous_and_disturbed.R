@@ -1,6 +1,8 @@
 ## Disturbed and Dangerous Counties in Kenya
 ## Crime and Livestock Stats for the Counties
 
+## PASTORAL LIVESTOCK = GOATS + SHEEP + INDIGENOUS CATTLE
+
 # 1) Load the packages required for the maps
 
 # Solve package loading issues with options(timeout = 600) 
@@ -51,34 +53,59 @@ highlighted <- kenya_counties_sf |> filter(County %in% highlight_counties)
 
 # Highlight the required area
 
+p0 <- ggplot() + 
+  geom_sf(data = kenya_counties_sf) + 
+  theme_void() +
+  theme(legend.title = element_blank(),
+        legend.position = "none",
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2"))
+
+p0 
+
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_0.png", width = 12, height = 12)
+
 p1 <- ggplot() + 
   geom_sf(data = kenya_counties_sf) + 
   geom_sf(data  = highlighted, fill = "azure4", linewidth = 0.6, color = "black") +
-  theme_void() 
+  theme_void() +
+  theme(plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2"))
+
+p1
+
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_1.png", width = 12, height = 12)
 
 # create a ggplot2 plot with the states and the highlighted states
+
 p2 <- ggplot(data = highlighted) +
   geom_sf(aes(fill = County), linewidth = 0.6, show.legend = FALSE) +
-  geom_sf_label_repel(aes(label = County)) +
+  #geom_sf_label_repel(aes(label = County)) +
   scale_fill_brewer(palette = "OrRd") +
   labs(title = "",
        caption = "") +
   theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
         legend.title = element_blank(),
         legend.position = "none",
-        plot.caption = element_text(family = "Helvetica",size = 12)) +
-  theme_void() 
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2")) +
+  theme_void()
 
-p1 + 
-  p2 + 
-  plot_annotation(title = "Dangerous and Disturbed",
-                  subtitle = "The six Kenyan counties that have been declared insecure because\nof banditry and cattle rustling (2023)",
-                  caption = "Source: rKenyaCensus | By: @willyokech",
-                  theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
-                                plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
-                                plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
-                                plot.background = element_rect(fill = "bisque1"))) &
-  theme(text = element_text('Helvetica'))
+p2
+
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_2.png", width = 12, height = 12)
+
+# p1 + 
+#   p2 + 
+#   plot_annotation(title = "Dangerous and Disturbed",
+#                   subtitle = "The six Kenyan counties that have been declared insecure because\nof banditry and cattle rustling (2023)",
+#                   caption = "Source: rKenyaCensus | By: @willyokech",
+#                   theme = theme(plot.title = element_text(family="Helvetica", face="bold", size = 25),
+#                                 plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+#                                 plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
+#                                 plot.background = element_rect(fill = "bisque1"))) &
+#   theme(text = element_text('Helvetica'))
 
 #ggsave("images/disturbed_dangerous/county_map_1.png", width = 12, height = 8)
 
@@ -133,7 +160,6 @@ land_area$county <- gsub(" County", "", land_area$county)
 land_area$county <- toupper(land_area$county)
 land_area$sub_county <- toupper(land_area$sub_county)
 
-
 # County area data for disturbed and dangerous
 land_area_county <- land_area |>
   filter(admin_area == "County") |>
@@ -169,46 +195,400 @@ livestock_area_subcounty <- livestock_area_subcounty |>
          goats_area = round(goats/land_area_in_sq_km),
          pasto_livestock_area = round(pasto_livestock/land_area_in_sq_km))
 
-#4) Plots of relevant graphs (EDA)
+# 4) Plots of relevant graphs (EDA)
+
 # a) Farming Households
 
 livestock_area_county |>
-  ggplot() + 
-  geom_col(aes(x= reorder(county, farming), y = farming, fill = county)) + 
-  scale_fill_grey() +
+  ggplot(aes(x= reorder(county, farming), y = farming)) + 
+  geom_col(fill = "goldenrod2") + 
+  geom_text(aes(y = 0, label = county), hjust = 0, colour = "black", size = 10) +
+  geom_text(aes(y = farming, label = comma(farming)), hjust = 0, colour = "black", size = 10) +
   coord_flip() + 
   labs(x = "County",
        y = "Number of Farming Households",
-       title = "Farming Households",
-       subtitle = "Number of households engaged in various farming activities",
-       caption = "Source: rKenyaCensus | By: @willyokech") +
-  theme_minimal() +
-  scale_y_continuous(labels = comma) +
-  theme(axis.title.x =element_text(size = 20),
-        axis.title.y =element_text(size = 20),
-        axis.text.x = element_text(size = 15),
-        axis.text.y = element_text(size = 15),
-        plot.title = element_text(family="Helvetica", face="bold", size = 20),
-        plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
-        plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
-        plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-        panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
+       title = "",
+       subtitle = "",
+       caption = "") +
+  theme_classic() +
+  scale_y_continuous(labels = comma, limits = c(0, 110000), expand = expansion(mult = c(0, 0.25))) +
+  theme(axis.title.x = element_text(size = 30),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size = 25),
+        axis.text.y = element_blank(),
+        #plot.title = element_text(family="Helvetica", face="bold", size = 20),
+        #plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+        #plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
+        plot.background = element_rect(fill = "azure2", colour = "azure2"),
+        panel.background = element_rect(fill = "azure2", colour = "azure2"),
         legend.title = element_blank(),
         legend.position = "none") 
 
-ggsave("images/disturbed_dangerous/county_farm_house_1.png", width = 12, height = 8)
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_farming_hh.png", width = 12, height = 12)
+
+# b) Pastoral Livestock per household
+
+livestock_area_county |>
+  ggplot(aes(x= reorder(county, pasto_livestock_household), y = pasto_livestock_household)) + 
+  geom_col(fill = "goldenrod2") + 
+  geom_text(aes(y = pasto_livestock_household, label = county), hjust = 0, colour = "black", size = 10) +
+  geom_text(aes(y = 0, label = pasto_livestock_household), hjust = 0, colour = "black", size = 10) +
+  coord_flip() + 
+  labs(x = "County",
+       y = "Pastoral livestock per household",
+       #title = "Pastoral livestock per household",
+       #subtitle = "Number of goats, sheep, and indigenous cattle per household",
+       caption = "") +
+  theme_classic() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.35))) +
+  theme(axis.title.x = element_text(size = 30),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size = 25),
+        axis.text.y = element_blank(),
+        #plot.title = element_text(family="Helvetica", face="bold", size = 20),
+        #plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+        #plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
+        plot.background = element_rect(fill = "azure2", colour = "azure2"),
+        panel.background = element_rect(fill = "azure2", colour = "azure2"),
+        legend.title = element_blank(),
+        legend.position = "none") 
+
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_pasto_livestock_hh.png", width = 12, height = 12)
+
+# c) Animals per area
+
+livestock_area_county |>
+  ggplot(aes(x= reorder(county, pasto_livestock_area), y = pasto_livestock_area)) + 
+  geom_col(fill = "goldenrod2") + 
+  geom_text(aes(y = 0, label = county), hjust = 0, colour = "black", size = 10) +
+  geom_text(aes(y = pasto_livestock_area, label = pasto_livestock_area), hjust = 0, colour = "black", size = 10) +
+  coord_flip() + 
+  labs(x = "County",
+       y = expression("Pastoral livestock density (per km"^2*")"),
+       #title = "Pastoral livestock density",
+       #subtitle = "The number of goats, sheep, and indigenous cattle per squared-km",
+       caption = "") +
+  theme_classic() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.2))) +
+  theme(axis.title.x = element_text(size = 30),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size = 25),
+        axis.text.y = element_blank(),
+        #plot.title = element_text(family="Helvetica", face="bold", size = 20),
+        #plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+        #plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
+        plot.background = element_rect(fill = "azure2", colour = "azure2"),
+        panel.background = element_rect(fill = "azure2", colour = "azure2"),
+        legend.title = element_blank(),
+        legend.position = "none") 
+
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_pasto_livestock_area.png", width = 12, height = 12)
+
+# d) Total pastoral livestock
+
+livestock_area_county |>
+  ggplot(aes(x= reorder(county, pasto_livestock), y = pasto_livestock, fill = county)) + 
+  geom_col(fill = "goldenrod2") + 
+  geom_text(aes(y = pasto_livestock, label = county), hjust = 0, vjust = -0.5, colour = "black", size = 10) +
+  geom_text(aes(y = pasto_livestock, label = comma(pasto_livestock)), hjust = 0, vjust = 1, colour = "black", size = 10) +
+  coord_flip() + 
+  labs(x = "County",
+       y = "Number of Pastoral Livestock",
+       title = "",
+       subtitle = "",
+       caption = "") +
+  theme_classic() +
+  scale_y_continuous(labels = comma, limits = c(0, 3500000), expand = expansion(mult = c(0, 0.3))) +
+  theme(axis.title.x = element_text(size = 30),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size = 25),
+        axis.text.y = element_blank(),
+        #plot.title = element_text(family="Helvetica", face="bold", size = 20),
+        #plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+        #plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
+        plot.background = element_rect(fill = "azure2", colour = "azure2"),
+        panel.background = element_rect(fill = "azure2", colour = "azure2"),
+        legend.title = element_blank(),
+        legend.position = "none") 
+
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_pasto_livestock_total.png", width = 12, height = 12)
+
+# e) Total sheep
+
+livestock_area_county |>
+  ggplot(aes(x= reorder(county, sheep), y = sheep, fill = county)) + 
+  geom_col(fill = "goldenrod2") + 
+  geom_text(aes(y = sheep, label = county), hjust = 0, vjust = -0.5, colour = "black", size = 10) +
+  geom_text(aes(y = sheep, label = comma(sheep)), hjust = 0, vjust = 1, colour = "black", size = 10) +
+  coord_flip() + 
+  labs(x = "County",
+       y = "Number of Sheep",
+       title = "",
+       subtitle = "",
+       caption = "") +
+  theme_classic() +
+  scale_y_continuous(labels = comma, limits = c(0, 1250000), expand = expansion(mult = c(0, 0.15))) +
+  theme(axis.title.x = element_text(size = 30),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size = 25),
+        axis.text.y = element_blank(),
+        #plot.title = element_text(family="Helvetica", face="bold", size = 20),
+        #plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+        #plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
+        plot.background = element_rect(fill = "azure2", colour = "azure2"),
+        panel.background = element_rect(fill = "azure2", colour = "azure2"),
+        legend.title = element_blank(),
+        legend.position = "none") 
+
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_pasto_livestock_sheep.png", width = 12, height = 12)
+
+
+# f) Total goats
+
+livestock_area_county |>
+  ggplot(aes(x= reorder(county, goats), y = goats, fill = county)) + 
+  geom_col(fill = "goldenrod2") + 
+  geom_text(aes(y = goats, label = county), hjust = 0, vjust = -0.5, colour = "black", size = 10) +
+  geom_text(aes(y = goats, label = comma(goats)), hjust = 0, vjust = 1, colour = "black", size = 10) +
+  coord_flip() + 
+  labs(x = "County",
+       y = "Number of Goats",
+       title = "",
+       subtitle = "",
+       caption = "") +
+  theme_classic() +
+  scale_y_continuous(labels = comma, breaks = seq(0, 2250000, by = 1000000), limits = c(0, 2250000), expand = expansion(mult = c(0, 0.2))) +
+  theme(axis.title.x = element_text(size = 30),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size = 25),
+        axis.text.y = element_blank(),
+        #plot.title = element_text(family="Helvetica", face="bold", size = 20),
+        #plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+        #plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
+        plot.background = element_rect(fill = "azure2", colour = "azure2"),
+        panel.background = element_rect(fill = "azure2", colour = "azure2"),
+        legend.title = element_blank(),
+        legend.position = "none") 
+
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_pasto_livestock_goats.png", width = 12, height = 12)
+
+# f) Total indigenous livestock
+
+livestock_area_county |>
+  ggplot(aes(x= reorder(county, indigenous_cattle), y = indigenous_cattle, fill = county)) + 
+  geom_col(fill = "goldenrod2") + 
+  geom_text(aes(y = indigenous_cattle, label = county), hjust = 0, vjust = -0.5, colour = "black", size = 10) +
+  geom_text(aes(y = indigenous_cattle, label = comma(indigenous_cattle)), hjust = 0, vjust = 1, colour = "black", size = 10) +
+  coord_flip() + 
+  labs(x = "County",
+       y = "Number of Indigenous Cattle",
+       title = "",
+       subtitle = "",
+       caption = "") +
+  theme_classic() +
+  scale_y_continuous(labels = comma, breaks = seq(0, 400000, by = 100000), limits = c(0, 400000), expand = expansion(mult = c(0, 0.35))) +
+  theme(axis.title.x = element_text(size = 30),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size = 25),
+        axis.text.y = element_blank(),
+        #plot.title = element_text(family="Helvetica", face="bold", size = 20),
+        #plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+        #plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
+        plot.background = element_rect(fill = "azure2", colour = "azure2"),
+        panel.background = element_rect(fill = "azure2", colour = "azure2"),
+        legend.title = element_blank(),
+        legend.position = "none") 
+
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_pasto_livestock_ind_cattle.png", width = 12, height = 12)
+
+# g) Sheep per household
+
+livestock_area_county |>
+  ggplot(aes(x= reorder(county, sheep_household), y = sheep_household)) + 
+  geom_col(fill = "goldenrod2") + 
+  geom_text(aes(y = sheep_household, label = county), hjust = 0, colour = "black", size = 10) +
+  geom_text(aes(y = 0, label = sheep_household), hjust = 0, colour = "black", size = 10) +
+  coord_flip() + 
+  labs(x = "County",
+       y = "Sheep per household",
+       #title = "Pastoral livestock per household",
+       #subtitle = "Number of goats, sheep, and indigenous cattle per household",
+       caption = "") +
+  theme_classic() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.35))) +
+  theme(axis.title.x = element_text(size = 30),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size = 25),
+        axis.text.y = element_blank(),
+        #plot.title = element_text(family="Helvetica", face="bold", size = 20),
+        #plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+        #plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
+        plot.background = element_rect(fill = "azure2", colour = "azure2"),
+        panel.background = element_rect(fill = "azure2", colour = "azure2"),
+        legend.title = element_blank(),
+        legend.position = "none") 
+
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_pasto_livestock_sheep_hh.png", width = 12, height = 12)
+
+
+# g) Goats per household
+
+livestock_area_county |>
+  ggplot(aes(x= reorder(county, goats_household), y = goats_household)) + 
+  geom_col(fill = "goldenrod2") + 
+  geom_text(aes(y = goats_household, label = county), hjust = 0, colour = "black", size = 10) +
+  geom_text(aes(y = 0, label = goats_household), hjust = 0, colour = "black", size = 10) +
+  coord_flip() + 
+  labs(x = "County",
+       y = "Goats per household",
+       #title = "Pastoral livestock per household",
+       #subtitle = "Number of goats, sheep, and indigenous cattle per household",
+       caption = "") +
+  theme_classic() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.35))) +
+  theme(axis.title.x = element_text(size = 30),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size = 25),
+        axis.text.y = element_blank(),
+        #plot.title = element_text(family="Helvetica", face="bold", size = 20),
+        #plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+        #plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
+        plot.background = element_rect(fill = "azure2", colour = "azure2"),
+        panel.background = element_rect(fill = "azure2", colour = "azure2"),
+        legend.title = element_blank(),
+        legend.position = "none") 
+
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_pasto_livestock_goats_hh.png", width = 12, height = 12)
+
+# h) Indigenous cattle per household
+
+livestock_area_county |>
+  ggplot(aes(x= reorder(county, ind_cattle_household), y = ind_cattle_household)) + 
+  geom_col(fill = "goldenrod2") + 
+  geom_text(aes(y = ind_cattle_household, label = county), hjust = 0, colour = "black", size = 10) +
+  geom_text(aes(y = 0, label = ind_cattle_household), hjust = 0, colour = "black", size = 10) +
+  coord_flip() + 
+  labs(x = "County",
+       y = "Indigenous cattle per household",
+       #title = "Pastoral livestock per household",
+       #subtitle = "Number of goats, sheep, and indigenous cattle per household",
+       caption = "") +
+  theme_classic() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.35))) +
+  theme(axis.title.x = element_text(size = 30),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size = 25),
+        axis.text.y = element_blank(),
+        #plot.title = element_text(family="Helvetica", face="bold", size = 20),
+        #plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+        #plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
+        plot.background = element_rect(fill = "azure2", colour = "azure2"),
+        panel.background = element_rect(fill = "azure2", colour = "azure2"),
+        legend.title = element_blank(),
+        legend.position = "none") 
+
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_pasto_livestock_ind_cattle_hh.png", width = 12, height = 12)
+
+# i) Sheep per Area
+
+livestock_area_county |>
+  ggplot(aes(x= reorder(county, sheep_area), y = sheep_area)) + 
+  geom_col(fill = "goldenrod2") + 
+  geom_text(aes(y = sheep_area, label = county), hjust = 0, colour = "black", size = 10) +
+  geom_text(aes(y = 0, label = sheep_area), hjust = 0, colour = "black", size = 10) +
+  coord_flip() + 
+  labs(x = "County",
+       y = expression("Sheep density (per km"^2*")"),
+       #title = "Pastoral livestock per household",
+       #subtitle = "Number of goats, sheep, and indigenous cattle per household",
+       caption = "") +
+  theme_classic() +
+  scale_y_continuous(expand = expansion(mult = c(0, 1.05))) +
+  theme(axis.title.x = element_text(size = 30),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size = 25),
+        axis.text.y = element_blank(),
+        #plot.title = element_text(family="Helvetica", face="bold", size = 20),
+        #plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+        #plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
+        plot.background = element_rect(fill = "azure2", colour = "azure2"),
+        panel.background = element_rect(fill = "azure2", colour = "azure2"),
+        legend.title = element_blank(),
+        legend.position = "none") 
+
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_pasto_livestock_sheep_area.png", width = 12, height = 12)
+
+# j) Goats per Area
+
+livestock_area_county |>
+  ggplot(aes(x= reorder(county, goats_area), y = goats_area)) + 
+  geom_col(fill = "goldenrod2") + 
+  geom_text(aes(y = goats_area, label = county), hjust = 0, colour = "black", size = 10) +
+  geom_text(aes(y = 0, label = goats_area), hjust = 0, colour = "black", size = 10) +
+  coord_flip() + 
+  labs(x = "County",
+       y = expression("Goat density (per km"^2*")"),
+       #title = "Pastoral livestock per household",
+       #subtitle = "Number of goats, sheep, and indigenous cattle per household",
+       caption = "") +
+  theme_classic() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.55))) +
+  theme(axis.title.x = element_text(size = 30),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size = 25),
+        axis.text.y = element_blank(),
+        #plot.title = element_text(family="Helvetica", face="bold", size = 20),
+        #plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+        #plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
+        plot.background = element_rect(fill = "azure2", colour = "azure2"),
+        panel.background = element_rect(fill = "azure2", colour = "azure2"),
+        legend.title = element_blank(),
+        legend.position = "none") 
+
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_pasto_livestock_goats_area.png", width = 12, height = 12)
+
+# k) Indigenous cattle per area
+
+livestock_area_county |>
+  ggplot(aes(x= reorder(county, ind_cattle_area), y = ind_cattle_area)) + 
+  geom_col(fill = "goldenrod2") + 
+  geom_text(aes(y = ind_cattle_area, label = county), hjust = 0, colour = "black", size = 10) +
+  geom_text(aes(y = 0, label = ind_cattle_area), hjust = 0, colour = "black", size = 10) +
+  coord_flip() + 
+  labs(x = "County",
+       y = expression("Indigenous cattle density (per km"^2*")"),
+       #title = "Pastoral livestock per household",
+       #subtitle = "Number of goats, sheep, and indigenous cattle per household",
+       caption = "") +
+  theme_classic() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.95))) +
+  theme(axis.title.x = element_text(size = 30),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size = 25),
+        axis.text.y = element_blank(),
+        #plot.title = element_text(family="Helvetica", face="bold", size = 20),
+        #plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
+        #plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
+        plot.background = element_rect(fill = "azure2", colour = "azure2"),
+        panel.background = element_rect(fill = "azure2", colour = "azure2"),
+        legend.title = element_blank(),
+        legend.position = "none") 
+
+ggsave("sub_pro_6_livestock/images/disturbed_dangerous/six_counties_pasto_livestock_ind_cattle_area.png", width = 12, height = 12)
+
+
+
+################################################################################
+# Other Analysis and SubCounty
+################################################################################
+
+
+
+# Total Numbers
 
 livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, farming), y = farming, fill = county)) + 
-  coord_flip() + 
-  scale_y_continuous(labels = comma) +
-  theme_minimal()
-
-# b) Pastoral Livestock
-livestock_area_county |>
-  ggplot() + 
-  geom_col(aes(x= reorder(county, pasto_livestock), y = pasto_livestock, fill = county)) + 
   coord_flip() + 
   scale_y_continuous(labels = comma) +
   theme_minimal()
@@ -220,47 +600,10 @@ livestock_area_subcounty |>
   scale_y_continuous(labels = comma) +
   theme_minimal()
 
-# c) Pastoral Livestock per household
-
-livestock_area_county |>
-  ggplot() + 
-  geom_col(aes(x= reorder(county, pasto_livestock_household), y = pasto_livestock_household, fill = county)) + 
-  scale_fill_grey() +
-  coord_flip() + 
-  labs(x = "County",
-       y = "Number of pastoral livestock per household",
-       title = "Pastoral livestock per household",
-       subtitle = "Number of goats, sheep, and indigenous cattle per household",
-       caption = "Source: rKenyaCensus | By: @willyokech") +
-  theme_minimal() +
-  scale_y_continuous(labels = comma) +
-  theme(axis.title.x =element_text(size = 20),
-        axis.title.y =element_text(size = 20),
-        axis.text.x = element_text(size = 15),
-        axis.text.y = element_text(size = 15),
-        plot.title = element_text(family="Helvetica", face="bold", size = 20),
-        plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
-        plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
-        plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-        panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
-        legend.title = element_blank(),
-        legend.position = "none") 
-
-ggsave("images/disturbed_dangerous/county_pasto_livestock_1.png", width = 12, height = 8)
-
 livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, pasto_livestock_household), y = pasto_livestock_household, fill = county)) + 
   coord_flip() + 
-  theme_minimal()
-
-# d) Each animal
-
-livestock_area_county |>
-  ggplot() + 
-  geom_col(aes(x= reorder(county, sheep), y = sheep, fill = county)) + 
-  coord_flip() + 
-  scale_y_continuous(labels = comma) +
   theme_minimal()
 
 livestock_area_subcounty |>
@@ -270,22 +613,9 @@ livestock_area_subcounty |>
   scale_y_continuous(labels = comma) +
   theme_minimal()
 
-livestock_area_county |>
-  ggplot() + 
-  geom_col(aes(x= reorder(county, goats), y = goats, fill = county)) + 
-  coord_flip() + 
-  theme_minimal()
-
 livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, goats), y = goats, fill = county)) + 
-  coord_flip() + 
-  scale_y_continuous(labels = comma) +
-  theme_minimal()
-
-livestock_area_county |>
-  ggplot() + 
-  geom_col(aes(x= reorder(county, indigenous_cattle), y = indigenous_cattle, fill = county)) + 
   coord_flip() + 
   scale_y_continuous(labels = comma) +
   theme_minimal()
@@ -297,23 +627,11 @@ livestock_area_subcounty |>
   scale_y_continuous(labels = comma) +
   theme_minimal()
 
-# e) Each animal per household
-
-livestock_area_county |>
-  ggplot() + 
-  geom_col(aes(x= reorder(county, sheep_household), y = sheep_household, fill = county)) + 
-  coord_flip() + 
-  theme_minimal()
+# Per household
 
 livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, sheep_household), y = sheep_household, fill = county)) + 
-  coord_flip() + 
-  theme_minimal()
-
-livestock_area_county |>
-  ggplot() + 
-  geom_col(aes(x= reorder(county, goats_household), y = goats_household, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
@@ -323,78 +641,17 @@ livestock_area_subcounty |>
   coord_flip() + 
   theme_minimal()
 
-livestock_area_county |>
-  ggplot() + 
-  geom_col(aes(x= reorder(county, ind_cattle_household), y = ind_cattle_household, fill = county)) + 
-  coord_flip() + 
-  theme_minimal()
-
 livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, ind_cattle_household), y = ind_cattle_household, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
-# Review this section to see how to style and save the image
-# Require the webshot::install_phantomjs() to install package
-# also include the magick package
-
-livestock_area_county |>
-  select(county, land_area_in_sq_km) |>
-  mutate(county = str_to_title(county)) |>
-  arrange(desc(land_area_in_sq_km)) |>
-  adorn_totals("row") |>
-  rename("County" = "county",
-         "Land Area (sq. km)" = "land_area_in_sq_km") |>
-  kbl(align = "c") |>
-  kable_classic() |> 
-  row_spec(row = 0, font_size = 28, color = "white", background = "#000000") |>
-  row_spec(row = c(1:7), font_size = 20) |>
-  row_spec(row = 6, extra_css = "border-bottom: 1px solid;") |>
-  row_spec(row = 7, bold = T) |>
-  save_kable(file = "images/disturbed_dangerous/area_table.png",
-             zoom = 5)
-
-
-# e) Animals per area
-
-livestock_area_county |>
-  ggplot() + 
-  geom_col(aes(x= reorder(county, pasto_livestock_area), y = pasto_livestock_area, fill = county)) + 
-  coord_flip() + 
-  theme_minimal() +
-  scale_fill_grey() +
-  coord_flip() + 
-  labs(x = "County",
-       y = "Number of pastoral livestock per squared-km",
-       title = "Pastoral livestock density",
-       subtitle = "The number of goats, sheep, and indigenous cattle per squared-km",
-       caption = "Source: rKenyaCensus | By: @willyokech") +
-  theme_minimal() +
-  theme(axis.title.x =element_text(size = 20),
-        axis.title.y =element_text(size = 20),
-        axis.text.x = element_text(size = 15),
-        axis.text.y = element_text(size = 15),
-        plot.title = element_text(family="Helvetica", face="bold", size = 20),
-        plot.subtitle = element_text(family="Helvetica", face="bold", size = 15),
-        plot.caption = element_text(family = "Helvetica",size = 12, face = "bold"),
-        plot.background = element_rect(fill = "bisque1", colour = "bisque1"),
-        panel.background = element_rect(fill = "bisque1", colour = "bisque1"),
-        legend.title = element_blank(),
-        legend.position = "none") 
-
-ggsave("images/disturbed_dangerous/county_pasto_livestock_density_1.png", width = 12, height = 8)
-
+# Per area
 
 livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, pasto_livestock_area), y = pasto_livestock_area, fill = county)) + 
-  coord_flip() + 
-  theme_minimal()
-
-livestock_area_county |>
-  ggplot() + 
-  geom_col(aes(x= reorder(county, sheep_area), y = sheep_area, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
@@ -404,21 +661,9 @@ livestock_area_subcounty |>
   coord_flip() + 
   theme_minimal()
 
-livestock_area_county |>
-  ggplot() + 
-  geom_col(aes(x= reorder(county, goats_area), y = goats_area, fill = county)) + 
-  coord_flip() + 
-  theme_minimal()
-
 livestock_area_subcounty |>
   ggplot() + 
   geom_col(aes(x= reorder(sub_county, goats_area), y = goats_area, fill = county)) + 
-  coord_flip() + 
-  theme_minimal()
-
-livestock_area_county |>
-  ggplot() + 
-  geom_col(aes(x= reorder(county, ind_cattle_area), y = ind_cattle_area, fill = county)) + 
   coord_flip() + 
   theme_minimal()
 
@@ -427,4 +672,3 @@ livestock_area_subcounty |>
   geom_col(aes(x= reorder(sub_county, ind_cattle_area), y = ind_cattle_area, fill = county)) + 
   coord_flip() + 
   theme_minimal()
-

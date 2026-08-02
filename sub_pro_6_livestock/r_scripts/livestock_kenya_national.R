@@ -14,6 +14,7 @@ library(ggpmisc) #ggplot2 extension
 #webshot::install_phantomjs()
 library(knitr)
 library(kableExtra)
+library(webshot2)
 
 
 # 2) View the data available in the data catalogue
@@ -63,7 +64,7 @@ table_1_select_tidy$livestock_type
 
 # National
 
-# Treemap showing the livestock populations
+# a) Treemap showing the livestock populations
 
 # Remember that treemap is not a ggplot
 
@@ -71,26 +72,27 @@ ggplot(table_1_select_tidy,
        aes(area = number, fill = livestock_type, 
            label = livestock_type)) +
   geom_treemap() +
-  labs(title = "Livestock in Kenya",
-       subtitle = "The relative numbers of livestock owned by farming households in Kenya (2019)",
+  labs(#title = "Livestock in Kenya",
+       #subtitle = "The relative numbers of livestock owned by farming households in Kenya (2019)",
        fill = "",
-       caption = "Data Source: rKenyaCensus | By @willyokech") +
+       caption = "") +
   geom_treemap_text(colour = "black",
                     place = "centre",
                     size = 10,
                     grow = TRUE) + 
   theme(legend.position = "bottom",
-        plot.title = element_text(size=24),
-        plot.subtitle = element_text(size=18),
-        legend.text = element_text(size = 10),
-        plot.caption = element_text(size =12),
+        #plot.title = element_text(size=24),
+        #plot.subtitle = element_text(size=18),
+        legend.text = element_text(size = 20),
+        plot.caption = element_text(size = 20),
         panel.background = element_rect(fill="azure2"),
         plot.background = element_rect(fill="azure2"),
         legend.background = element_rect(fill="azure2")) +
   scale_fill_brewer(palette = "Paired") 
 
+ggsave("sub_pro_6_livestock/images/livestock_kenya_national/treemap_livestock_national.png", width = 12, height = 12, dpi = 600)
 
-ggsave("images/livestock_kenya_national/treemap_livestock_national.png", width = 12, height = 8, dpi = 600)
+# b) Tables
 
 table_1_select_tidy_print <- data.frame(livestock_type = table_1_select_tidy$livestock_type, 
                                         number = table_1_select_tidy$number)
@@ -101,8 +103,11 @@ table_1_select_tidy_print %>%
          "Number" = "number") %>%
   kbl(align = "c", format.args = list(big.mark = ",")) %>%
   kable_classic() %>% 
-  row_spec(row = 0, font_size = 28, color = "white", background = "#000000") %>%
-  row_spec(row = c(1:12), font_size = 20) %>%
-  save_kable(file = "images/livestock_kenya_national/table_livestock_national.png",
+  kable_styling(full_width = FALSE) %>%
+  column_spec(1:2, extra_css = "text-align: left;") %>%
+  column_spec(1, border_right = TRUE) %>%
+  row_spec(row = 0, font_size = 36, color = "#000000", background = "azure2", bold = TRUE) %>%
+  row_spec(row = c(1:12), font_size = 28, color = "#000000", background = "azure2") %>%
+  save_kable(file = "sub_pro_6_livestock/images/livestock_kenya_national/table_livestock_national.png",
              zoom = 5)
 

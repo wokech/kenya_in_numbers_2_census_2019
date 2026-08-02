@@ -8,6 +8,8 @@ library(janitor)
 
 # B) Load the required datasets
 
-solid_waste_disp <- V4_T2.17
+# solid_waste_disp <- V4_T2.17
 
-write.csv(solid_waste_disp, "sub_pro_17_waste_disposal/datasets/solid_waste_disp.csv")
+# write.csv(solid_waste_disp, "sub_pro_17_waste_disposal/datasets/solid_waste_disp.csv")
+
+solid_waste_disp <- read.csv("sub_pro_17_waste_disposal/datasets/solid_waste_disp.csv")

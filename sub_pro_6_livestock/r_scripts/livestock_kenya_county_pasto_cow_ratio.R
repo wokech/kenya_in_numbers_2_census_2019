@@ -26,12 +26,11 @@ View(df_livestock)
 
 # write.csv(df_livestock, "sub_pro_6_livestock/datasets/df_livestock_all.csv")
 
+df_livestock <- read.csv("sub_pro_6_livestock/datasets/df_livestock_all.csv")
 
 # Table 1 for County and SubCounty Analysis
 table_1_pasto <- df_livestock[2:393,]
 View(table_1_pasto)
-
-glimpse(table_1_pasto)
 
 table_1_pasto <- table_1_pasto %>%
   clean_names()
@@ -46,7 +45,6 @@ table_1_pasto_select <- table_1_pasto %>%
   mutate(indi_exotic_ratio = round(indigenous_cattle/(exotic_cattle_dairy + exotic_cattle_beef),1))
 
 View(table_1_pasto_select)
-glimpse(table_1_pasto_select)
 
 # County data
 table_1_pasto_select_county <- table_1_pasto_select %>%
@@ -108,6 +106,7 @@ table_1_indi_exotic_ratio <- table_1_pasto_select_county %>%
   mutate(indi_exotic_ratio = round(indigenous_cattle/(exotic_cattle_dairy + exotic_cattle_beef),1)) %>%
   arrange(desc(indi_exotic_ratio)) 
 
+View(table_1_indi_exotic_ratio)
 
 # 5) Load the packages required for the maps
 
