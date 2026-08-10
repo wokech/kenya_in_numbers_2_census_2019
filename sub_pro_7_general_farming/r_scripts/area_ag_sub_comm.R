@@ -384,7 +384,7 @@ map_area_ag_sub_comm_land_sub_percent <- ggplot(data = merged_df_ag_sub_comm_map
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),    # Orange-red
-                       limits = c(0, 100),
+                       limits = c(30, 100),
                        labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
@@ -413,7 +413,7 @@ map_area_ag_sub_comm_land_comm_percent <- ggplot(data = merged_df_ag_sub_comm_ma
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),    # Orange-red
-                       limits = c(0, 100),
+                       limits = c(0, 40),
                        labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
@@ -500,7 +500,7 @@ map_area_ag_sub_comm_farm_hh_sub_percent <- ggplot(data = merged_df_ag_sub_comm_
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),    # Orange-red
-                       limits = c(0, 100),
+                       limits = c(50, 100),
                        labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
@@ -529,7 +529,7 @@ map_area_ag_sub_comm_farm_hh_comm_percent <- ggplot(data = merged_df_ag_sub_comm
         plot.background = element_rect(fill = "azure2", color = "azure2"), 
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),    # Orange-red
-                       limits = c(0, 100),
+                       limits = c(0, 30),
                        labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 

@@ -28,7 +28,7 @@ library(ggsflabel)
 
 # B) Load the required datasets
 
-ag_census_hh <- V4_T2.20
+# ag_census_hh <- V4_T2.20
 
 #write.csv(ag_census_hh, "sub_pro_7_general_farming/datasets/ag_census_hh.csv")
 
@@ -223,6 +223,32 @@ merged_df_ag_census_maps <- merged_df_ag_census_maps |>
 
 # 1) Number of Farming Households
 
+map_ag_census_farm_hh <- ggplot(data = merged_df_ag_census_maps)+
+  geom_sf(aes(geometry = geometry, fill = farming), linewidth = 0.5)+
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "Number of Farming Households")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
+        legend.text = element_text(family = "Helvetica",size = 24),
+        legend.key.size = unit(1, "cm"),
+        legend.position = "bottom",
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2")) +
+  scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),    # Orange-red
+                       limits = c(0, 340000),
+                       labels = label_comma()
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
+
+map_ag_census_farm_hh
+
+#Save the plot
+ggsave("sub_pro_7_general_farming/images/ag_census/map_ag_census_farm_hh.png", width = 12, height = 12, dpi = 300)
 
 
 # 2) Farming Households (%)
@@ -252,24 +278,121 @@ map_ag_census_farm_hh_percent <- ggplot(data = merged_df_ag_census_maps)+
 map_ag_census_farm_hh_percent
 
 #Save the plot
-#ggsave("sub_pro_7_general_farming/images/ag_census/map_ag_census_farm_hh_percent.png", width = 12, height = 12, dpi = 300)
+ggsave("sub_pro_7_general_farming/images/ag_census/map_ag_census_farm_hh_percent.png", width = 12, height = 12, dpi = 300)
 
 # 3) Crop Production (%)
 
+map_ag_census_crop_prod_percent <- ggplot(data = merged_df_ag_census_maps)+
+  geom_sf(aes(geometry = geometry, fill = crop_prod_perc), linewidth = 0.5)+
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "Households involved in crop production \n(% of Total)")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
+        legend.text = element_text(family = "Helvetica",size = 24),
+        legend.key.size = unit(1, "cm"),
+        legend.position = "bottom",
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2")) +
+  scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),    # Orange-red
+                       limits = c(0, 100),
+                       labels = label_comma()
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
+map_ag_census_crop_prod_percent
+
+#Save the plot
+ggsave("sub_pro_7_general_farming/images/ag_census/map_ag_census_crop_prod_percent.png", width = 12, height = 12, dpi = 300)
 
 # 4) Livestock Prodution (%)
 
+map_ag_census_livestock_prod_percent <- ggplot(data = merged_df_ag_census_maps)+
+  geom_sf(aes(geometry = geometry, fill = livestock_prod_perc), linewidth = 0.5)+
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "Households rearing livestock\n(% of Total)")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
+        legend.text = element_text(family = "Helvetica",size = 24),
+        legend.key.size = unit(1, "cm"),
+        legend.position = "bottom",
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2")) +
+  scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),    # Orange-red
+                       limits = c(60, 100),
+                       labels = label_comma()
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
+map_ag_census_livestock_prod_percent
+
+#Save the plot
+ggsave("sub_pro_7_general_farming/images/ag_census/map_ag_census_livestock_prod_percent.png", width = 12, height = 12, dpi = 300)
 
 # 5) Aqua/Fish Production (%)
 
+map_ag_census_aqua_fish_prod_percent <- ggplot(data = merged_df_ag_census_maps)+
+  geom_sf(aes(geometry = geometry, fill = aqua_fish_prod_perc), linewidth = 0.5)+
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "Households involved in Aquaculture and Fishing\n(% of Total)")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
+        legend.text = element_text(family = "Helvetica",size = 24),
+        legend.key.size = unit(1, "cm"),
+        legend.position = "bottom",
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2")) +
+  scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),    # Orange-red
+                       limits = c(0, 20),
+                       labels = label_comma()
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
+
+map_ag_census_aqua_fish_prod_percent
+
+#Save the plot
+ggsave("sub_pro_7_general_farming/images/ag_census/map_ag_census_aqua_fish_prod_percent.png", width = 12, height = 12, dpi = 300)
 
 
 # 6) Irrigation (%)
 
-################################################################################
-# PART D: SCATTER PLOTS
-################################################################################
+map_ag_census_irri_prod_percent <- ggplot(data = merged_df_ag_census_maps)+
+  geom_sf(aes(geometry = geometry, fill = irri_prod_perc), linewidth = 0.5)+
+  theme_void()+
+  labs(title = "",
+       caption = "",
+       fill = "Households using irrigation\n(% of Total)")+
+  theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
+        legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
+        legend.text = element_text(family = "Helvetica",size = 24),
+        legend.key.size = unit(1, "cm"),
+        legend.position = "bottom",
+        plot.caption = element_text(family = "Helvetica",size = 12),
+        plot.background = element_rect(fill = "azure2", color = "azure2"), 
+        panel.background = element_rect(fill = "azure2", color = "azure2")) +
+  scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),    # Orange-red
+                       limits = c(0, 35),
+                       labels = label_comma()
+  ) +
+  guides(fill = guide_colorbar(title.position = "top", 
+                               barheight = unit(1.5, "cm"), 
+                               barwidth = unit(15, "cm")))
 
-# Crop vs. Livestock
+map_ag_census_irri_prod_percent
+
+#Save the plot
+ggsave("sub_pro_7_general_farming/images/ag_census/map_ag_census_irri_prod_percent.png", width = 12, height = 12, dpi = 300)
