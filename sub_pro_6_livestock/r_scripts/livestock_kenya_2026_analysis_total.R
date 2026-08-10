@@ -43,7 +43,7 @@ data("DataCatalogue")
 
 df_livestock <- read.csv("sub_pro_6_livestock/datasets/df_livestock_all.csv")
 
-# Table 1 for Kenyy, County, and SubCounty Analysis
+# Table 1 for Kenya, County, and SubCounty Analysis
 table_1_pasto <- df_livestock %>%
   clean_names()
 
@@ -553,7 +553,10 @@ merged_df_livestock_maps <- merged_df_livestock_maps |>
   mutate(County = tools::toTitleCase(tolower(County))) |>
   clean_names()
 
+
+################################################################################
 # Maps
+################################################################################
 
 # 1) Farming Households Map
 
@@ -573,7 +576,7 @@ map_farm_hh <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),    # Orange-red
     limits = c(0, 350000),
-    labels = label_number()
+    labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -602,7 +605,7 @@ map_farm_hh_percent <- ggplot(data = merged_df_farm_hh_percent)+
   theme_void()+
   labs(title = "",
        caption = "",
-       fill = "Percentage of Farming Households")+
+       fill = "Farming Households (% of Total)")+
   theme(plot.title = element_text(family = "Helvetica",size = 16, hjust = 0.5),
         legend.title = element_text(family = "Helvetica",size = 28, hjust = 0.5),
         legend.text = element_text(family = "Helvetica",size = 24),
@@ -613,7 +616,7 @@ map_farm_hh_percent <- ggplot(data = merged_df_farm_hh_percent)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),    # Orange-red
     limits = c(0, 100),
-    labels = label_number()
+    labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -642,7 +645,7 @@ map_exotic_cattle_dairy <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
     limits = c(0, 150000),
-    labels = label_number()
+    labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -671,7 +674,7 @@ map_exotic_cattle_beef <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 90000),
-                       labels = label_number()
+                       labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -700,7 +703,7 @@ map_indigenous_cattle <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 1450000),
-                       labels = label_number()
+                       labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -730,7 +733,7 @@ map_sheep <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 2750000),
-                       labels = label_number()
+                       labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -759,7 +762,7 @@ map_goats <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 5000000),
-                       labels = label_number(),
+                       labels = label_comma(),
                        breaks = c(0, 2000000, 4000000)
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
@@ -789,7 +792,8 @@ map_camels <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 1900000),
-                       labels = label_number()
+                       labels = label_comma(), 
+                       breaks = c(0, 750000, 1500000)
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -818,7 +822,7 @@ map_donkeys <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 170000),
-                       labels = label_number()
+                       labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -847,7 +851,7 @@ map_pigs <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 85000),
-                       labels = label_number()
+                       labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -876,7 +880,8 @@ map_indigenous_chicken <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 1600000),
-                       labels = label_number()
+                       labels = label_comma(),
+                       breaks = c(0, 800000, 1200000, 1600000)
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -905,7 +910,8 @@ map_exotic_chicken_layers <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 1900000),
-                       labels = label_number()
+                       labels = label_comma(),
+                       breaks = c(0, 750000, 1500000)
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -934,7 +940,7 @@ map_exotic_chicken_broilers <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 680000),
-                       labels = label_number()
+                       labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -963,7 +969,7 @@ map_beehives <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 225000),
-                       labels = label_number()
+                       labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -992,7 +998,8 @@ map_rabbits <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 60000),
-                       labels = label_number()
+                       labels = label_comma(),
+                       breaks = c(0, 20000, 40000, 60000)
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -1021,7 +1028,7 @@ map_fish_ponds <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 10500),
-                       labels = label_number()
+                       labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -1050,7 +1057,7 @@ map_fish_cages <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 4000),
-                       labels = label_number()
+                       labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -1079,7 +1086,8 @@ map_total_chicken <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 3700000),
-                       labels = label_number()
+                       labels = label_comma(),
+                       breaks = c(0, 1500000, 3000000)
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -1108,7 +1116,7 @@ map_total_cattle <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 1500000),
-                       labels = label_number()
+                       labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -1137,7 +1145,7 @@ map_exotic_chicken <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 2600000),
-                       labels = label_number(),
+                       labels = label_comma(),
                        breaks = c(0, 1000000, 2000000)
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
@@ -1167,7 +1175,7 @@ map_exotic_cattle <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 190000),
-                       labels = label_number()
+                       labels = label_comma()
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
                                barheight = unit(1.5, "cm"), 
@@ -1196,7 +1204,7 @@ map_pastoral_livestock <- ggplot(data = merged_df_livestock_maps)+
         panel.background = element_rect(fill = "azure2", color = "azure2")) +
   scale_fill_gradientn(colors = c("#FEFAE0", "#DDA15E", "#BC6C25", "#780000"),
                        limits = c(0, 8300000),
-                       labels = label_number(),
+                       labels = label_comma(),
                        breaks = c(0, 4000000, 8000000)
   ) +
   guides(fill = guide_colorbar(title.position = "top", 
